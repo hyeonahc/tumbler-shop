@@ -1,4 +1,3 @@
 # tumbler shop
 
-#
-## EunhyeYu
+## team 1 
