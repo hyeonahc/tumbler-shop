@@ -1,5 +1,3 @@
 # tumbler shop
 
-## HeeyoungChun
-
-### Hyeonah Cho
+## team 1 
