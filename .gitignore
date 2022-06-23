@@ -1,5 +1,6 @@
-.cache/
-.idea/
-.DS_Store/
-node_modules/
-dist/
+**/node_modules/
+**/dist/
+**/.idea/
+**/.vscode/
+**/.DS_Store/
+**/.cache/

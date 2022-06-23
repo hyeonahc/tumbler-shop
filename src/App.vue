@@ -1,14 +1,13 @@
 <template>
-  <!-- Remove & use example component! -->
-  <HelloWorld />
+  <TheHeader />
+  <RouterView />
 </template>
 
 <script>
-import HelloWorld from '~/components/HelloWorld'
-
+import TheHeader from '~/components/TheHeader'
 export default {
   components: {
-    HelloWorld
+    TheHeader
   }
 }
 </script>
