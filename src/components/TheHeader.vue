@@ -1,13 +1,39 @@
 <template>
   <header>
     <RouterLink to="/">
-      Home.
+      Home
     </RouterLink>
-    <RouterLink to="/about">
-      About.
+    <RouterLink to="/signup">
+      SignUp
+    </RouterLink>
+    <RouterLink to="/signin">
+      SignIn
+    </RouterLink>
+    <RouterLink to="/mypage">
+      Mypage
+    </RouterLink>
+    <RouterLink
+      to="/"
+      @click="signOut">
+      SignOut
     </RouterLink>
   </header>
 </template>
+
+<script>
+import { mapActions } from 'vuex'
+
+export default {
+  methods: {
+    ...mapActions('user', {
+      useSignOut: 'signOut'
+    }),
+    signOut() {
+      this.useSignOut()
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 header {
