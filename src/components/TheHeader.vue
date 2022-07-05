@@ -1,29 +1,38 @@
 <template>
   <header>
-    <RouterLink to="/">
-      Home
+    <RouterLink :to="{name: 'mainpage'}">
+      MainPage
     </RouterLink>
-    <RouterLink to="/signup">
-      SignUp
-    </RouterLink>
-    <RouterLink to="/signin">
-      SignIn
-    </RouterLink>
-    <RouterLink to="/mypage">
-      Mypage
-    </RouterLink>
-    <RouterLink
-      to="/"
-      @click="signOut">
-      SignOut
-    </RouterLink>
+    <span v-if="!isLogIn">
+      <RouterLink to="/signup">
+        SignUp
+      </RouterLink>
+      <RouterLink to="/signin">
+        SignIn
+      </RouterLink>
+    </span>
+    <span v-else>
+      <RouterLink to="/mypage">
+        Mypage
+      </RouterLink>
+      <RouterLink
+        to="/"
+        @click="signOut">
+        SignOut
+      </RouterLink>
+    </span>
   </header>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
+  computed: {
+    ...mapState('user', [
+      'isLogIn'
+    ])
+  },
   methods: {
     ...mapActions('user', {
       useSignOut: 'signOut'
