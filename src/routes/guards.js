@@ -1,5 +1,5 @@
 import router from './index'
-import userStore from '~/store/user'
+import userStore from '~/store'
 import { validataTokenUser } from '~/core'
 
 router.beforeEach(async to => { // to - 어디로 갈 건지 설정
@@ -9,7 +9,9 @@ router.beforeEach(async to => { // to - 어디로 갈 건지 설정
       return '/admin'
     }
     if (user && user.email) {
-      userStore.mutations.updateUser(userStore.state, user)
+      userStore.commit('user/updateState', {
+        user
+      })
       window.sessionStorage.setItem('user', JSON.stringify(user)) // 임시방편으로 세션에 유저정보 저장
       return true
     }
