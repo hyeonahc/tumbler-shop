@@ -4,6 +4,7 @@ import SignUp from './SignUp.vue'
 import SignIn from './SignIn.vue'
 import MyPage from './MyPage.vue'
 import Admin from './Admin.vue'
+import AddProduct from '../components/AddProduct.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -31,6 +32,10 @@ export default createRouter({
     {
       path: '/admin',
       component: Admin
+    },
+    {
+      path: '/addproduct',
+      component: AddProduct,
     },
   ]
 })
