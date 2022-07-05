@@ -22,9 +22,11 @@ perf: Performance
 
 ## Account
 TEST계정
->ID: team1@gmail.com  
+>displayName: team1
+ ID: team1@gmail.com  
  PW: team1234
 
 관리자 계정
->ID: team1_manager@gmail.com  
+>displayName: team1
+ ID: team1_manager@gmail.com  
  PW: team1234
