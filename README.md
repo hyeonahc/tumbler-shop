@@ -1,6 +1,6 @@
 # tumbler shop
 
-# Commit Message!
+## Commit Message
 기본적으로 commit 제목은 50자 이내로 요약하여 작성하고, prefix를 사용하여 commit의 용도를 한눈에 파악할 수 있게 한다.
 ​
 ```bash
@@ -19,3 +19,14 @@ ci: Continuous Integration #어떤 기능을 개발하였을 때, 기능개발�
 build: Build               #관련된 부산물에 대한 commit
 perf: Performance
 ```
+
+## Account
+TEST계정
+>displayName: team1
+ ID: team1@gmail.com  
+ PW: team1234
+
+관리자 계정
+>displayName: team1
+ ID: team1_manager@gmail.com  
+ PW: team1234
