@@ -1,4 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
+import AddProduct from '../components/AddProduct.vue'
+import EditProduct from '../components/EditProduct.vue'
 import MainPage from '../views/MainPage.vue'
 import SignUp from '../views/SignUp.vue'
 import SignIn from '../views/SignIn.vue'
@@ -49,9 +52,20 @@ export default createRouter({
         }
       ]
     },
+    // 관리자 페이지
     {
       path: '/admin',
       component: Admin
     },
+    {
+      path: '/addproduct',
+      component: AddProduct,
+    },
+    {
+      path: '/editProduct/:id',
+      name: 'EditProduct',
+      component: EditProduct,
+    }
+    
   ]
 })
