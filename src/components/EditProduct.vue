@@ -18,7 +18,7 @@
         type="text" />
     </div>
     <div>
-      <button @click.prevent="geteditProduct">
+      <button>
         수정하기
       </button>
     </div>
