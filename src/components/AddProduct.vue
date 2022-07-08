@@ -1,6 +1,8 @@
 <template>
   <div>
-    <form @submit.prevent="addProduct">
+    <form
+      name="input"
+      @submit.prevent="addProduct">
       <input
         v-model="title"
         type="text"
@@ -13,26 +15,25 @@
         v-model="description" 
         type="text"
         placeholder="상품 상세 설명" />
-      <!-- <input
+      <input
         v-model="tags" 
         type="text"
-        placeholder="태그" /> -->
-      <!-- <input type="file" /> -->
+        placeholder="태그" />
+      <input type="file" />
       <div>
         <button
           type="submit">
           업데이트
         </button>
-        <button @click="backWards">
-          뒤로가기
-        </button>
       </div>
     </form>
+    <button @click="backWards">
+      뒤로가기
+    </button>
   </div>
 </template>
 
 <script>
-// import { mapState, mapActions } from 'vuex'
 
 export default {
   data() {
@@ -40,22 +41,21 @@ export default {
       title: '',
       price: '',
       description: '',
-      // tags:'',
-      // thumbnailBase64: '',
+      tags:'',
+      thumbnailBase64: '',
     }
   },
 
   methods: {
    async addProduct() {
-      const obj = {
-        title: 'test',
-        price: 4334,
-        description: 'test',
-        // tags: this.tags.split(','),
-        // thumbnailBase64: this.thumbnailBase64,
+      const payload = {
+        title: this.title,
+        price: this.price,
+        description: this.description,
+        tags: this.tags.split(','),
+        thumbnailBase64: this.thumbnailBase64,
       }
-      this.$store.dispatch('admin/addProduct', obj)
-      console.log(obj)
+      this.$store.dispatch('admin/addProduct', payload)
     },
     backWards() {
       this.$router.go(-1)
