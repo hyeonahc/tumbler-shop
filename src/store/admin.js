@@ -89,8 +89,7 @@ async function request(options) {
     return await res.json()
 }
 
-// 공용 관리자
-
+// 공용 관리자 API
 async function commonRequst(id) {
   const {url = '', method} = id
   await fetch(`https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/${url}`, {
