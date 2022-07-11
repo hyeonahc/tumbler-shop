@@ -59,7 +59,9 @@ export default {
   div {
     box-sizing: border-box;
   }
-  
+  .myaccount {
+    border-bottom: 1px dotted black
+  }
   .modal {
     top: 30%;
     position: fixed;
