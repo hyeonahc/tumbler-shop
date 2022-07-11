@@ -1,9 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
+import AddProduct from '../components/AddProduct.vue'
+import EditProduct from '../components/EditProduct.vue'
 import MainPage from '../views/MainPage.vue'
 import SignUp from '../views/SignUp.vue'
 import SignIn from '../views/SignIn.vue'
 import MyPage from '../views/MyPage.vue'
 import Admin from '../views/Admin.vue'
+import myAccount from '../views/myAccount.vue'
+import AddAccount from '../views/AddAccount.vue'
+import AccountList from '../views/AccountList.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -27,11 +33,39 @@ export default createRouter({
       component: MyPage,
       meta: { 
         auth: true // 로그인을 해야만 접근 할 수 있는 페이지로 설정
-      }
+      },
+      children: [
+        { 
+          name: 'myAccount',
+          path: 'myaccount',
+          component: myAccount,
+        },
+        {
+          name: 'AccountList',              
+          path: 'accountlist',
+          component: AccountList
+        },
+        {          
+          name: 'AddAccount',       
+          path: 'addaccount',       
+          component: AddAccount
+        }
+      ]
     },
+    // 관리자 페이지
     {
       path: '/admin',
       component: Admin
     },
+    {
+      path: '/addproduct',
+      component: AddProduct,
+    },
+    {
+      path: '/editProduct/:id',
+      name: 'EditProduct',
+      component: EditProduct,
+    }
+    
   ]
 })

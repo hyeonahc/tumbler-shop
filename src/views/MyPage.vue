@@ -46,9 +46,15 @@
     <section class="main">
       <MyAccountInfo
         v-show="menuList[2].isShow"
-        class="my-account-info" />
+        class="my-account-info" />      
     </section>
   </section>
+
+  <RouterLink :to="{name: 'myAccount'}">
+    <h3>내 계좌</h3>
+  </RouterLink>
+
+  <RouterView />
 </template>
 
 <script>
