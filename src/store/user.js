@@ -18,21 +18,20 @@ export default {
     // 회원 가입
     async signUp({ commit }, payload = {}) { // 매개변수를 객체형태로 받아온다, 아무런 데이터가 없다면 오류가 생기기 때문에 기본값 `{}` 명시
       try {
-        const { user, accessToken } = await publicRequest({
+        const res = await publicRequest({
           url: 'auth/signup',
           method: 'POST',
           body: {
             ...payload
           }
         })
-        if (user) {
-          window.localStorage.setItem('token', accessToken)
-          commit('updateState', {
-            user
-          })
-        } else {
-          alert('이미 존재하는 사용자 정보입니다')
-        }
+        const { user, accessToken } = res
+        if (!accessToken) throw new Error(res)
+
+        window.localStorage.setItem('token', accessToken)
+        commit('updateState', {
+          user
+        })
       } catch (err) {
         alert(err)
       }
@@ -40,22 +39,21 @@ export default {
     // 로그인
     async signIn({ commit }, payload = {}) {
       try {
-        const { user, accessToken } = await publicRequest({
+        const res = await publicRequest({
           url: 'auth/login',
           method: 'POST',
           body: {
             ...payload
           }
         })
-        if (user && accessToken) {
-          window.localStorage.setItem('token', accessToken) // accessToKen을 localStorage에 저장
-          commit('updateState', { // user 정보를 store에 저장, isLogIn: true로 저장
-            user,
-            isLogIn: true
-          })
-        } else {
-          alert('잘못된 사용자 정보입니다')
-        }
+        const { user, accessToken } = res
+        if (!accessToken) throw new Error(res) 
+
+        window.localStorage.setItem('token', accessToken) // accessToKen을 localStorage에 저장
+        commit('updateState', { // user 정보를 store에 저장, isLogIn: true로 저장
+          user,
+          isLogIn: true
+        })
       } catch (err) {
         alert(err)
       }
@@ -70,6 +68,28 @@ export default {
         user: {},
         isLogIn: false
       })
+    },
+    // 사용자 정보 수정
+    async editUserInfo({ commit }, payload = {}) {
+      try {
+        const res = await publicRequest({
+          url: 'auth/user',
+          method: 'PUT',
+          body: {
+            ...payload
+          }
+        })
+        console.log(res)
+        if (!res.displayName) throw new Error(res)
+
+        commit('updateState', {
+          ...res
+        })
+        alert('유저 정보가 변경되었습니다')
+        location.reload()
+      } catch (err) {
+        alert(err)
+      }
     },
     // 상태 업데이트 요청
     requestUpdateState({ commit }, payload = {}) {

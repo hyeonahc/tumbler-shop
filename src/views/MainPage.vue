@@ -1,14 +1,21 @@
 <template>
-  <h1>MainPage..</h1>
-  <h1>{{ user.email }}</h1>
-  <h1>{{ isLogIn }}</h1>
+  <TheHeader />
+  <div class="container">
+    <h1>MainPage..</h1>
+    <h1>{{ user.email }}</h1>
+    <h1>{{ isLogIn }}</h1>
+  </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
 import { validataTokenUser } from '~/core' 
+import TheHeader from '~/components/TheHeader'
 
 export default {
+  components: {
+    TheHeader
+  },
   computed: {
     ...mapState('user', [
       'user',
@@ -31,3 +38,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.container {
+  margin-top: 12rem;
+}
+</style>
