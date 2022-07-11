@@ -1,13 +1,9 @@
 <template>
-  <TheHeader />
   <RouterView />
 </template>
 
-<script>
-import TheHeader from '~/components/TheHeader'
-export default {
-  components: {
-    TheHeader
-  }
+<style lang="scss">
+#app {
+  height: 100vh;
 }
-</script>
+</style>
