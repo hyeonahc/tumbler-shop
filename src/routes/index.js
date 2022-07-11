@@ -7,7 +7,7 @@ import SignUp from '../views/SignUp.vue'
 import SignIn from '../views/SignIn.vue'
 import MyPage from '../views/MyPage.vue'
 import Admin from '../views/Admin.vue'
-import myAccount from '../views/myAccount.vue'
+import MyAccount from '../views/MyAccount.vue'
 import AddAccount from '../views/AddAccount.vue'
 import AccountList from '../views/AccountList.vue'
 
@@ -36,9 +36,9 @@ export default createRouter({
       },
       children: [
         { 
-          name: 'myAccount',
+          name: 'MyAccount',
           path: 'myaccount',
-          component: myAccount,
+          component: MyAccount,
         },
         {
           name: 'AccountList',              

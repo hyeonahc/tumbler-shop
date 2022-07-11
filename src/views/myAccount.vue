@@ -4,7 +4,8 @@
     <button>계좌추가</button> 
   </RouterLink>
   <h3> 내계좌 총금액: {{ userAccountInfo.totalBalance }}원 </h3>
-  <UserAccountInfo 
+  <h3>계좌 / 계좌목록 / 현재금액 </h3> 
+  <UserAccountInfo
     v-for="userInfo in userAccountInfo.accounts"
     :key="userInfo.id"
     :user-info="userInfo" />
@@ -37,8 +38,5 @@ methods: {
 </script>
 
 <style lang="scss" scoped>
-  td {
-    border: 1px solid black;
-    padding: 20px;
-  }
+
 </style>
