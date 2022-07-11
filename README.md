@@ -33,6 +33,3 @@ TEST계정
 >displayName: team1
  ID: team1_manager@gmail.com  
  PW: team1234
-
- test
- 
