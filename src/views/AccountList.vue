@@ -4,14 +4,17 @@
     v-for="bank in banklist"
     :key="bank.code">
     {{ bank.name }} / ({{ bank.code }})
-    <span v-if="bank.disabled">연결완료</span>
+    <span
+      v-if="bank.disabled"
+      class="success">연결완료</span>
     <RouterLink
       v-else
       :to="{name: 'AddAccount',
-            params: { bankname: bank.name ,
-                      bankcode: bank.code,
-                      bankdigits: bank.digits,
-            }}">
+            query: {bankname: bank.name,
+                    bankcode: bank.code,
+                    bankdigits: bank.digits,
+            }
+      }">
       <button>
         {{ bank.name }}연결
       </button> 
@@ -39,3 +42,9 @@ export default {
   
 }
 </script>
+
+<style lang="scss" scoped>
+  .success {
+    color: green;
+  }
+</style>
