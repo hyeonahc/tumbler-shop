@@ -3,7 +3,7 @@
   <h1>{{ user.email }}</h1>
   <h1>{{ isLogIn }}</h1>
 
-  <RouterLink :to="{name: 'myAccount'}">
+  <RouterLink :to="{ name: 'MyAccount' }">
     <h3>내 계좌</h3>
   </RouterLink>
 
