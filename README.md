@@ -8,6 +8,8 @@ feat: features             #기능개발, js, ts 파일이 추가 될 때, 기�
 docs: documentations       #readme.md 같은 문서파일 추가 및 수정
 conf: configurations       #환경설정, npm init 같은 것
 style: Style               #코드 포멧팅에 대한 부분 변경, CSS 등
+rename: Rename             #이름을 변경하였을 때
+move: Move                 #코드를 이동할 때
 test: test                 #test코드
 fix: bug-fix               #malfunction이 일어나는 어떤 코드에 대해서 그걸 수정하는 것
                             동작하지 않는 어떤 행위의 수정이므로 오타 잡는 것도 포함
