@@ -1,10 +1,10 @@
 import router from './index'
 import userStore from '~/store'
-import { validataTokenUser } from '~/core'
+import { validateTokenUser } from '~/core'
 
 router.beforeEach(async to => { // to - 어디로 갈 건지 설정
   if (to.meta.auth) {
-    const user = await validataTokenUser()
+    const user = await validateTokenUser()
     if (user.email === 'team1_manager@gmail.com' && user.displayName === 'team1_manager') {
       return '/admin'
     }
