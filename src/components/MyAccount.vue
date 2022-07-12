@@ -30,9 +30,6 @@ computed: {
   ...mapState('bank', [
     'userAccountInfo'
   ]),
-  test() {
-    return this.userAccountInfo.totalBalance
-  }
 },
 created() {
   this.accountBalance()
