@@ -7,7 +7,6 @@ import SignUp from '../views/SignUp.vue'
 import SignIn from '../views/SignIn.vue'
 import MyPage from '../views/MyPage.vue'
 import Admin from '../views/Admin.vue'
-import MyAccount from '../views/MyAccount.vue'
 import AddAccount from '../views/AddAccount.vue'
 import AccountList from '../views/AccountList.vue'
 
@@ -34,24 +33,19 @@ export default createRouter({
       meta: { 
         auth: true // 로그인을 해야만 접근 할 수 있는 페이지로 설정
       },
-      children: [
-        { 
-          name: 'MyAccount',
-          path: 'myaccount',
-          component: MyAccount,
-        },
-        {
-          name: 'AccountList',              
-          path: 'accountlist',
-          component: AccountList
-        },
-        {          
-          name: 'AddAccount',       
-          path: 'addaccount',       
-          component: AddAccount
-        }
-      ]
     },
+    {
+      name: 'AccountList',              
+      path: '/accountlist',
+      component: AccountList
+    },
+    {          
+      name: 'AddAccount',       
+      path: '/addaccount',       
+      component: AddAccount
+    },
+      
+    
     // 관리자 페이지
     {
       path: '/admin',
