@@ -43,27 +43,28 @@
       </div>
     </nav>
 
+    <section>
+      <MyAccount
+        v-show="menuList[1].isShow" />      
+    </section>
+
     <section class="main">
       <MyAccountInfo
         v-show="menuList[2].isShow"
         class="my-account-info" />      
     </section>
   </section>
-
-  <RouterLink :to="{ name: 'MyAccount' }">
-    <h3>내 계좌</h3>
-  </RouterLink>
-
-  <RouterView />
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
 import MyAccountInfo from '~/components/MyAccountInfo.vue'
+import MyAccount from '~/components/MyAccount.vue'
 
 export default {
   components: {
-    MyAccountInfo 
+    MyAccountInfo,
+    MyAccount 
   },
   data() {
     return {
