@@ -2,9 +2,10 @@
   <h2>$route.query.bankname: {{ $route.query.bankname }} 계좌연결</h2>
   <h2>$route.query.bankcode: {{ $route.query.bankcode }} </h2>
   <h2>$route.query.bankdigits: {{ $route.query.bankdigits }} </h2>
+  <br />
+  <br />
   
-  
-  <div>
+  <div class="add-account">
     <div class="accountnumber">
       <div>현재{{ accountNumber.length }}자리 입력</div>
       계좌번호: <input
@@ -25,7 +26,7 @@
         type="text"
         placeholder="핸드폰번호 '-' 없이입력" 
         maxlength="11"
-        oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+        oninput="this.value = this.value.replace(/^(\d{3})(\d{4})(\d{4})/g, '$1-$2-$3')" />
       <span>
         <span v-if="phoneNumber.length === 11">작성 완료</span>
         <span v-else> 전화번호 입력해주세요 </span>
@@ -54,6 +55,7 @@
 import { mapActions } from 'vuex'
 
 export default {
+
   data() {
     return {
       signature: '',
@@ -63,7 +65,7 @@ export default {
   },
   mounted() {
     //params확인
-    console.log('params',this.$route)
+    console.log('route',this.$route)
   },
   methods: {
     ...mapActions('bank', [
@@ -78,7 +80,10 @@ export default {
     },
     //계좌연결
     addBank() {
-      if(this.accountNumber.length === this.addDigits() && this.phoneNumber.length === 11 && this.signature === true ) {
+      if(
+        this.accountNumber.length === this.addDigits() && 
+        this.phoneNumber.length === 11 && 
+        this.signature === true ) {
         alert('계좌연동완료')
         this.$router.go(-2)
       }else{
@@ -91,7 +96,20 @@ export default {
         signature: this.signature
       })
     }
-  },
+  }
 }
-
 </script>
+
+<style lang="scss" scoped>
+h2 {
+  color: $color-font;
+  font-size: 2rem;
+  font-weight: 700;
+}
+.add-account {
+  color: $color-font;
+  font-size: 2rem;
+  font-weight: 700;
+}
+  
+</style>
