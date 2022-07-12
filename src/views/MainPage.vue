@@ -9,7 +9,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import { validataTokenUser } from '~/core' 
+import { validateTokenUser } from '~/core' 
 import TheHeader from '~/components/TheHeader'
 
 export default {
@@ -22,19 +22,22 @@ export default {
       'isLogIn'
     ])
   },
-  async created() { // 처음 Mainpage에 접근하였을 때, Token이 유효하면 자동 로그인 되도록 설정
-    const user = await validataTokenUser()
-    if (user && user.email) {
+  created() { 
+    this.autologin() // 처음 Mainpage에 접근하였을 때, Token이 유효하면 자동 로그인 되도록 설정
+  },
+  methods: {
+    ...mapActions('user', [
+      'requestUpdateState'
+    ]),
+    async autologin() {
+      const user = await validateTokenUser()
+      if (user && user.email) {
       this.requestUpdateState({
         user,
         isLogIn: true
       })
     }
-  },
-  methods: {
-    ...mapActions('user', [
-      'requestUpdateState'
-    ])
+    }
   }
 }
 </script>

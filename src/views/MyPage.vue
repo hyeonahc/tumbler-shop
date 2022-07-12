@@ -50,11 +50,11 @@
     </section>
   </section>
 
-  <RouterLink :to="{name: 'myAccount'}">
+  <!-- <RouterLink :to="{name: 'myAccount'}">
     <h3>내 계좌</h3>
   </RouterLink>
 
-  <RouterView />
+  <RouterView /> -->
 </template>
 
 <script>
