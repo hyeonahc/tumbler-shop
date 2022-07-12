@@ -72,11 +72,6 @@ export default {
       })
       this.email = ''
       this.password = ''
-      if (this.isLogIn) { // 만약 로그인을 성공한 상태라면~
-        this.$router.push({
-          name: 'mainpage' 
-        })
-      }
     }
   }
 }

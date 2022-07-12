@@ -1,4 +1,5 @@
 import { publicRequest } from '~/api/publicRequest'
+import router from '~/routes'
 
 export default {
   namespaced: true,
@@ -32,6 +33,7 @@ export default {
         commit('updateState', {
           user
         })
+        alert('회원가입이 완료되었습니다')
       } catch (err) {
         alert(err)
       }
@@ -53,6 +55,9 @@ export default {
         commit('updateState', { // user 정보를 store에 저장, isLogIn: true로 저장
           user,
           isLogIn: true
+        })
+        router.push({
+          name: 'mainpage'
         })
       } catch (err) {
         alert(err)
