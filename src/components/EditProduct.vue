@@ -3,22 +3,28 @@
 
   <form>
     <div>
+      <label for="title">상품 이름</label>
       <input
+        id="title"
         v-model="title"
         type="text" />
     </div>
     <div>
+      <label for="price">상품 가격</label>
       <input
+        id="price"
         v-model="price"
         type="text" />
     </div>
     <div>
+      <label for="description">상품 설명</label>
       <input
+        id="description"
         v-model="description"
         type="text" />
     </div>
     <div>
-      <button>
+      <button @click.prevent="editProduct">
         수정하기
       </button>
     </div>
@@ -26,6 +32,7 @@
 </template>
 
 <script>
+import { request, commonRequst } from '../api/adminProductApi'
 export default {
   data() {
     return{
@@ -38,29 +45,28 @@ export default {
     }
   },
 
-  // mounted() {
-  //   this.productLookup()
-  // },
+  mounted() {
+    this.productLookup()
+  },
   methods: {
+
     // 수정할 제품 정보
-    // async productLookup(id) {
-    //   const  { payload }  = await this.$store.dispatch('admin/allProductsLookup', {
-    //     id: id
-    //   })
-    //     this.title = payload.title,
-    //     this.price = payload.price,
-    //     this.description = payload.description,
-    //     this.tags = payload.tags
-    //     console.log(payload)
-    // },
+    async productLookup() {
+      const payload = await request(this.$route.params.id)
+        this.title = payload.title,
+        this.price = payload.price,
+        this.description = payload.description,
+        this.tags = payload.tags
+    },
     // 수정사항
-    async geteditProduct() {
-      this.$store.dispatch('admin/editProduct',{      
+    async editProduct() {
+      await commonRequst(this.$route.params.id,{      
         title: this.title,
         price: this.price,
         description: this.description,
         tags: this.tags,
       })
+      this.productLookup()
     },
   }
 }
