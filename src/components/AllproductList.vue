@@ -7,6 +7,14 @@
       <div>
         {{ product.id }}
       </div>
+      <div>
+        <img
+          src="
+        product.thmbnail
+          ? product.thmbnail
+          : '에러'"
+          alt="" />
+      </div>
     </td>
     <td>
       <div>
