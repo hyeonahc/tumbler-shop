@@ -32,11 +32,11 @@ export default {
     async autologin() {
       const user = await validateTokenUser()
       if (user && user.email) {
-      this.requestUpdateState({
-        user,
-        isLogIn: true
-      })
-    }
+        this.requestUpdateState({
+          user,
+          isLogIn: true
+        })
+      }
     }
   }
 }
