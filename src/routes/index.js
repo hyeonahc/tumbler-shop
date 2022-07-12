@@ -34,6 +34,7 @@ export default createRouter({
         auth: true // 로그인을 해야만 접근 할 수 있는 페이지로 설정
       },
     },
+    // 계좌관련 페이지
     {
       name: 'AccountList',              
       path: '/accountlist',
@@ -44,8 +45,6 @@ export default createRouter({
       path: '/addaccount',       
       component: AddAccount
     },
-      
-    
     // 관리자 페이지
     {
       path: '/admin',
