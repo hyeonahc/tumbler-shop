@@ -1,9 +1,11 @@
 <template>
   <h1>제품 조회</h1>
-  <router-link
-    to="/AddProduct">
+  <RouterLink :to="{ name: 'AddProduct' }">
     제품 추가
-  </router-link>
+  </RouterLink>
+
+  <router-view />
+  
 
   <div>
     <button @click="allProductsLookup">
@@ -22,7 +24,7 @@
         </tr>
       </thead>
       <tbody>
-        <AllproductList 
+        <AllProductList 
           v-for="product in allProducts"
           :key="product.id"
           :product="product"
@@ -34,18 +36,11 @@
 
 <script>
 
-import AllproductList from '../components/AllproductList.vue'
+import AllProductList from '~/components/AllProductList.vue'
 export default {
   components: {
-    AllproductList
+    AllProductList
   },
-
-  data() {
-    return {
-     id: ''
-    }
-  },
-
   computed: {
     allProducts() {
       return this.$store.state.admin.allProducts
