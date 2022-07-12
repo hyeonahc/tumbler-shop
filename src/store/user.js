@@ -73,6 +73,7 @@ export default {
         user: {},
         isLogIn: false
       })
+      alert('로그아웃 되었습니다')
     },
     // 사용자 정보 수정
     async editUserInfo({ commit }, payload = {}) {
