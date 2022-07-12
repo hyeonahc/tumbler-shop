@@ -19,7 +19,10 @@
         v-model="tags" 
         type="text"
         placeholder="태그" />
-      <input type="file" />
+      <input
+        id="thumbnail"
+        type="file"
+        @change="selectFile" />
       <div>
         <button
           type="submit">
@@ -43,6 +46,7 @@ export default {
       description: '',
       tags:'',
       thumbnailBase64: '',
+      photoBase64: '',
     }
   },
 
@@ -54,11 +58,22 @@ export default {
         description: this.description,
         tags: this.tags.split(','),
         thumbnailBase64: this.thumbnailBase64,
+        photoBase64: this.photoBase64,
       }
       this.$store.dispatch('admin/addProduct', payload)
     },
     backWards() {
       this.$router.go(-1)
+    },
+    selectFile(event) {
+      const reader = new FileReader()
+      for (const file of event.target.files) {
+        console.log(file)
+        reader.readAsDataURL(file)
+        reader.addEventListener('load', e => {
+          console.log(e.target.result)
+        })
+      }
     },
   }
 }
