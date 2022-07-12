@@ -5,16 +5,19 @@
     <h1>{{ user.email }}</h1>
     <h1>{{ isLogIn }}</h1>
   </div>
+  <DisplayProducts />
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
 import { validataTokenUser } from '~/core' 
 import TheHeader from '~/components/TheHeader'
+import DisplayProducts from '~/components/DisplayProducts'
 
 export default {
   components: {
-    TheHeader
+    TheHeader,
+    DisplayProducts
   },
   computed: {
     ...mapState('user', [
