@@ -75,7 +75,8 @@ export default {
       })
       commit('updateState', {
         user: {},
-        isLogIn: false
+        isLogIn: false,
+        isAdmin: false
       })
       alert('로그아웃 되었습니다')
     },

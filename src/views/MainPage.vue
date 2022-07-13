@@ -4,6 +4,7 @@
     <h1>MainPage</h1>
     <h1>User Email: {{ user.email }}</h1>
     <h1>LogIn: {{ isLogIn }}</h1>
+    <h1>Admin: {{ isAdmin }}</h1>
   </div>
   <DisplayProducts />
 </template>
@@ -21,7 +22,8 @@ export default {
   computed: {
     ...mapState('user', [
       'user',
-      'isLogIn'
+      'isLogIn',
+      'isAdmin'
     ])
   },
   methods: {

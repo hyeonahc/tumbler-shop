@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import AddProduct from '../components/AddProduct.vue'
-import EditProduct from '../components/EditProduct.vue'
+import AddProduct from '~/components/AddProduct.vue'
+import EditProduct from '~/components/EditProduct.vue'
 import MainPage from '../views/MainPage.vue'
 import ProductDetail from '../views/ProductDetail.vue'
 import RequestPurchase from '../views/RequestPurchase.vue'
@@ -74,16 +74,16 @@ export default createRouter({
       meta: {
         auth: true
       }
-    },
-    {
-      path: '/addproduct',
-      component: AddProduct,
-    },
-    {
-      path: '/editProduct/:id',
-      name: 'EditProduct',
-      component: EditProduct,
-    }
-
+      },
+        {
+          name:'AddProduct',
+          path: '/addproduct',
+          component: AddProduct,
+        },
+        {
+          name: 'EditProduct',
+          path: '/editProduct/:id',
+          component: EditProduct,
+        }
   ]
 })
