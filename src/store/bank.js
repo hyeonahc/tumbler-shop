@@ -5,7 +5,14 @@ export default {
   state: () => ({
     banklist: '',
     account: {},
-    userAccountInfo: ''
+    userAccountInfo: '',
+
+    //MyPage
+    menuList: [
+      { name: '구매내역', isShow: true }, // 처음에 보여줄 기본 정보를 구매내역으로 설정
+      { name: '내 계좌', isShow: false},
+      { name: '내 정보 수정', isShow: false}
+    ]
   }),
   getters: {
 
@@ -13,7 +20,7 @@ export default {
   mutations: {
     updateAccount(state, payload) {
       state.account = payload
-    }
+    },
   },
   actions: {
 
