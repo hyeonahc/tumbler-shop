@@ -1,4 +1,4 @@
-import {request, commonRequst} from '../api/adminProductApi'
+import {request} from '../api/adminProductApi'
 
 
 export default {
@@ -54,26 +54,13 @@ export default {
 
     // 제품 삭제
     async deleteProduct({ commit },id) {
-      const res = await commonRequst({
+      const res = await request({
         url:`${id.id}`,
         method: 'DELETE',
       })
         commit('delete', res)
         console.log('제품 삭제')
     },
-
-    // 제품 수정
-    async editProduct({ commit }, payload = {}) {
-      const res = await request({
-        method: 'PUT',
-        body: {
-          ...payload
-        }
-      })
-        commit('assignState', res)
-        console.log(res)
-    },
-
   },
 }
 
