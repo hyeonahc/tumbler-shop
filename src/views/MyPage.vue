@@ -68,17 +68,20 @@ export default {
   },
   data() {
     return {
-      menuList: [
-        { name: '구매내역', isShow: true }, // 처음에 보여줄 기본 정보를 구매내역으로 설정
-        { name: '내 계좌', isShow: false},
-        { name: '내 정보 수정', isShow: false}
-      ]
+      // menuList: [
+      //   { name: '구매내역', isShow: true }, // 처음에 보여줄 기본 정보를 구매내역으로 설정
+      //   { name: '내 계좌', isShow: false},
+      //   { name: '내 정보 수정', isShow: false}
+      // ]
     }
   },
   computed: {
     ...mapState('user', [
       'user',
-      'isLogIn'
+      'isLogIn',
+    ]),
+    ...mapState('bank', [
+      'menuList'
     ])
   },
   methods: {
