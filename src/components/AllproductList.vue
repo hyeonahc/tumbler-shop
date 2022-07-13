@@ -9,10 +9,11 @@
       </div>
       <div>
         <img
-          src="
-        product.thmbnail
-          ? product.thmbnail
-          : '에러'"
+          :src="
+            product.thumbnail
+              ? product.thumbnail
+              : 'https://via.placeholder.com/150'
+          "
           alt="" />
       </div>
     </td>
