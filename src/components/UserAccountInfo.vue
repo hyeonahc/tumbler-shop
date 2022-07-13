@@ -12,7 +12,7 @@
     <div
       class="modal_content">
       <h1>정말로 해지?</h1> 
-      <button @click="deleteBank(), $router.go(0)">
+      <button @click="deleteBank(), deleteUesrInFo()">
         YES
       </button>
       <button @click="isShow = false">
@@ -33,14 +33,15 @@ export default {
         required: true
       }
     },
+  emits: ['user'],
   data() {
     return {
-      isShow: false,
+      isShow: false
     }
   },
     methods: {
   ...mapActions('bank', [
-      'accountDisConnect'
+      'accountDisConnect',
     ]),
     deleteBank() {
       this.accountDisConnect({
@@ -48,10 +49,12 @@ export default {
         signature: true
       })
       alert('해지가 완료되었습니다')
+      this.isShow = false
     },
+    deleteUesrInFo() {
+      this.$emit('user', this.userInfo)
+    }
   }
-  
-
 }
 </script>
 
