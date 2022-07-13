@@ -56,19 +56,16 @@ export default createRouter({
     {
       path: '/admin',
       component: Admin,
-      children: [
+    },
         {
-          path: '/addproduct',
           name:'AddProduct',
+          path: '/addproduct',
           component: AddProduct,
         },
         {
-          path: '/editProduct/:id',
           name: 'EditProduct',
+          path: '/editProduct/:id',
           component: EditProduct,
         }
-      ]
-    }
-    
   ]
 })
