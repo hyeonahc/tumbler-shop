@@ -7,6 +7,15 @@
       <div>
         {{ product.id }}
       </div>
+      <div>
+        <img
+          :src="
+            product.thumbnail
+              ? product.thumbnail
+              : 'https://via.placeholder.com/150'
+          "
+          alt="" />
+      </div>
     </td>
     <td>
       <div>

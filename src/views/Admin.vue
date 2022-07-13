@@ -1,7 +1,7 @@
 <template>
   <h1>제품 조회</h1>
-  <router-link
-    to="/AddProduct">
+  <router-link 
+    to="Addproduct">
     제품 추가
   </router-link>
 
@@ -22,7 +22,7 @@
         </tr>
       </thead>
       <tbody>
-        <AllproductList 
+        <AllProductList 
           v-for="product in allProducts"
           :key="product.id"
           :product="product"
@@ -33,19 +33,12 @@
 </template>
 
 <script>
+import AllProductList from '~/components/AllProductList.vue'
 
-import AllproductList from '../components/AllproductList.vue'
 export default {
   components: {
-    AllproductList
+    AllProductList
   },
-
-  data() {
-    return {
-      id: ''
-    }
-  },
-
   computed: {
     allProducts() {
       return this.$store.state.admin.allProducts
