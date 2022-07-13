@@ -37,6 +37,10 @@ TEST계정
  ID: team11@gmail.com  
  PW: team1234
 
+>displayName: team1  
+ ID: team12@gmail.com  
+ PW: team1234
+
 관리자 계정
 >displayName: team1  
  ID: team1_manager@gmail.com  
