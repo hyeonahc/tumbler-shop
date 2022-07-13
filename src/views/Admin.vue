@@ -1,11 +1,9 @@
 <template>
   <h1>제품 조회</h1>
-  <RouterLink :to="{ name: 'AddProduct' }">
+  <router-link 
+    to="Addproduct">
     제품 추가
-  </RouterLink>
-
-  <router-view />
-  
+  </router-link>
 
   <div>
     <button @click="allProductsLookup">
@@ -35,8 +33,8 @@
 </template>
 
 <script>
-
 import AllProductList from '~/components/AllProductList.vue'
+
 export default {
   components: {
     AllProductList
