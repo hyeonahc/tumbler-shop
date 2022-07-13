@@ -1,4 +1,4 @@
-export async function validataTokenUser() {
+export async function validateTokenUser() {
   const accessToken = window.localStorage.getItem('token')
   const res = await fetch('https://asia-northeast3-heropy-api.cloudfunctions.net/api/auth/me', {
     method: 'POST',

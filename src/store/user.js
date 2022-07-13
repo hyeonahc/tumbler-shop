@@ -1,10 +1,12 @@
 import { publicRequest } from '~/api/publicRequest'
+import router from '~/routes'
 
 export default {
   namespaced: true,
   state: () => ({
     user: {},
-    isLogIn: false // 해당 값으로, 현재 유저가 로그인 한 상태인지 확인
+    isLogIn: false, // 해당 값으로, 현재 유저가 로그인 한 상태인지 확인
+    isAdmin: false  // 해당 값으로, 현재 유저가 관리자 인지 확인
   }),
   mutations: {
     // 상태 업데이트
@@ -32,6 +34,10 @@ export default {
         commit('updateState', {
           user
         })
+        alert('회원가입이 완료되었습니다')
+        router.push({
+          name: 'mainpage'
+        })
       } catch (err) {
         alert(err)
       }
@@ -54,6 +60,9 @@ export default {
           user,
           isLogIn: true
         })
+        router.push({
+          name: 'mainpage'
+        })
       } catch (err) {
         alert(err)
       }
@@ -66,8 +75,10 @@ export default {
       })
       commit('updateState', {
         user: {},
-        isLogIn: false
+        isLogIn: false,
+        isAdmin: false
       })
+      alert('로그아웃 되었습니다')
     },
     // 사용자 정보 수정
     async editUserInfo({ commit }, payload = {}) {

@@ -22,11 +22,11 @@
             v-model="password"
             placeholder="비밀번호를 입력해주세요"
             type="password"
-            @keydown.enter="signUp" />
+            @keydown.enter="useSignUp" />
           <input
             type="submit"
             value="회원가입"
-            @click="signUp" />
+            @click="useSignUp" />
         </div>
       </div>
     </div>
@@ -53,23 +53,23 @@ export default {
       'user'
     ])
   },
-  methods: { // 스토어의 `actions`와 `methods`의 이름이 겹쳐서, `useSignUp`이라는 이름으로 action을 가져옴
-    ...mapActions('user', {
-      useSignUp: 'signUp'
-    }),
-    async signUp() {
+  methods: {
+    ...mapActions('user', [
+      'signUp'
+    ]),
+    async useSignUp() {
       if (!this.displayName.trim()) {
         return alert('이름을 입력해주세요')
       } else if (!this.email.trim()) {
         return alert('이메일을 입력해주세요')
       } else if (!this.password.trim()) {
         return alert('비밀번호를 입력해주세요')
-      } else if (!this.email.includes('@') && !this.email.includes('.com')) {
+      } else if (!this.email.includes('@') && !this.email.includes('.')) {
         return alert('올바른 이메일 형식이 아닙니다')
       } else if (this.password.trim().length <= 7) {
         return alert('비밀번호는 8자리 이상으로 설정해주세요')
       }
-      this.useSignUp({
+      this.signUp({
         displayName: this.displayName,
         email: this.email,
         password: this.password

@@ -25,11 +25,23 @@ perf: Performance
 
 ## Account
 TEST계정
->displayName: team1
+>displayName: team1  
  ID: team1@gmail.com  
+ PW: team1234(비밀번호 오류😥)
+
+>displayName: team1  
+ ID: team10@gmail.com  
+ PW: team1234
+
+>displayName: team1  
+ ID: team11@gmail.com  
+ PW: team1234
+
+>displayName: team1  
+ ID: team12@gmail.com  
  PW: team1234
 
 관리자 계정
->displayName: team1
+>displayName: team1  
  ID: team1_manager@gmail.com  
  PW: team1234

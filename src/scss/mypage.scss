@@ -1,0 +1,97 @@
+// Mypage.vue & Admin.vue
+
+.mypage {
+  display: flex;
+  height: 100%;
+  nav {
+    width: 25rem;
+    // min-width: 16rem;
+    background-color: $color-header;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.4rem;
+      font-weight: 700;
+      .logo {
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    .user {
+      flex-shrink: 0;
+      padding: 1.4rem;
+      color: $color-font;
+      border-top: 0.1rem solid $color-header-border;
+      &__info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 1.2rem;
+      }
+    }
+    .menulist {
+      flex-grow: 1;
+      height: 100%;
+      color: $color-font;
+      padding: 1.4rem;
+      border-top: 0.1rem solid $color-header-border;
+      .menu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 4rem;
+        margin-bottom: 1rem;
+        padding: 0 1.2rem;
+        border-radius: 1rem;
+        font-size: 1.4rem;
+        cursor: pointer;
+        &.show {
+          color: $color-primary;
+          font-weight: 700;
+          background-color: $color-header-border;
+        }
+        &.disabled {
+          cursor: default;
+          opacity: .3;
+        }
+        &:hover {
+          background-color: $color-header-border;
+        }
+      }
+    }
+    .actions {
+      padding: 1.4rem;
+      border-top: 0.1rem solid $color-header-border;
+      color: $color-font;
+      .action {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 4rem;
+        padding: 0 1.2rem;
+        border-radius: 1rem;
+        background-color: $color-header;
+        font-size: 1.4rem;
+        cursor: pointer;
+        &.disabled {
+          cursor: default;
+          opacity: .3;
+        }
+        &:hover {
+          background-color: $color-header-border;
+        }
+        i {
+          font-size: 1.8rem;
+          margin-right: 0.6rem;
+        }
+      }
+    }
+  }
+}

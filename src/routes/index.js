@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import AddProduct from '../components/AddProduct.vue'
-import EditProduct from '../components/EditProduct.vue'
+import AddProduct from '~/components/AddProduct.vue'
+import EditProduct from '~/components/EditProduct.vue'
 import MainPage from '../views/MainPage.vue'
 import ProductDetail from '../views/ProductDetail.vue'
 import RequestPurchase from '../views/RequestPurchase.vue'
@@ -19,7 +19,10 @@ export default createRouter({
     {
       path: '/',
       name: 'mainpage', // name을 지정한 이유는, $router.push를 통해 페이지를 이동시킬 때, { name: 'MainPage' } 와 같이 조금 더 명시적으로 작성하기 위함
-      component: MainPage
+      component: MainPage,
+      meta: {
+        autologin: true // 만약 토큰이 유효하다면 자동 로그인 할 수 있도록 설정
+      }
     },
     {
       path: '/signup',
@@ -60,17 +63,20 @@ export default createRouter({
     // 관리자 페이지
     {
       path: '/admin',
-      component: Admin
-    },
-    {
-      path: '/addproduct',
-      component: AddProduct,
-    },
-    {
-      path: '/editProduct/:id',
-      name: 'EditProduct',
-      component: EditProduct,
-    }
-
+      component: Admin,
+      meta: {
+        auth: true
+      }
+      },
+        {
+          name:'AddProduct',
+          path: '/addproduct',
+          component: AddProduct,
+        },
+        {
+          name: 'EditProduct',
+          path: '/editProduct/:id',
+          component: EditProduct,
+        }
   ]
 })

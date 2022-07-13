@@ -8,25 +8,29 @@
         @click="$router.push({ name: 'mainpage'})" />
       <div class="flex-space"></div>
       <div class="link-container">
-        <RouterLink :to="{name: 'mainpage'}">
-          MainPage
-        </RouterLink>
         <span v-if="!isLogIn">
           <RouterLink to="/signup">
-            SignUp
+            회원가입
           </RouterLink>
           <RouterLink to="/signin">
-            SignIn
+            로그인
           </RouterLink>
         </span>
         <span v-else>
-          <RouterLink to="/mypage">
-            Mypage
-          </RouterLink>
+          <span v-if="isAdmin">
+            <RouterLink to="/admin">
+              관리자 페이지
+            </RouterLink>
+          </span>
+          <span v-else>
+            <RouterLink to="/mypage">
+              마이 페이지
+            </RouterLink>
+          </span>
           <RouterLink
-            to="/"
+            :to="{name: 'mainpage'}"
             @click="signOut">
-            SignOut
+            로그아웃
           </RouterLink>
         </span>
       </div>
@@ -40,7 +44,8 @@ import { mapState, mapActions } from 'vuex'
 export default {
   computed: {
     ...mapState('user', [
-      'isLogIn'
+      'isLogIn',
+      'isAdmin'
     ])
   },
   methods: {
