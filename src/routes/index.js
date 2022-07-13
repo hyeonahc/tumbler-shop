@@ -3,6 +3,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import AddProduct from '~/components/AddProduct.vue'
 import EditProduct from '~/components/EditProduct.vue'
 import MainPage from '../views/MainPage.vue'
+import ProductDetail from '../views/ProductDetail.vue'
+import RequestPurchase from '../views/RequestPurchase.vue'
 import SignUp from '../views/SignUp.vue'
 import SignIn from '../views/SignIn.vue'
 import MyPage from '../views/MyPage.vue'
@@ -27,6 +29,16 @@ export default createRouter({
     {
       path: '/signin',
       component: SignIn
+    },
+    {
+      path: '/productdetail/:id',
+      name: 'productdetail',
+      component: ProductDetail
+    },
+    {
+      path: '/requestpurchase/:id',
+      name: 'requestpurchase',
+      component: RequestPurchase
     },
     {
       path: '/mypage',
@@ -69,6 +81,6 @@ export default createRouter({
         }
       ]
     }
-    
+
   ]
 })
