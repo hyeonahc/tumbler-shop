@@ -13,12 +13,13 @@
         <div class="user__image">
         </div>
         <div class="user__info">
-          <h2>
+          <h4>
             반갑습니다! {{ user.displayName }} 고객님
-          </h2>
-          <h2>
-            고객님의 이메일: {{ user.email }}
-          </h2>
+          </h4> 
+          <br />
+          <h4>
+            {{ user.email }}
+          </h4>
         </div>
       </div>
     
@@ -58,7 +59,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 import MyAccountInfo from '~/components/MyAccountInfo.vue'
 
 export default {
@@ -76,14 +77,10 @@ export default {
   },
   computed: {
     ...mapState('user', [
-      'user',
-      'isLogIn'
+      'user'
     ])
   },
   methods: {
-    ...mapActions('user', [
-      'requestUpdateState' 
-    ]),
     isShowMenu(menuName) { 
       this.menuList.forEach(menu => {
         menu.isShow = false // 모든 menu의 isShow를 false로 바꾸어 안보이게 하기
