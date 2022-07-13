@@ -1,8 +1,14 @@
 import { createStore } from 'vuex'
-import heropy from './heropy'
+import user from './user'
+import admin from './admin'
+import bank from './bank'
+
 
 export default createStore({
   modules: {
-    heropy
+    user,
+    admin,
+    bank
+
   }
 })

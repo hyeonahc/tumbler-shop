@@ -1,0 +1,31 @@
+html {
+  font-size: 62.5%; // rem 값의 기준을 잡기 위함 16px -> 10px
+}
+* {
+  box-sizing: border-box;
+}
+a {
+  font-size: 1.6rem;
+  text-decoration: none;
+}
+p {
+  font-size: 1.6rem
+}
+h1 {
+  font-size: 3.2rem
+}
+h2 {
+  font-size: 2.4rem
+}
+h3 {
+  font-size: 1.8rem
+}
+h4 {
+  font-size: 1.4rem
+}
+img {
+  display: block;
+}
+.flex-space {
+  flex-grow: 1;
+}
