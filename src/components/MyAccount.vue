@@ -5,14 +5,14 @@
       <RouterLink :to="{ name: 'AccountList' }">
         <button class="add-account">
           계좌추가
-        </button> 
+        </button>
       </RouterLink>
       <h2>계좌 / 계좌목록 / 현재금액 </h2> 
-      <h3> 내계좌 총금액: {{ userAccountInfo.totalBalance }}원 </h3>
       <UserAccountInfo
         v-for="userInfo in userAccountInfo.accounts"
         :key="userInfo.id"
-        :user-info="userInfo" />
+        :user-info="userInfo"
+        @user="user" />
     </div>
   </div>
 </template>
@@ -38,6 +38,11 @@ methods:{
   ...mapActions('bank', [
       'accountBalance'
     ]),
+    //emit
+    user(userInfo) {
+      const index = this.userAccountInfo.accounts.findIndex(accounts => accounts.id === userInfo.id)
+      this.userAccountInfo.accounts.splice(index, 1)
+  },
 },
 }
 </script>
