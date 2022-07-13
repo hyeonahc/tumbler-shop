@@ -13,12 +13,17 @@
         <div class="user__image">
         </div>
         <div class="user__info">
-          <h2>
-            반갑습니다! {{ user.displayName }} 관리자님
-          </h2>
-          <h2>
-            관리자님의 이메일: {{ user.email }}
-          </h2>
+          <h4>
+            반갑습니다! 
+          </h4>
+          <br />
+          <h4>
+            {{ user.displayName }} 관리자님
+          </h4>
+          <br />
+          <h4>
+            {{ user.email }}
+          </h4>
         </div>
       </div>
     
@@ -86,7 +91,6 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import AllproductList from '~/components/AllproductList.vue'
-import { validateTokenUser } from '~/core' 
 
 export default {
   components: {
@@ -110,7 +114,6 @@ export default {
     }
   },
   created() {
-    this.autologin()
     this.$store.dispatch('admin/allProductsLookup')
   },
   methods: {
@@ -127,15 +130,6 @@ export default {
           menu.isShow = true
         }
       })
-    },
-    async autologin() {
-      const user = await validateTokenUser()
-      if (user && user.email) {
-        this.requestUpdateState({
-          user,
-          isLogIn: true
-        })
-      }
     }
   }
 }
