@@ -3,24 +3,40 @@
     <form
       name="input"
       @submit.prevent="addProduct">
+      <label for="title">제목</label>
       <input
+        id="title"
         v-model="title"
         type="text"
         placeholder="제목" />
+        
+      <label for="price">가격</label>
       <input
+        id="price"
         v-model="price"
         type="text"
         placeholder="가격" />
+      <label for="description">제품 설명</label>
       <input
+        id="description"
         v-model="description" 
         type="text"
         placeholder="상품 상세 설명" />
+
+      <label for="tags">태그</label>
       <input
+        id="tags"
         v-model="tags" 
         type="text"
         placeholder="태그" />
+      <label for="thumbnail">썸네일</label>
       <input
         id="thumbnail"
+        type="file"
+        @change="selectFile" />
+      <label for="photo">상세 이미지</label>
+      <input 
+        id="photo"
         type="file"
         @change="selectFile" />
       <div>
@@ -65,13 +81,30 @@ export default {
     backWards() {
       this.$router.go(-1)
     },
+
+    // selectFile(event) {
+    //   const reader = new FileReader()
+    //   for (const file of event.target.files) {
+    //     console.log(file)
+    //     reader.readAsDataURL(file)
+    //     reader.addEventListener('load', e => {
+    //       console.log(e.target.result)
+    //       this.thumbnailBase64 = e.target.result
+    //     })
+    //   }
+    // },
+
     selectFile(event) {
-      const reader = new FileReader()
-      for (const file of event.target.files) {
-        console.log(file)
+      const { files } = event.target
+      for (const file of files) {
+        const reader = new FileReader()
         reader.readAsDataURL(file)
-        reader.addEventListener('load', e => {
-          console.log(e.target.result)
+        reader.addEventListener('load', () => {
+          if (event.target.id === 'thumbnail') {
+            this.thumbnailBase64 = reader.result
+          } else {
+            this.photoBase64 = reader.result
+          }
         })
       }
     },
