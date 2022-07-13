@@ -17,11 +17,11 @@
             v-model="password"
             placeholder="비밀번호를 입력해주세요"
             type="password" 
-            @keydown.enter="signIn" />
+            @keydown.enter="useSignIn" />
           <input
             type="submit"
             value="로그인"
-            @click="signIn" />
+            @click="useSignIn" />
           <p>
             아직 계정이 없으신가요? 
             <RouterLink to="/signup">
@@ -54,11 +54,11 @@ export default {
       'isLogIn'
     ])
   },
-  methods: { // 스토어의 `actions`와 `methods`의 이름이 겹쳐서, `useSignIn`이라는 이름으로 action을 가져옴
-    ...mapActions('user', {
-      useSignIn: 'signIn'
-    }),
-    async signIn() {
+  methods: {
+    ...mapActions('user', [
+      'signIn'
+    ]),
+    async useSignIn() {
       if (!this.email.trim()) {
         alert('이메일을 입력해주세요')
         return
@@ -66,7 +66,7 @@ export default {
         alert('비밀번호를 입력해주세요')
         return
       }
-      await this.useSignIn({
+      await this.signIn({
         email: this.email,
         password: this.password
       })
