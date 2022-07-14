@@ -40,8 +40,8 @@
 </template>
 
 <script>
+import { publicRequest } from '../api/publicRequest'
 import { mapState, mapActions } from 'vuex'
-// import { commonRequst } from '~/store/admin'
 
 export default {
   data() {
@@ -62,30 +62,14 @@ export default {
     }
   },
   created() {
-    // this.accountBalance()
     this.getAccountInfo()
   },
 	methods: {
     ...mapActions('bank', [
       'accountBalance' 
     ]),
-    async purchaseProduct(body) {
-      const accessToken = window.localStorage.getItem('token')
-			const res = await fetch('https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/buy', {
-				method: 'POST',
-				headers: {
-					'content-type': 'application/json',
-					'apikey': 'FcKdtJs202204',
-					'username': 'TEAM_1',
-          authorization: `Bearer ${accessToken}`
-				},
-        body: JSON.stringify(body)
-			})
-      return await res.json()
-		},
     async getAccountInfo() {
       await this.accountBalance()
-      // console.log('userAccountInfo: ', this.userAccountInfo)
       this.accounts = this.userAccountInfo.accounts
       console.log('accounts: ', this.accounts)
       console.log('accountsLength: ', this.accountsLength)
@@ -102,13 +86,17 @@ export default {
     async requestPurchase() {
       console.log('해당 계좌로 결제하기')
       console.log('accounts: ', this.accounts)
-      const obj = {
+      const info = {
         productId : this.$route.params.id,
         accountId : this.selectedAccount
       }
-      console.log('obj: ', obj)
+      console.log('info: ', info)
       try {
-        const res = await this.purchaseProduct(obj)
+        const res = await publicRequest({
+          url: 'products/buy',
+          method: 'POST',
+          body: info
+        })
         console.log('res: ', res)
         // 잔액이 충분할때와 그렇지 않을때
         if(res === true) {
