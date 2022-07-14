@@ -2,9 +2,9 @@
   <div class="product-wrapper">
     <div
       class="thumbnail">
-      <span>
-        thumbnail
-      </span>
+      <img
+        :src="$route.query.thumbnail"
+        :alt="$route.query.title" />
     </div>
     <div class="content">
       <p>제목: {{ $route.query.title }}</p>

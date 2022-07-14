@@ -2,9 +2,9 @@
   <div class="product-wrapper">
     <div
       class="thumbnail">
-      <span>
-        thumbnail
-      </span>
+      <img
+        :src="product.thumbnail"
+        :alt="product.title" />
     </div>
     <div class="content">
       <h2>제목: {{ product.title }}</h2>
@@ -35,7 +35,7 @@ export default {
   },
 	created() {
 		this.commonRequst()
-		console.log('this.$route.params.id', this.$route.params.id)
+		console.log('this.$route.params.id: ', this.$route.params.id)
 		console.log('isLogin: ', this.isLogIn)
 	},
 	methods: {
@@ -51,7 +51,7 @@ export default {
 			})
 			res = await res.json()
 			this.product = res
-			console.log(this.product)
+			console.log('product: ', this.product)
 		},
 		purchase() {
 			console.log('구매하기')
@@ -74,8 +74,6 @@ export default {
 	justify-content: center;
 }
 .thumbnail {
-  background-color: #dddee5;
-  height: 250px;
 	width: 200px;
   display: flex;
   justify-content: center;
