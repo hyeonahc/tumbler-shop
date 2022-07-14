@@ -44,40 +44,46 @@
       </div>
     </nav>
 
+    <section>
+      <MyAccount
+        v-show="menuList[1].isShow" />      
+    </section>
+
     <section class="main">
       <MyAccountInfo
         v-show="menuList[2].isShow"
         class="my-account-info" />      
     </section>
   </section>
-
-  <!-- <RouterLink :to="{name: 'myAccount'}">
-    <h3>내 계좌</h3>
-  </RouterLink>
-
-  <RouterView /> -->
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import MyAccountInfo from '~/components/MyAccountInfo.vue'
+import MyAccount from '~/components/MyAccount.vue'
 
 export default {
   components: {
-    MyAccountInfo 
+    MyAccountInfo,
+    MyAccount 
   },
   data() {
     return {
-      menuList: [
-        { name: '구매내역', isShow: true }, // 처음에 보여줄 기본 정보를 구매내역으로 설정
-        { name: '내 계좌', isShow: false},
-        { name: '내 정보 수정', isShow: false}
-      ]
+      // menuList: [
+      //   { name: '구매내역', isShow: true }, // 처음에 보여줄 기본 정보를 구매내역으로 설정
+      //   { name: '내 계좌', isShow: false},
+      //   { name: '내 정보 수정', isShow: false}
+      // ]
     }
   },
   computed: {
     ...mapState('user', [
-      'user'
+      'user',
+      'isLogIn',
+    ]),
+    ...mapState('bank', [
+      'menuList'
+
     ])
   },
   methods: {
