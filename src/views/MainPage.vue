@@ -1,6 +1,6 @@
 <template>
   <TheHeader />
-  <div class="container">
+  <div>
     <h1>MainPage</h1>
     <h1>User Email: {{ user.email }}</h1>
     <h1>LogIn: {{ isLogIn }}</h1>
