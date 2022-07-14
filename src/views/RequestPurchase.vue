@@ -1,4 +1,5 @@
 <template>
+  <TheHeader />
   <div class="product-wrapper">
     <div
       class="thumbnail">
@@ -40,10 +41,14 @@
 </template>
 
 <script>
+import TheHeader from '~/components/TheHeader'
 import { publicRequest } from '../api/publicRequest'
 import { mapState, mapActions } from 'vuex'
 
 export default {
+  components: {
+		TheHeader
+	},
   data() {
     return {
       accounts: [],
@@ -120,7 +125,6 @@ export default {
 }
 .thumbnail {
   background-color: #dddee5;
-  height: 250px;
 	width: 200px;
   display: flex;
   justify-content: center;

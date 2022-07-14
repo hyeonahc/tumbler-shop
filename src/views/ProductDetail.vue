@@ -1,4 +1,5 @@
 <template>
+  <TheHeader />
   <div class="product-wrapper">
     <div
       class="thumbnail">
@@ -20,10 +21,14 @@
 </template>
 
 <script>
+import TheHeader from '~/components/TheHeader'
 import { request } from '../api/adminProductApi'
 import { mapState } from 'vuex'
 
 export default {
+	components: {
+		TheHeader
+	},
 	data() {
 		return {
 			product: {}
