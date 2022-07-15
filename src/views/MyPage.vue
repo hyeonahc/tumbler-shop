@@ -45,6 +45,11 @@
     </nav>
 
     <section>
+      <PurchaseHistory
+        v-show="menuList[0].isShow" />
+    </section>
+
+    <section>
       <MyAccount
         v-show="menuList[1].isShow" />      
     </section>
@@ -59,11 +64,13 @@
 
 <script>
 import { mapState } from 'vuex'
+import PurchaseHistory from '~/components/PurchaseHistory.vue'
 import MyAccountInfo from '~/components/MyAccountInfo.vue'
 import MyAccount from '~/components/MyAccount.vue'
 
 export default {
   components: {
+    PurchaseHistory,
     MyAccountInfo,
     MyAccount 
   },
@@ -83,7 +90,7 @@ export default {
     ]),
     ...mapState('bank', [
       'menuList'
-
+      
     ])
   },
   methods: {
