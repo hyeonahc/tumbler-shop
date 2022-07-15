@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header id="header">
     <div class="inner">
       <img
         class="logo"
@@ -48,12 +48,27 @@ export default {
       'isAdmin'
     ])
   },
+  mounted() {
+    this.fixHeaderOnScroll()
+  },
   methods: {
     ...mapActions('user', {
       useSignOut: 'signOut'
     }),
     signOut() {
       this.useSignOut()
+    },
+    fixHeaderOnScroll() {
+      window.onscroll = () => updateClassName()
+      const header = document.getElementById('header')
+      const sticky = header.offsetTop
+      function updateClassName() {
+        if (window.pageYOffset > sticky) {
+          header.classList.add('sticky')
+        } else {
+          header.classList.remove('sticky')
+        }
+      }
     }
   }
 }
@@ -61,11 +76,13 @@ export default {
 
 <style lang="scss" scoped>
 header {
-  position: fixed;
-  top: 0;
   width: 100vw;
   background-color: $color-header;
   border-bottom: 0.1rem solid $color-header-border;
+  &.sticky {
+  position: fixed;
+  top: 0;
+}
   .inner {
     display: flex;
     height: 12rem;
