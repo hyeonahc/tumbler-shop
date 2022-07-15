@@ -105,7 +105,7 @@ export default {
         console.log('res: ', res)
         // 잔액이 충분할때와 그렇지 않을때
         if(res === true) {
-          alert('결제가 성공했습니다. my page에서 구매확정버튼을 눌러주세요')
+          alert('결제가 성공했습니다. 마이페이지에서 구매확정버튼을 눌러주세요')
           this.$router.push('/mypage')
         } else {
           alert('잔액이 부족합니다. 다른 계좌를 이용해주세요.')
