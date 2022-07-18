@@ -3,7 +3,7 @@
 
   <form>
     <div>
-      <label for="title">상품 이름</label>
+      <label for="title">상품 제목</label>
       <input
         id="title"
         v-model="title"
@@ -32,9 +32,10 @@
         type="text" />
     </div>
     <div>
-      <label for="thumbnailBase64">상품 썸네일</label>
+      <label for="thumbnail">상품 썸네일</label>
       <input
-        id="thumbnailBase64"
+        id="thumbnail"
+        src="thumbnail"
         type="file"
         @change="selectFile" />
     </div>
@@ -42,23 +43,30 @@
       <label for="photo">상품 상세사진</label>
       <input
         id="photo"
+        src="photo"
         type="file"
         @change="selectFile" />
     </div>
-    <div>
-      <button @click.prevent="editProduct">
-        수정하기
-      </button>
-      <button @click.prevent="backWards">
-        뒤로가기
-      </button>
-    </div>
   </form>
+  <div>
+    <button @click.prevent="editProduct">
+      수정하기
+    </button>
+    <button @click.prevent="backWards">
+      뒤로가기
+    </button>
+  </div>
 </template>
 
 <script>
 import { request } from '../api/adminProductApi'
 export default {
+  props: {
+    product: {
+      type: Object,
+      default: () => ({})
+    }
+  },
   data() {
     return{
       productId: this.$route.params.id,
@@ -83,7 +91,12 @@ export default {
         url:`${this.productId}`,
         method: 'GET',
       })
-      console.log(res)
+      this.title = res.title
+      this.price = res.price
+      this.description = res.description
+      this.tags = res.tags
+      this.thumbnailBase64 = res.thumbnailBase64
+      this.photo = res.photo
     },
 
     // 수정 사항
@@ -115,9 +128,7 @@ export default {
         reader.addEventListener('load', () => {
           if (event.target.id === 'thumbnail') {
             this.thumbnailBase64 = reader.result
-          } else {
-            this.photoBase64 = reader.result
-          }
+          } 
         })
       }
     },
