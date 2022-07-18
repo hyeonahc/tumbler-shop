@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { request } from '../api/adminProductApi'
+import { publicRequest } from '~/api/publicRequest'
 import dayjs from 'dayjs'
 export default {
   props: {
@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     async transactionDetails() {
-      const res = await request ({
+      const res = await publicRequest ({
         url: `transactions/${this.sales.detailId}`,
         method: 'PUT'
       })
