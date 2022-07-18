@@ -22,7 +22,7 @@
 
 <script>
 import TheHeader from '~/components/TheHeader'
-import { request } from '../api/adminProductApi'
+import { publicRequest } from '../api/publicRequest'
 import { mapState } from 'vuex'
 
 export default {
@@ -46,7 +46,7 @@ export default {
 	},
 	methods: {
 		async getProductDetail() {
-			const res = await request({
+			const res = await publicRequest({
 				url: `${this.$route.params.id}`,
 				method: 'GET',
 			})
