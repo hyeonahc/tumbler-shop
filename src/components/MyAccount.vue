@@ -18,8 +18,7 @@
       ref="darkBg"
       @click="RemoveDarkBg"></div>
     <AccountList
-      v-if="isOn"
-      :is-on="isOn" />
+      v-if="isOn" />
   </div>
 </template>
 
