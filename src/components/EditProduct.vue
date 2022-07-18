@@ -39,14 +39,6 @@
         type="file"
         @change="selectFile" />
     </div>
-    <div>
-      <label for="photo">상품 상세사진</label>
-      <input
-        id="photo"
-        src="photo"
-        type="file"
-        @change="selectFile" />
-    </div>
   </form>
   <div>
     <button @click.prevent="editProduct">
@@ -75,7 +67,6 @@ export default {
       description: '',
       tags:'',
       thumbnailBase64: null,
-      photo: null,
       isSoldOut: false
     }
   },
@@ -96,7 +87,6 @@ export default {
       this.description = res.description
       this.tags = res.tags
       this.thumbnailBase64 = res.thumbnailBase64
-      this.photo = res.photo
     },
 
     // 수정 사항
@@ -110,7 +100,6 @@ export default {
           description: this.description,
           tags: this.tags,
           thumbnailBase64: this.thumbnailBase64,
-          photo: this.photo
         }
       })
       this.productLookup()
