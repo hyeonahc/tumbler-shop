@@ -1,18 +1,30 @@
 <template>
-  <div>
+  <div class="container">
     <div class="my-account">
-      <h1>내 계좌 목록</h1>
+      <h1>내 계좌</h1>
+      
       <button
         class="add-account"
         @click="addAccount">
+        <i class="fa-solid fa-plus"></i>
         계좌추가
       </button>
-      <h2>계좌 / 계좌목록 / 현재금액 </h2> 
-      <UserAccountInfo
-        v-for="userInfo in userAccountInfo.accounts"
-        :key="userInfo.id"
-        :user-info="userInfo"
-        @user="user" />
+      <table>
+        <tr>
+          <th>No</th>
+          <th>은행명</th>
+          <th>계좌번호</th>
+          <th>현재 금액</th>
+          <th>계좌해지</th>
+        </tr>
+
+        <UserAccountInfo
+          v-for="(userInfo, index) in userAccountInfo.accounts"
+          :key="userInfo.id"
+          :user-info="userInfo"
+          :index="index"
+          @user="user" />
+      </table>
     </div>
     <div
       ref="darkBg"
@@ -67,10 +79,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.my-account {
-  border: 1px solid black;   
-  width: 50rem;
-  height: 50rem;
+.container {
+  // position: relative;
+  .my-account {
+  padding: 30px 50px;
+  
+  table {
+    width: 100%;
+    border-collapse : collapse;
+    border : 1px solid black;
+    text-align: center;
+    th {
+      padding: 10px;
+      background-color: $color-primary;
+      color: $color-white;
+    }
+    
+  }
   h1 {
     color: $color-font;
     font-size: 3rem;
@@ -90,8 +115,18 @@ export default {
   .add-account {
     background-color: $color-primary;
     color: $color-white;
+    border-radius: 3px;
+    border: none;
+    width: 100px;
+    height: 25px;
+    display: block;
+    margin-left: 88%;
+    margin-bottom: 20px;
+    // float: right;
   }
 }
+}
+
 .dark-bg {
   background: rgba(0, 0, 0, 0.5);
   height: 100vh;
