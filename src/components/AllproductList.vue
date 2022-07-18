@@ -8,7 +8,7 @@
               ? product.thumbnail
               : 'https://3.bp.blogspot.com/-ZKBbW7TmQD4/U6P_DTbE2MI/AAAAAAAADjg/wdhBRyLv5e8/s1600/noimg.gif'
           "
-          class=""
+          class="img-test"
           alt="" />
         {{ product.title }}
       </div>
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { request } from '../api/adminProductApi.js'
+import { publicRequest } from '../api/publicRequest'
 export default { 
   props: {
     product: {
@@ -45,15 +45,18 @@ export default {
     }
   },
   methods: {
-    // async deleteProduct(id) {
-    //   await this.$store.dispatch('admin/deleteProduct', {
-    //     id : id
-    //   })
-    // },
     async deleteProduct() {
-      const res = await request({
-        url: `${this.product.id}`,
+      const res = await publicRequest({
+        url: `products/${this.product.id}`,
         method: 'DELETE'
+      })
+      console.log(res)
+      this.product
+    },
+        async singleProduct() {
+      const res = await publicRequest({
+        url: `products/${this.product.id}`,
+        method: 'GET'
       })
       console.log(res)
       this.product
@@ -65,5 +68,7 @@ export default {
 </script>
 
 <style>
-
+  .img-test {
+    width: 100px;
+  }
 </style>
