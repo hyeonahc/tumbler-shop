@@ -9,7 +9,8 @@ export async function publicRequest(options) {
       'content-type': 'application/json',
       'apikey': 'FcKdtJs202204',
       'username': 'TEAM_1',
-      'Authorization': `Bearer ${accessToken}`
+      'Authorization': `Bearer ${accessToken}`,
+      masterKey: true,
     },
     body: JSON.stringify(body)
   })

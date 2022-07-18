@@ -57,7 +57,7 @@
           to="/AddProduct">
           제품 추가
         </router-link>
-    
+
         <div>
           <button @click="allProductsLookup">
             전체 제품 보기
@@ -78,11 +78,17 @@
               <AllproductList 
                 v-for="product in allProducts"
                 :key="product.id"
-                :product="product"
-                :products="products" />
+                :product="product" />
             </tbody>
           </table>
         </div>
+      </div>
+    </section>
+    <section class="main">
+      <div
+        v-show="menuList[1].isShow"
+        class="inquireProducts">
+        <salesHistory />
       </div>
     </section>
   </section>
@@ -91,10 +97,14 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import AllproductList from '~/components/AllproductList.vue'
+import salesHistory from '~/views/salesHistory.vue'
+
 
 export default {
   components: {
-    AllproductList
+    AllproductList,
+    salesHistory,
+    
   },
   data() {
     return {
@@ -102,7 +112,7 @@ export default {
       menuList: [
         { name: '제품 조회', isShow: true },
         { name: '판매 내역', isShow: false } 
-      ]
+      ],
     }
   },
   computed: {
@@ -133,12 +143,14 @@ export default {
     }
   }
 }
+
 </script>
 
 <style lang="scss" scoped>
-.main {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
+// .main {
+//   display: flex;
+//   align-items: center;
+//   width: 100%;
+// }
+
 </style>
