@@ -3,7 +3,7 @@ import { publicRequest } from '../api/publicRequest'
 export default {
   namespaced: true,
   state: () => ({
-    banklist: '',
+    banklist: {},
     account: {},
     userAccountInfo: '',
   }),
@@ -11,6 +11,9 @@ export default {
     updateAccount(state, payload) {
       state.account = payload
     },
+    test(state, images) {
+      state.banklist.push(images)
+    }
   },
   actions: {
     // 은행 계좌 목록 조회
@@ -20,6 +23,14 @@ export default {
         method: 'GET',
       })
       state.banklist = res
+      state.banklist[0].image= require('../assets/logo.png')
+      state.banklist[1].image= require('../assets/logo.png')
+      state.banklist[2].image= require('../assets/logo.png')
+      state.banklist[3].image= require('../assets/logo.png')
+      state.banklist[4].image= require('../assets/logo.png')
+      state.banklist[5].image= require('../assets/logo.png')
+      state.banklist[6].image= require('../assets/logo.png')
+      console.log('res', state.banklist)
     },
     // 계좌 연결
     async accountConnect({ commit }, payload) {
@@ -56,7 +67,9 @@ export default {
         }
       })
       commit ('updateAccount', payload)
-    }
+    },
+
+    
   }
 }
 
