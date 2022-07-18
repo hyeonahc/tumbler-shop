@@ -25,9 +25,6 @@ export default {
       const all = state.allProducts.findIndex(product => product.id === payload)
       state.allProducts.splice(all, 1)
     },
-    updata(state, payload) {
-      state.type = payload
-    }
   },
 
   actions: {
@@ -60,6 +57,15 @@ export default {
       })
         commit('delete', res)
         console.log('제품 삭제')
+    },
+
+    // 전체 판매 내역
+    async salesProduct({ commit }) {
+      const res = await request({
+        url:'transactions/all',
+        method: 'GET'
+      })
+        commit('assignState', {salesDetails: res})
     },
   },
 }
