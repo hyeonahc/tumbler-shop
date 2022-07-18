@@ -57,7 +57,6 @@ export default {
       description: '',
       tags:'',
       thumbnailBase64: '',
-      photoBase64: '',
     }
   },
 
@@ -69,9 +68,9 @@ export default {
         description: this.description,
         tags: this.tags.split(','),
         thumbnailBase64: this.thumbnailBase64,
-        photoBase64: this.photoBase64,
       }
       this.$store.dispatch('admin/addProduct', payload)
+      console.log(payload)
     },
     backWards() {
       this.$router.go(-1)
