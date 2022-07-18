@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { request } from '../api/adminProductApi'
+import { publicRequest } from '../api/publicRequest'
 export default {
   props: {
     product: {
@@ -87,8 +87,8 @@ export default {
   methods: {
     // 수정할 제품 정보
     async productLookup() {
-      const res = await request({
-        url:`${this.productId}`,
+      const res = await publicRequest({
+        url:`products/${this.productId}`,
         method: 'GET',
       })
       this.title = res.title
@@ -101,8 +101,8 @@ export default {
 
     // 수정 사항
     async editProduct() {
-      const obj = await request ({
-        url:`${this.productId}`,
+      const obj = await publicRequest ({
+        url:`products/${this.productId}`,
         method: 'PUT',
         body: {
           title: this.title,
