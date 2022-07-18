@@ -12,6 +12,7 @@ import Admin from '../views/Admin.vue'
 import myAccount from '../views/myAccount.vue'
 import AddAccount from '../views/AddAccount.vue'
 import AccountList from '../views/AccountList.vue'
+import salesHistory from '../views/salesHistory.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -84,6 +85,11 @@ export default createRouter({
           name: 'EditProduct',
           path: '/editProduct/:id',
           component: EditProduct,
-        }
+        },
+        {
+          name: 'salesHistory',
+          path: '/salesHistory',
+          component: salesHistory,
+        },
   ]
 })
