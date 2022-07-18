@@ -77,7 +77,8 @@ export default {
 			// console.log('res: ', res)
 			this.createPurchasedProducts(res)
 		},
-		createPurchasedProducts(purchaseHistoryLists) {
+		createPurchasedProducts(res) {
+			const purchaseHistoryLists = res.sort((a, b) => new Date(a.timePaid) - new Date(b.timePaid))
 			// console.log('purchaseHistoryLists: ', purchaseHistoryLists)
 			purchaseHistoryLists.forEach(purchaseHistoryList => {
 				let { product: {title, price}, timePaid, done, isCanceled, detailId } = purchaseHistoryList
