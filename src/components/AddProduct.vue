@@ -34,11 +34,6 @@
         id="thumbnail"
         type="file"
         @change="selectFile" />
-      <label for="photo">상세 이미지</label>
-      <input 
-        id="photo"
-        type="file"
-        @change="selectFile" />
       <div>
         <button
           type="submit">
@@ -82,18 +77,6 @@ export default {
       this.$router.go(-1)
     },
 
-    // selectFile(event) {
-    //   const reader = new FileReader()
-    //   for (const file of event.target.files) {
-    //     console.log(file)
-    //     reader.readAsDataURL(file)
-    //     reader.addEventListener('load', e => {
-    //       console.log(e.target.result)
-    //       this.thumbnailBase64 = e.target.result
-    //     })
-    //   }
-    // },
-
     selectFile(event) {
       const { files } = event.target
       for (const file of files) {
@@ -102,9 +85,7 @@ export default {
         reader.addEventListener('load', () => {
           if (event.target.id === 'thumbnail') {
             this.thumbnailBase64 = reader.result
-          } else {
-            this.photoBase64 = reader.result
-          }
+          } 
         })
       }
     },
