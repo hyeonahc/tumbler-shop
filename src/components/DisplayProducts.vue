@@ -35,19 +35,14 @@ export default {
 		...mapState('admin', [
 			'allProducts'
 		]),
-		searchedProducts: function() {
+		searchedProducts() {
 			return this.allProducts.filter(product => {
 				return product.title.match(this.search)
 			})
 		}
 	},
 	created() {
-		this.allProductsLookup(),
-		// 값을 가져올 수 없는 이유는?
-		console.log('allProducts', this.allProducts)
-	},
-	mounted() {
-		console.log('searchedProducts', this.searchedProducts)
+		this.allProductsLookup()
 	},
 	methods: {
 		...mapActions('admin', [
