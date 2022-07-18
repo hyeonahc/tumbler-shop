@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import AddProduct from '~/components/AddProduct.vue'
+import AddProduct from '../components/AddProduct.vue'
 import EditProduct from '~/components/EditProduct.vue'
 import MainPage from '../views/MainPage.vue'
 import ProductDetail from '../views/ProductDetail.vue'
@@ -9,13 +9,12 @@ import SignUp from '../views/SignUp.vue'
 import SignIn from '../views/SignIn.vue'
 import MyPage from '../views/MyPage.vue'
 import Admin from '../views/Admin.vue'
-<<<<<<< HEAD
-import myAccount from '../views/myAccount.vue'
-import AddAccount from '../views/AddAccount.vue'
-import AccountList from '../views/AccountList.vue'
+// import myAccount from '../views/myAccount.vue'
+// import AddAccount from '../views/AddAccount.vue'
+// import AccountList from '../views/AccountList.vue'
 import salesHistory from '../views/salesHistory.vue'
-=======
->>>>>>> develop
+import SingleProduct from '../components/SingleProduct.vue'
+
 
 export default createRouter({
   history: createWebHistory(),
@@ -61,21 +60,26 @@ export default createRouter({
       meta: {
         auth: true
       }
+    },
+      {
+        name:'AddProduct',
+        path: '/addproduct',
+        component: AddProduct,
       },
-        {
-          name:'AddProduct',
-          path: '/addproduct',
-          component: AddProduct,
-        },
-        {
-          name: 'EditProduct',
-          path: '/editProduct/:id',
-          component: EditProduct,
-        },
-        {
-          name: 'salesHistory',
-          path: '/salesHistory',
-          component: salesHistory,
-        },
+      {
+        name: 'EditProduct',
+        path: '/editProduct/:id',
+        component: EditProduct,
+      },
+      {
+        name: 'salesHistory',
+        path: '/salesHistory',
+        component: salesHistory,
+      },
+      {
+        name: 'SingleProduct',
+        path: '/singleProduct',
+        component: SingleProduct
+      },
   ]
 })
