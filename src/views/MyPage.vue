@@ -8,7 +8,6 @@
           alt="starbucks"
           @click="$router.push({ name: 'mainpage'})" />
       </div>
-
       <div class="user">
         <div class="user__image">
         </div>
@@ -22,7 +21,6 @@
           </h4>
         </div>
       </div>
-    
       <div class="menulist">
         <ul
           v-for="menu in menuList"
@@ -33,70 +31,58 @@
           {{ menu.name }}
         </ul>
       </div>
-
       <div class="actions">
         <div
           class="action"
           @click="$router.push({ name: 'mainpage'})">
           <i class="fa-solid fa-house"></i>
-          MAINPAGE
+          홈페이지
         </div>
       </div>
     </nav>
-
-    <section class="main">
-      <MyAccountInfo
-        v-show="menuList[2].isShow"
-        class="my-account-info" />      
+    <section class="content">
+      <section>
+        <PurchaseHistory
+          v-show="menuList[0].isShow" />
+      </section>
+      <section>
+        <MyAccount
+          v-show="menuList[1].isShow" />      
+      </section>
+      <section class="main">
+        <MyAccountInfo
+          v-show="menuList[2].isShow"
+          class="my-account-info" />      
+      </section>
     </section>
   </section>
-
-  <!-- <RouterLink :to="{name: 'myAccount'}">
-    <h3>내 계좌</h3>
-  </RouterLink>
-
-  <RouterView /> -->
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
+import PurchaseHistory from '~/components/PurchaseHistory.vue'
+import MyAccount from '~/components/MyAccount.vue'
 import MyAccountInfo from '~/components/MyAccountInfo.vue'
 
 export default {
   components: {
-    MyAccountInfo 
-  },
-  data() {
-    return {
-      menuList: [
-        { name: '구매내역', isShow: true }, // 처음에 보여줄 기본 정보를 구매내역으로 설정
-        { name: '내 계좌', isShow: false},
-        { name: '내 정보 수정', isShow: false}
-      ]
-    }
+    PurchaseHistory,
+    MyAccount,
+    MyAccountInfo,
   },
   computed: {
     ...mapState('user', [
-      'user'
+      'user',
+      'isLogIn',
+    ]),
+    ...mapState('menu', [
+      'menuList'
     ])
   },
   methods: {
-    isShowMenu(menuName) { 
-      this.menuList.forEach(menu => {
-        menu.isShow = false // 모든 menu의 isShow를 false로 바꾸어 안보이게 하기
-        if (menu.name === menuName) { // 클릭한 menu의 isShow 값 true로 바꾸어 보이게 하기
-          menu.isShow = true
-        }
-      })
-    }
+    ...mapActions('menu', [
+      'isShowMenu',
+    ]),
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.main {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-</style>

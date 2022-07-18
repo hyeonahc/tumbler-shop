@@ -67,8 +67,10 @@ export default {
 
 <style lang="scss" scoped>
 .inner {
-    max-width: 110rem;
-    margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
     h1 {
       color: $color-font;
       font-size: 3rem;

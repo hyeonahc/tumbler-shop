@@ -6,9 +6,9 @@
         params: { id: product.id },
       }"
       class="thumbnail">
-      <span>
-        thumbnail
-      </span>
+      <img
+        :src="product.thumbnail"
+        :alt="product.title" />
     </RouterLink>
     <p class="product-title">
       {{ product.title }}
@@ -34,8 +34,6 @@ export default {
   width: 200px;
 }
 .thumbnail {
-  background-color: #dddee5;
-  height: 250px;
   display: flex;
   justify-content: center;
   align-items: center;

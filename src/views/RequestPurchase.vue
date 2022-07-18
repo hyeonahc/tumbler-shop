@@ -1,10 +1,11 @@
 <template>
+  <TheHeader />
   <div class="product-wrapper">
     <div
       class="thumbnail">
-      <span>
-        thumbnail
-      </span>
+      <img
+        :src="$route.query.thumbnail"
+        :alt="$route.query.title" />
     </div>
     <div class="content">
       <p>제목: {{ $route.query.title }}</p>
@@ -40,10 +41,14 @@
 </template>
 
 <script>
+import TheHeader from '~/components/TheHeader'
+import { publicRequest } from '../api/publicRequest'
 import { mapState, mapActions } from 'vuex'
-// import { commonRequst } from '~/store/admin'
 
 export default {
+  components: {
+		TheHeader
+	},
   data() {
     return {
       accounts: [],
@@ -62,30 +67,14 @@ export default {
     }
   },
   created() {
-    // this.accountBalance()
     this.getAccountInfo()
   },
 	methods: {
     ...mapActions('bank', [
       'accountBalance' 
     ]),
-    async purchaseProduct(body) {
-      const accessToken = window.localStorage.getItem('token')
-			const res = await fetch('https://asia-northeast3-heropy-api.cloudfunctions.net/api/products/buy', {
-				method: 'POST',
-				headers: {
-					'content-type': 'application/json',
-					'apikey': 'FcKdtJs202204',
-					'username': 'TEAM_1',
-          authorization: `Bearer ${accessToken}`
-				},
-        body: JSON.stringify(body)
-			})
-      return await res.json()
-		},
     async getAccountInfo() {
       await this.accountBalance()
-      // console.log('userAccountInfo: ', this.userAccountInfo)
       this.accounts = this.userAccountInfo.accounts
       console.log('accounts: ', this.accounts)
       console.log('accountsLength: ', this.accountsLength)
@@ -102,17 +91,21 @@ export default {
     async requestPurchase() {
       console.log('해당 계좌로 결제하기')
       console.log('accounts: ', this.accounts)
-      const obj = {
+      const info = {
         productId : this.$route.params.id,
         accountId : this.selectedAccount
       }
-      console.log('obj: ', obj)
+      console.log('info: ', info)
       try {
-        const res = await this.purchaseProduct(obj)
+        const res = await publicRequest({
+          url: 'products/buy',
+          method: 'POST',
+          body: info
+        })
         console.log('res: ', res)
         // 잔액이 충분할때와 그렇지 않을때
         if(res === true) {
-          alert('결제가 성공했습니다. my page에서 구매확정버튼을 눌러주세요')
+          alert('결제가 성공했습니다. 마이페이지에서 구매확정버튼을 눌러주세요')
           this.$router.push('/mypage')
         } else {
           alert('잔액이 부족합니다. 다른 계좌를 이용해주세요.')
@@ -132,7 +125,6 @@ export default {
 }
 .thumbnail {
   background-color: #dddee5;
-  height: 250px;
 	width: 200px;
   display: flex;
   justify-content: center;
