@@ -3,7 +3,7 @@ import user from './user'
 import admin from './admin'
 import bank from './bank'
 import menu from './menu'
-import createPersistedState from 'vuex-persistedstate'
+// import createPersistedState from 'vuex-persistedstate'
 
 export default createStore({
   modules: {
@@ -11,10 +11,10 @@ export default createStore({
     admin,
     bank,
     menu,
-    plugins: [
-      createPersistedState({
-        paths: ['bank']
-      })
-    ]
+    // plugins: [
+    //   createPersistedState({
+    //     paths: ['bank']
+    //   })
+    // ]
   }
 })
