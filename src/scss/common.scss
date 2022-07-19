@@ -1,3 +1,4 @@
+// global
 html {
   font-size: 62.5%; // rem 값의 기준을 잡기 위함 16px -> 10px
 }
@@ -5,9 +6,16 @@ html {
   box-sizing: border-box;
 }
 
-// font
+// font family, color, font weight
 h1, h2, p, a, div, span, input, button, table {
   font-family: 'Nanum Gothic', sans-serif;
+}
+h1, h2, p, a, div, span, input, table {
+  color: $color-font;
+  font-weight: $font-normal;
+}
+table th {
+  font-weight: $font-medium;
 }
 h1 {
   font-size: $font-title;
@@ -21,20 +29,107 @@ p, a, div, span, input, button, table {
   font-size: $font-paragraph;
   font-weight: $font-normal;
 }
+a {
+  text-decoration: none;
+}
 
-// img
+// basic UI
+input {
+  border: 1px solid $color-input;
+  border-radius: $border-radius;
+  padding: 0.4em 0.5em;
+  &focus {
+    border: 1px solid $color-primary;
+  }
+}
+::placeholder { 
+  color: $color-input;
+}
+button {
+  background-color: $color-primary;
+  color: $color-white;
+  border: none;
+  border-radius: $border-radius;
+  padding: 0.75em 1.5em;
+  margin-top: 1.75em;
+  cursor: pointer;
+}
 img {
   display: block;
 }
+table {
+  border-collapse: collapse;
+  width: 900px;
+  // tr, th, td
+	tr {
+		&:nth-child(even){
+			background-color: $color-tr-even;
+		}
+		&:hover {
+			background-color: $color-tr-hover;
+		}
+    th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: $color-primary;
+      color: $color-white;
+      &:first-child {
+        text-align: center;
+      }
+    }
+    th, td {
+      border: 1px solid $color-input;
+      padding: 9px;
+    }
+    td {
+      &:first-child {
+        text-align: center;
+      }
+      .status-badge {
+        padding: 5px 10px;
+        border-radius: 25px;
+        &.request-badge {
+          background-color: $color-warning-light;
+          color: $color-warning;
+        }
+        &.confirm-badge {
+          background-color: $color-success-light;
+          color: $color-success;
+        }
+        &.cancel-badge {
+          background-color: $color-danger-light;
+          color:  $color-danger;
+        }
+      }
+    }
+	}
+}
 
+// center class name
+.text-center {
+  text-align: center;
+}
+
+// position class name
 .flex-space {
   flex-grow: 1;
 }
 
-// common UI
+// common UI class name
 .logo {
-  height: 5.5em;
+  height: 4em;
   &:hover {
     cursor: pointer;
+  }
+}
+.action-btn {
+  text-decoration: underline;
+  cursor: pointer;
+  &.confirm-btn {
+    color: $color-success;
+  }
+  &.cancel-btn {
+    color: $color-danger;
   }
 }
