@@ -23,12 +23,6 @@
         type="text"
         placeholder="상품 상세 설명" />
 
-      <label for="tags">태그</label>
-      <input
-        id="tags"
-        v-model="tags" 
-        type="text"
-        placeholder="태그" />
       <label for="thumbnail">썸네일</label>
       <input
         id="thumbnail"
@@ -57,7 +51,6 @@ export default {
       title: '',
       price: '',
       description: '',
-      tags:'',
       thumbnailBase64: '',
     }
   },
@@ -80,7 +73,6 @@ export default {
           title: this.title,
           price: Number(this.price),
           description: this.description,
-          tags: this.tags.split(','),
           thumbnailBase64: this.thumbnailBase64,
         }
       })
