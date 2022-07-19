@@ -48,67 +48,78 @@
       </div>
     </nav>
 
-    <section class="main">
-      <div
-        v-show="menuList[0].isShow"
-        class="inquireProducts">
-        <h1>제품 조회</h1>
-        <router-link
-          to="/AddProduct">
-          제품 추가
-        </router-link>
-
-        <div>
-          <button @click="allProductsLookup">
-            전체 제품 보기
+    <div class="test">
+      <section class="main">
+        <div
+          v-show="menuList[0].isShow"
+          class="inquireProducts">
+          <h1>제품 조회</h1>
+          <button
+            @click="modal = true">
+            제품 추가
           </button>
+          <div
+            v-if="modal"
+            class="black-bg">
+            <div class="white-bg">
+              <AddProduct
+                v-if="modal" />
+            </div>
+          </div>
+          <div>
+            <button @click="allProductsLookup">
+              전체 제품 보기
+            </button>
+          </div>
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Product Name</th>
+                  <th>Product ID</th>
+                  <th>Price</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <AllProductList
+                  v-for="product in allProducts"
+                  :key="product.id"
+                  :product="product" />
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div>
-          <table>
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>Product Name</th>
-                <th>Product ID</th>
-                <th>Price</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <AllproductList 
-                v-for="product in allProducts"
-                :key="product.id"
-                :product="product" />
-            </tbody>
-          </table>
+      </section>
+      <section class="main">
+        <div
+          v-show="menuList[1].isShow"
+          class="inquireProducts">
+          <salesHistory />
         </div>
-      </div>
-    </section>
-    <section class="main">
-      <div
-        v-show="menuList[1].isShow"
-        class="inquireProducts">
-        <salesHistory />
-      </div>
-    </section>
+      </section>
+    </div>
   </section>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import AllproductList from '~/components/AllproductList.vue'
+import AllProductList from '~/components/AllProductList.vue'
 import salesHistory from '~/views/salesHistory.vue'
-
+import AddProduct from '../components/AddProduct.vue'
 
 export default {
   components: {
-    AllproductList,
+    AllProductList,
     salesHistory,
+    AddProduct,
+ 
     
   },
   data() {
     return {
-      id: '',
+      modal: false,
       menuList: [
         { name: '제품 조회', isShow: true },
         { name: '판매 내역', isShow: false } 
@@ -140,7 +151,7 @@ export default {
           menu.isShow = true
         }
       })
-    }
+    },
   }
 }
 
@@ -152,5 +163,23 @@ export default {
 //   align-items: center;
 //   width: 100%;
 // }
+.test {
+  width: 80vw;
+}
+.black-bg {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    padding: 20px;
+    top: 0;
+    left: 0;
+}
+.white-bg {
+  width: 100%; 
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+}
 
 </style>
