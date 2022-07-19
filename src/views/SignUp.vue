@@ -20,7 +20,7 @@
             type="text" />
           <input
             v-model="password"
-            placeholder="비밀번호를 입력해주세요"
+            placeholder="비밀번호를 입력해주세요 (8자리 이상, 대소문자 구별)"
             type="password"
             @keydown.enter="useSignUp" />
           <input
