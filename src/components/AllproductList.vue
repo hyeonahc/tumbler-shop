@@ -1,5 +1,5 @@
 <template>
-  <tr>
+  <tr @click="click">
     <td>
       <div>
         <img
@@ -23,43 +23,52 @@
         <div>{{ product.price.toLocaleString('ko-KR') }} 원</div>
       </div>
     </td>
-    <button @click="deleteProduct(product.id)">
-      제품 삭제
-    </button>
     <td>
-      <router-link 
-        :to="{ name: 'EditProduct', params: { id: product.id }, query: {title: product.title, price: product.price, thumbnail: product.thumbnail}}">
-        상품 수정
-      </router-link>
+      <div>
+        {{ product.isSildOut ? '재고 없음' : '재고 있음' }}
+      </div>
     </td>
+    <div     
+      v-if="modal"
+      class="black-bg">
+      <div class="white-bg">
+        <singelProduct
+          :product="product" />
+      </div>
+    </div>
   </tr>
 </template>
 
 <script>
 import { publicRequest } from '../api/publicRequest'
+import singelProduct from './SingleProductLookup.vue'
 export default { 
+  components: {
+     singelProduct
+  },
   props: {
     product: {
       type: Object,
       default: () => ({})
     }
   },
+  data() {
+    return {
+      modal: false,
+    }
+  },
   methods: {
-    async deleteProduct() {
-      const res = await publicRequest({
-        url: `products/${this.product.id}`,
-        method: 'DELETE'
-      })
-      console.log(res)
-      this.product
-    },
-        async singleProduct() {
+    async singleProduct() {
       const res = await publicRequest({
         url: `products/${this.product.id}`,
         method: 'GET'
       })
       console.log(res)
       this.product
+    },
+
+    click() {
+      this.modal = true
     }
   }
 }
@@ -70,5 +79,21 @@ export default {
 <style>
   .img-test {
     width: 100px;
+  }
+
+  .black-bg {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    padding: 20px;
+    top: 0;
+    left: 0;
+  }
+  .white-bg {
+    width: 100%; 
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
   }
 </style>
