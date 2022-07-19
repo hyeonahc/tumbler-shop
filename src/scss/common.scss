@@ -11,12 +11,15 @@ h1, h2, p, a, div, span, input, button, table {
 }
 h1 {
   font-size: $font-title;
+  font-weight: $font-bold;
 }
 h2 {
   font-size: $font-subtitle;
+  font-weight: $font-medium;
 }
 p, a, div, span, input, button, table {
   font-size: $font-paragraph;
+  font-weight: $font-normal;
 }
 
 // img
