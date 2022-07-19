@@ -5,6 +5,13 @@ html {
 * {
   box-sizing: border-box;
 }
+body {
+  overflow-x: hidden;
+}
+.inner {
+  width: 1366px;
+  margin: 0 auto;
+}
 
 // font family, color, font weight
 h1, h2, p, a, div, span, input, button, table {
@@ -55,7 +62,7 @@ button {
   cursor: pointer;
 }
 img {
-  display: block;
+  display: inline-block;
 }
 table {
   border-collapse: collapse;
@@ -110,10 +117,9 @@ table {
 .text-center {
   text-align: center;
 }
-
-// position class name
-.flex-space {
-  flex-grow: 1;
+.flex-center {
+  display: flex;
+  align-items: center;
 }
 
 // common UI class name

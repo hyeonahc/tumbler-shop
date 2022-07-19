@@ -1,38 +1,44 @@
 <template>
-  <header id="header">
+  <header
+    id="header"
+    class="flex-center">
     <div class="inner">
-      <img
-        class="logo"
-        src="../assets/logo.png"
-        alt="logo"
-        @click="$router.push({ name: 'mainpage'})" />
-      <div class="flex-space"></div>
-      <div class="link-container">
-        <span v-if="!isLogIn">
-          <RouterLink to="/signup">
-            회원가입
-          </RouterLink>
-          <RouterLink to="/signin">
-            로그인
-          </RouterLink>
-        </span>
-        <span v-else>
-          <span v-if="isAdmin">
-            <RouterLink to="/admin">
-              관리자 페이지
+      <div class="flex-center">
+        <img
+          class="logo"
+          src="../assets/logo.png"
+          alt="logo"
+          @click="$router.push({ name: 'mainpage'})" />
+        <div class="link-container">
+          <template v-if="!isLogIn">
+            <RouterLink to="/signup">
+              회원가입
             </RouterLink>
-          </span>
-          <span v-else>
-            <RouterLink to="/mypage">
-              마이 페이지
+            <span class="menu-divider"> | </span>
+            <RouterLink to="/signin">
+              로그인
             </RouterLink>
-          </span>
-          <RouterLink
-            :to="{name: 'mainpage'}"
-            @click="signOut">
-            로그아웃
-          </RouterLink>
-        </span>
+          </template>
+          <template v-else>
+            <template v-if="isAdmin">
+              <RouterLink to="/admin">
+                관리자 페이지
+              </RouterLink>
+              <span class="menu-divider"> | </span>
+            </template>
+            <template v-else>
+              <RouterLink to="/mypage">
+                마이 페이지
+              </RouterLink>
+              <span class="menu-divider"> | </span>
+            </template>
+            <RouterLink
+              :to="{name: 'mainpage'}"
+              @click="signOut">
+              로그아웃
+            </RouterLink>
+          </template>
+        </div>
       </div>
     </div>
   </header>
@@ -78,24 +84,22 @@ export default {
 header {
   width: 100vw;
   background-color: $color-header;
-  border-bottom: 0.1rem solid $color-header-border;
-  &.sticky {
-  position: fixed;
-  top: 0;
-}
-  .inner {
-    display: flex;
-    height: 12rem;
-    max-width: 110rem;
-    margin: 0 auto;
-    padding-top: 2.25rem;
-    .link-container {
-      padding-top: 3rem;
-    }
+  border: 0.1rem solid $color-header-border;
+  padding: 0.75em 0;
+  margin-bottom: 3em;
+  justify-content: space-between;
+    &.sticky {
+    position: fixed;
+    top: 0;
   }
-  a {
+  .flex-center {
+    justify-content: space-between;
+  }
+  a, .menu-divider {
     margin-right: 2rem;
-    color: $color-font;
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }
 </style>
