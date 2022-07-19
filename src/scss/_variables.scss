@@ -11,18 +11,22 @@ $font-bold: 800;
 
 // color
 $color-primary: #4B7BE5;
-$color-font: #555;
-$color-header: #F6F5EF;
-$color-header-border: #E5E5E3;
-$color-input: #C5C5C5;
-$color-hr: #ddd;
-$color-white: #fff;
 $color-success: #006633;
 $color-success-light: #F4F9F3;
 $color-danger: #FF6347;
 $color-danger-light: #FFEFEC;
 $color-warning: #FAAE00;
 $color-warning-light: #FEF7E6;
+$color-font: #555;
+$color-header: #F6F5EF;
+$color-header-border: #E5E5E3;
+$color-input: #C5C5C5;
+$color-tr-hover: #DDD;
+$color-tr-even: #F2F2F2;
+$color-black: #000;
+$color-bg-filter: rgba($color-black, 0.3);
+$color-white: #FFF;
+
 
 // border radius
 $border-radius: 5px;
