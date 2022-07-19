@@ -4,13 +4,8 @@ html {
 * {
   box-sizing: border-box;
 }
-a {
-  font-size: 1.6rem;
-  text-decoration: none;
-}
-p {
-  font-size: 1.6rem;
-}
+
+// font
 h1 {
   font-size: 3.2rem;
 }
@@ -23,6 +18,12 @@ h3 {
 h4 {
   font-size: 1.4rem;
 }
+
+h1, h2, h3, p, a, div, span, table, input, button {
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+// img
 img {
   display: block;
 }
