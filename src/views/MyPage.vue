@@ -23,7 +23,7 @@
       </div>
       <div class="menulist">
         <ul
-          v-for="menu in menuList"
+          v-for="menu in myPageMenuList"
           :key="menu.name"
           class="menu"
           :class="{ 'show' : menu.isShow }"
@@ -41,17 +41,13 @@
       </div>
     </nav>
     <section class="content">
-      <section>
-        <PurchaseHistory
-          v-show="menuList[0].isShow" />
-      </section>
-      <section>
-        <MyAccount
-          v-show="menuList[1].isShow" />      
-      </section>
       <section class="main">
+        <PurchaseHistory
+          v-show="myPageMenuList[0].isShow" />
+        <MyAccount
+          v-show="myPageMenuList[1].isShow" />      
         <MyAccountInfo
-          v-show="menuList[2].isShow"
+          v-show="myPageMenuList[2].isShow"
           class="my-account-info" />      
       </section>
     </section>
@@ -72,17 +68,26 @@ export default {
   },
   computed: {
     ...mapState('user', [
-      'user',
-      'isLogIn',
+      'user'
     ]),
     ...mapState('menu', [
-      'menuList'
+      'myPageMenuList'
     ])
+  },
+  created() {
+    this.setMenu()
+  },
+  unmounted() {
+    this.isShowMenu('구매내역') // 해당 페이지를 벗어날 때, 값 되돌리기
   },
   methods: {
     ...mapActions('menu', [
       'isShowMenu',
     ]),
+    setMenu() {
+      const menuHistory = window.sessionStorage.getItem('menu')
+      this.isShowMenu(menuHistory)
+    }
   }
 }
 </script>

@@ -1,7 +1,7 @@
 export default {
   namespaced: true,
   state: () => ({
-    menuList: [
+    myPageMenuList: [
       { name: '구매내역', isShow: true },
       { name: '내 계좌', isShow: false},
       { name: '내 정보 수정', isShow: false}
@@ -9,7 +9,7 @@ export default {
   }),
   mutations: {
     updateMenu(state, menuName) {
-      state.menuList.forEach(menu => {
+      state.myPageMenuList.forEach(menu => {
         menu.isShow = false
         if (menu.name === menuName) {
           menu.isShow = true
@@ -19,6 +19,7 @@ export default {
   },
   actions: {
 		isShowMenu({ commit }, menuName) {
+      window.sessionStorage.setItem('menu', menuName)
 			commit('updateMenu', menuName)
     }
   }
