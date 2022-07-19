@@ -47,7 +47,7 @@ export default {
 	methods: {
 		async getProductDetail() {
 			const res = await publicRequest({
-				url: `${this.$route.params.id}`,
+				url: `products/${this.$route.params.id}`,
 				method: 'GET',
 			})
 			// console.log('res: ', res)
