@@ -48,6 +48,8 @@
 </template>
 
 <script>
+  import { mapState, mapMutations } from 'vuex'
+  import { publicRequest } from '../api/publicRequest' 
 
 export default {
   data() {
@@ -60,17 +62,29 @@ export default {
     }
   },
 
+  computed: {
+    ...mapState('admin', [
+      'allProducts'
+    ])
+  },
+
   methods: {
+    ...mapMutations([
+      'assignState'
+    ]),
     async addProduct() {
-      const payload = {
-        title: this.title,
-        price: this.price,
-        description: this.description,
-        tags: this.tags.split(','),
-        thumbnailBase64: this.thumbnailBase64,
-      }
-      this.$store.dispatch('admin/addProduct', payload)
-      console.log(payload)
+      const res = await publicRequest ({
+        url: 'products',
+        method: 'POST',
+        body: {
+          title: this.title,
+          price: Number(this.price),
+          description: this.description,
+          tags: this.tags.split(','),
+          thumbnailBase64: this.thumbnailBase64,
+        }
+      })
+      console.log(res)
     },
     backWards() {
       this.$router.go(-1)
