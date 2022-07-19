@@ -26,6 +26,15 @@ h4 {
 img {
   display: block;
 }
+
 .flex-space {
   flex-grow: 1;
+}
+
+// common UI
+.logo {
+  height: 5.5em;
+  &:hover {
+    cursor: pointer;
+  }
 }

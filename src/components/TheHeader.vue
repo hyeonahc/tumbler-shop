@@ -4,7 +4,7 @@
       <img
         class="logo"
         src="../assets/logo.png"
-        alt="starbucks"
+        alt="logo"
         @click="$router.push({ name: 'mainpage'})" />
       <div class="flex-space"></div>
       <div class="link-container">
@@ -89,12 +89,6 @@ header {
     max-width: 110rem;
     margin: 0 auto;
     padding-top: 2.25rem;
-    .logo {
-      height: 7.5rem;
-      &:hover {
-        cursor: pointer;
-      }
-    }
     .link-container {
       padding-top: 3rem;
     }

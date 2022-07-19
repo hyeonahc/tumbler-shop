@@ -1,4 +1,4 @@
-// Mypage.vue & Admin.vue
+// MyPage.vue & Admin.vue
 
 .mypage {
   display: flex;
@@ -20,11 +20,6 @@
       justify-content: center;
       padding: 1.4rem;
       font-weight: 700;
-      .logo {
-        &:hover {
-          cursor: pointer;
-        }
-      }
     }
     .user {
       flex-shrink: 0;
