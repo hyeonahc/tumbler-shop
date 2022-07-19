@@ -22,7 +22,7 @@
 
 <script>
 import TheHeader from '~/components/TheHeader'
-import { publicRequest } from '../api/publicRequest'
+import { publicRequest } from '~/api/publicRequest'
 import { mapState } from 'vuex'
 
 export default {

@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { publicRequest } from '../api/publicRequest'
+import { publicRequest } from '~/api/publicRequest'
 export default { 
   props: {
     product: {
