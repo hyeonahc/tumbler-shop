@@ -41,20 +41,16 @@ export default {
   },
 	created() {
 		this.getProductDetail()
-		// console.log('this.$route.params.id: ', this.$route.params.id)
-		// console.log('isLogin: ', this.isLogIn)
 	},
 	methods: {
 		async getProductDetail() {
 			const res = await publicRequest({
-				url: `${this.$route.params.id}`,
+				url: `products/${this.$route.params.id}`,
 				method: 'GET',
 			})
-			// console.log('res: ', res)
 			this.product = res
 		},
 		purchase() {
-			// console.log('구매하기')
 			if(!this.isLogIn) {
 				console.log('로그인 필요')
 				alert('로그인 필요')
