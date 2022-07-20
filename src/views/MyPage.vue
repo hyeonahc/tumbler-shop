@@ -5,7 +5,7 @@
         <img
           class="logo"
           src="../assets/logo.png"
-          alt="starbucks"
+          alt="logo"
           @click="$router.push({ name: 'mainpage'})" />
       </div>
       <div class="user">
