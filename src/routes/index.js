@@ -11,7 +11,7 @@ import MyPage from '~/views/MyPage.vue'
 import Admin from '~/views/Admin.vue'
 import SalesHistory from '~/views/SalesHistory.vue'
 import SingleProduct from '~/components/SingleProduct.vue'
-
+import NotFound from '~/views/NotFound.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -78,5 +78,9 @@ export default createRouter({
         path: '/singleProduct',
         component: SingleProduct
       },
+    {
+      path: '/:notFound(.*)',
+      component: NotFound
+    }
   ]
 })
