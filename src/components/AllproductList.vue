@@ -99,6 +99,6 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 5px;
-    padding: 5em;
+    padding: 2em;
   }
 </style>
