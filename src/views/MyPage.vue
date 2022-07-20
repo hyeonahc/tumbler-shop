@@ -46,7 +46,7 @@
           v-show="myPageMenuList[0].isShow" />
         <MyAccount
           v-show="myPageMenuList[1].isShow" />      
-        <MyAccountInfo
+        <ModifyUserInfo
           v-show="myPageMenuList[2].isShow"
           class="my-account-info" />      
       </section>
@@ -58,13 +58,13 @@
 import { mapState, mapActions } from 'vuex'
 import PurchaseHistory from '~/components/PurchaseHistory.vue'
 import MyAccount from '~/components/MyAccount.vue'
-import MyAccountInfo from '~/components/MyAccountInfo.vue'
+import ModifyUserInfo from '~/components/ModifyUserInfo.vue'
 
 export default {
   components: {
     PurchaseHistory,
     MyAccount,
-    MyAccountInfo,
+    ModifyUserInfo,
   },
   computed: {
     ...mapState('user', [
