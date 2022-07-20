@@ -25,14 +25,14 @@
     </td>
     <td>
       <div>
-        {{ product.isSildOut ? '재고 없음' : '재고 있음' }}
+        {{ product.isSoldOut === false ? '재고 없음 ' : '재고 있음' }}
       </div>
     </td>
-    <div     
+    <div
       v-if="modal"
       class="black-bg">
       <div class="white-bg">
-        <singelProduct
+        <SingleProductLookup
           :product="product" />
       </div>
     </div>
@@ -41,10 +41,10 @@
 
 <script>
 import { publicRequest } from '../api/publicRequest'
-import singelProduct from './SingleProductLookup.vue'
+import SingleProductLookup from './SingleProductLookup.vue'
 export default { 
   components: {
-     singelProduct
+     SingleProductLookup
   },
   props: {
     product: {
@@ -69,7 +69,7 @@ export default {
 
     click() {
       this.modal = true
-    }
+    },
   }
 }
 
@@ -84,16 +84,21 @@ export default {
   .black-bg {
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     position: absolute;
     padding: 20px;
     top: 0;
     left: 0;
   }
   .white-bg {
-    width: 100%; 
-    background: white;
-    border-radius: 8px;
-    padding: 20px;
+    width: 60vw;
+    height: 70vh; 
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    padding: 5em;
   }
 </style>

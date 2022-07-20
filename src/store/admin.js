@@ -17,13 +17,6 @@ export default {
         state[key] = payload[key]
       })
     },
-    addState(state, payload) {
-      state.allProducts.push(payload)
-    },
-    delete(state, payload) {
-      const all = state.allProducts.findIndex(product => product.id === payload)
-      state.allProducts.splice(all, 1)
-    },
   },
 
   actions: {

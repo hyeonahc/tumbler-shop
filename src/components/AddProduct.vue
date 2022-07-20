@@ -76,6 +76,8 @@ export default {
           thumbnailBase64: this.thumbnailBase64,
         }
       })
+      alert('제품 추가')
+      this.$router.go(0)
       console.log(res)
     },
     backWards() {
