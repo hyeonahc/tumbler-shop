@@ -1,35 +1,53 @@
 <template>
   <div class="account-list-container">
-    <div v-if="isOn">
-      <h3>결제 계좌 등록</h3>   
+    <div
+      v-if="isOn"
+      class="account-list">
+      <div
+        class="btn-close"
+        @click="$router.go(0)">
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+      <h2>결제 계좌 등록</h2>   
       <ul>
         <li
           v-for="bank in banklist"
           :key="bank.code"
           class="banklist">
-          <div v-show="!bank.disabled">
+          <div
+            v-show="!bank.disabled"
+            class="image-box"
+            :class="[isShow? '' : 'gray']"
+            @click="addAccount(bank)">
             <img
               :key="bank.image"
               :src="bank.image"
-              alt="image"
-              @click="addAccount(bank)" />
-            {{ bank.name }}
+              alt="bankimages" />
+            <h5> {{ bank.name }} </h5>
           </div>
         </li>
       </ul> 
-      <button @click="addAccountNext">
+      <button
+        class="btn-confirm"
+        @click="addAccountNext()">
         확인
       </button>
     </div>
     <div
       v-else
       class="register">
-      <h3>{{ selectedBank.name }} 계좌 등록</h3>
-      <div>
+      <div
+        class="btn-close"
+        @click="$router.go(0)">
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+      <h2>{{ selectedBank.name }} 계좌 등록</h2>
+      <div class="account">
         <label for="account-number">계좌번호</label><br />
         <input
           id="account-number"
           v-model="accountNumber"
+          oninput="this.value = this.value.replace(/[^0-9]/g, '')"
           :placeholder="`계좌번호 ${selectedBankDigitsLength}자리를 - 없이 입력하세요`"
           :maxlength="selectedBankDigitsLength"
           type="text" />
@@ -40,15 +58,16 @@
         </h6>
         <h6
           v-else
-          class="red">
+          class="danger">
           {{ selectedBankDigitsLength }} 자리를 입력해주세요
         </h6>
       </div>
-      <div>
+      <div class="phone">
         <label for="phone-number">핸드폰 번호</label><br />
         <input
           id="phone-number"
           v-model="phoneNumber"
+          oninput="this.value = this.value.replace(/[^0-9]/g, '')"
           :placeholder="`핸드폰 번호 11자리를 - 없이 입력하세요`"
           :maxlength="11"
           type="text" />
@@ -59,11 +78,11 @@
         </h6>
         <h6
           v-else
-          class="red">
+          class="danger">
           11 자리를 입력해주세요
         </h6>
       </div>
-      <div>
+      <div class="connect">
         <input
           id="signature"
           v-model="signature"
@@ -72,7 +91,9 @@
           계좌연결동의
         </label>
       </div>
-      <button @click="connectAccount()">
+      <button
+        class="btn-confirm"
+        @click="connectAccount()">
         계좌등록
       </button>
     </div>
@@ -91,7 +112,7 @@ export default {
       accountNumber: '',
       phoneNumber: '',
       signature: false,
-      
+      isShow: true
     }
   },
   computed: {
@@ -111,13 +132,16 @@ export default {
       'accountConnect'
     ]),
     addAccount(bank) {
-      console.log(bank)
       this.selectedBank = bank
-      // console.log(this.selectedBank)
-      // this.isOn = false
-      // this.createDigitsLength()
+      console.log('addAccount', bank)
+      this.isShow = !this.isShow
+
+      
     },
     addAccountNext() {
+      if(this.selectedBank.name === undefined) {
+        return alert('등록할 계좌를 선택해 주세요')
+      } 
       this.isOn = false
       this.createDigitsLength()
     },
@@ -145,45 +169,42 @@ export default {
         return alert('유효한 값을 입력해주세요')
       }
     },
-
+    // coverColor() {
+    //   this.isShow = !this.isShow
+    // }
   },
 }
 </script>
 
 <style lang="scss" scoped>
-div {
-  // align-items: center;
+.gray {
+  background-color: $color-input;
 }
-label {
-  // border: 1px solid black;
-  // padding: 5px;
-}
-input {
-
-  margin-top: 5px;
-}
-  #account-number, #phone-number {
-    width: 100%;
-  }
-
-input:focus {
-  outline-color: $color-primary;
-}
-h6 {
-  margin: 7px;
-  
-}
-button {
-  margin-top: 30px;
+.btn-confirm {
   background-color: $color-primary;
   color: $color-white;
+  width: 30%;
+  padding: 1.2rem;
   border: none;
   border-radius: 3px;
-  padding: 5px;
-  display: block;
-  
-  
-}
+  }
+  .btn-close {
+    font-size: 20px;
+    margin-left: auto;
+    color: $color-font;
+  }
+  h2 {
+    width: 100%;
+    color: $color-font;
+    font-size: 2.4rem;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px;
+  }
+  h6 {
+    margin: 7px;
+    font-size: 1.4rem;
+  }
 .account-list-container {
   position: absolute;
   top: 50%;
@@ -191,37 +212,78 @@ button {
   transform: translate(-50%, -50%);
   background-color: white;
   border-radius: 5px;
-  padding: 5em;
-  width: 40%;
-  height: 50%;
-  h3 {
-      color: $color-font;
-      font-size: 2rem;
-      font-weight: 700;
-      text-align: center;
-    }
-  ul {
+  padding: 2em;
+  width: 45rem;
+  height: 47rem;
+  .account-list {
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid $color-font;
+    justify-content: center;
+    width: 100%;
+  ul {
+    width: 100%;
+    // height: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
     li {
-      margin: 5px;
-      padding: 5px;
-      
-      // .banklist {
-      //   color: $color-font;
-      //   font-size: 2rem;
-      //   font-weight: 700;
-      //   text-align: center;
-      // }
+      .image-box {
+        border: 1px solid $color-input;
+        align-items: center;
+        text-align: center;
+        width: 100px;
+        margin: 10px;
+        padding: 10px;
+      }
+      img{
+        width: 33px;
+        height: 30px;
+        margin: auto;
+      }
+      h5 {
+        padding-top: 10px;
+      }
     }
   }
   
-  .success {
+}
+  
+}
+.register {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  .account, .phone, .connect {
+    width: 90%;
+    
+  }
+  .account, .phone {
     color: $color-primary;
+    padding: 10px 0px;
   }
-  .red {
+  .connect {
+    padding: 13px 0px;
+  }
+  #account-number, #phone-number {
+    width: 100%;
+  }
+  label {
+    font-size: 1.6rem;
+  }
+  input {
+    font-size: 1.6rem;
+    padding: 10px;
+    margin-top: 10px;
+  }
+  input:focus {
+    outline-color: $color-primary;
+  }
+  .danger {
     color: $color-warning;
+    font-size: 1.4rem;
   }
+
 }
 </style>
