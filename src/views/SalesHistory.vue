@@ -13,7 +13,7 @@
       <td>구매상태</td>
     </tr>
     <salesList
-      v-for="a in selseDetails"
+      v-for="a in salseDetails"
       :key="a"
       :sales="a" />
   </table>
@@ -25,13 +25,8 @@ export default {
   components: {
     salesList
   },
-  data() {
-    return {
-
-    }
-  },
   computed: {
-    selseDetails() {
+    salseDetails() {
       return this.$store.state.admin.salesDetails
     }
   },
