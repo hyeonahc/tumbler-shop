@@ -9,7 +9,7 @@ import SignUp from '~/views/SignUp.vue'
 import SignIn from '~/views/SignIn.vue'
 import MyPage from '~/views/MyPage.vue'
 import Admin from '~/views/Admin.vue'
-import salesHistory from '~/views/salesHistory.vue'
+import SalesHistory from '~/views/SalesHistory.vue'
 import SingleProduct from '~/components/SingleProduct.vue'
 
 
@@ -71,7 +71,7 @@ export default createRouter({
       {
         name: 'salesHistory',
         path: '/salesHistory',
-        component: salesHistory,
+        component: SalesHistory,
       },
       {
         name: 'SingleProduct',
