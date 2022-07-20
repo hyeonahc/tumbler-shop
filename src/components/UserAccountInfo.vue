@@ -23,16 +23,18 @@
       <h2>{{ userInfo.accountNumber }}</h2> 
       <h3>{{ userInfo.balance.toLocaleString('ko-KR') }} 원</h3> 
       <h4>해당계좌를 정말로 해지하시겠습니까? <br />해지시 되돌릴 수 없습니다</h4>
-      <button
-        class="agree"
-        @click="deleteBank(), deleteUesrInFo()">
-        네
-      </button>
-      <button
-        class="disagree"
-        @click="isShow = false">
-        아니요
-      </button>
+      <div class="btn">
+        <button
+          class="agree"
+          @click="deleteBank(), deleteUesrInFo()">
+          네
+        </button>
+        <button
+          class="disagree"
+          @click="isShow = false">
+          아니요
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -80,6 +82,8 @@ export default {
 <style lang="scss" scoped>
 h1,h2,h3 {
   padding: 15px;
+  color: $color-font;
+  font-weight: 700;
 }
 h4 {
   color: $color-warning;
@@ -103,36 +107,34 @@ div {
   border-bottom: 1px dotted black
 }
 .modal {
-  // top: 30%;
-  // position: fixed;
   height: 100vh;
   width: 100vw;
   position: fixed;
   left: 0;
   top: 0;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.5);
   .modal_content {
-    text-align: center;
     position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    width: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 5px;
+    padding: 2em;
+    width: 30%;
     height: 50%;
-    background: white;
-    border-radius: 8px;
-    padding: 20px;
-    button {
-      cursor: pointer;
-      background-color: $color-primary;
-      color: $color-white;
-      border: none;
-      border-radius: 5px;
-      padding: 7px;
-      width: 60px;
-      margin: 5px;
+    .btn {
+      display: flex;
+      justify-content: space-evenly;
+      button {
+        cursor: pointer;
+        background-color: $color-primary;
+        color: $color-white;
+        width: 20%;
+        padding: 1.2rem;
+        border: none;
+        border-radius: 3px;
+        }
     }
   }
     
