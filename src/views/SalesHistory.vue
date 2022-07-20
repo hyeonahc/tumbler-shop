@@ -13,7 +13,7 @@
       <td>구매상태</td>
     </tr>
     <salesList
-      v-for="a in salseDetails"
+      v-for="a in salesDetails"
       :key="a"
       :sales="a" />
   </table>
@@ -26,7 +26,7 @@ export default {
     salesList
   },
   computed: {
-    salseDetails() {
+    salesDetails() {
       return this.$store.state.admin.salesDetails
     }
   },
