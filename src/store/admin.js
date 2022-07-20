@@ -58,7 +58,7 @@ export default {
         url:'products/transactions/all',
         method: 'GET'
       })
-        commit('assignState', {salesDetails: res})
+      commit('assignState', {salesDetails: res})
     },
   },
 }
