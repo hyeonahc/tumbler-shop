@@ -25,11 +25,18 @@
         type="text" />
     </div>
     <div>
-      <label for="tags">상품 태그</label>
-      <input
-        id="tags"
-        v-model="tags" 
-        type="text" />
+      <label for="isSoldOut">재고 현황</label>
+      <select
+        id="isSoldOut"
+        v-model="isSoldOut"
+        name="isSoldOut">
+        <option :value="true">
+          재고 있음
+        </option>
+        <option :value="false">
+          재고 없음
+        </option>
+      </select>
     </div>
     <div>
       <label for="thumbnail">상품 썸네일</label>
@@ -51,6 +58,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import { publicRequest } from '../api/publicRequest'
 export default {
   props: {
@@ -61,16 +69,19 @@ export default {
   },
   data() {
     return{
-      productId: this.$route.params.id,
       title: '',
       price: '',
       description: '',
-      tags:'',
       thumbnailBase64: null,
       isSoldOut: false
     }
   },
 
+    computed: {
+      ...mapState('admin', [
+        'allProducts'
+      ])
+    },
   mounted() {
       this.productLookup()
     },
@@ -79,31 +90,33 @@ export default {
     // 수정할 제품 정보
     async productLookup() {
       const res = await publicRequest({
-        url:`products/${this.productId}`,
+        url:`products/${this.product.id}`,
         method: 'GET',
       })
       this.title = res.title
       this.price = res.price
       this.description = res.description
-      this.tags = res.tags
       this.thumbnailBase64 = res.thumbnailBase64
+      this.isSoldOut = res.isSoldOut
+      console.log(res)
     },
 
     // 수정 사항
     async editProduct() {
       const obj = await publicRequest ({
-        url:`products/${this.productId}`,
+        url:`products/${this.product.id}`,
         method: 'PUT',
         body: {
           title: this.title,
           price: this.price,
           description: this.description,
-          tags: this.tags,
           thumbnailBase64: this.thumbnailBase64,
+          isSoldOut: Boolean(this.isSoldOut)
         }
       })
-      this.productLookup()
       console.log(obj)
+      alert('수정 완료')
+      this.$router.go(0)
     },
 
     backWards() {
