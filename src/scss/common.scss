@@ -8,9 +8,13 @@ html {
 body {
   overflow-x: hidden;
 }
-.inner {
+#app {
+  height: 100vh;
+}
+.container {
   width: 1366px;
   margin: 0 auto;
+  border: 1px solid salmon;
 }
 
 // font family, color, font weight
@@ -21,15 +25,23 @@ h1, h2, p, a, div, span, input, table {
   color: $color-font;
   font-weight: $font-normal;
 }
+hr {
+  color: $color-tr-hover;
+}
 table th {
   font-weight: $font-medium;
 }
 h1 {
-  font-size: $font-title;
+  font-size: $font-h1;
   font-weight: $font-bold;
+  margin-bottom: 1.5em;
 }
 h2 {
-  font-size: $font-subtitle;
+  font-size: $font-h2;
+  font-weight: $font-medium;
+}
+h3 {
+  font-size: $font-h3;
   font-weight: $font-medium;
 }
 p, a, div, span, input, button, table {
@@ -44,9 +56,13 @@ a {
 input {
   border: 1px solid $color-input;
   border-radius: $border-radius;
+  width: 13em;
   padding: 0.4em 0.5em;
   &focus {
     border: 1px solid $color-primary;
+  }
+  &.search {
+    background: url(../assets/search.png) no-repeat right 10px center;
   }
 }
 ::placeholder { 
@@ -117,9 +133,18 @@ table {
 .text-center {
   text-align: center;
 }
-.flex-center {
+.flex-center-vertically {
   display: flex;
   align-items: center;
+}
+.flex-center-horizontally {
+  display: flex;
+  justify-content: center;
+}
+.flex-center-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 // common UI class name
@@ -137,5 +162,35 @@ table {
   }
   &.cancel-btn {
     color: $color-danger;
+  }
+}
+
+// 상품 상세 정보
+.product-detail {
+  &.flex-center {
+    gap: 5em
+  }
+  .thumbnail {
+    img {
+      width: 400px;
+      margin-right: 3em;
+    }
+  }
+  .price {
+    color: $color-primary;
+    margin-bottom: 2em;
+  }
+}
+
+// 테이블 페이지
+.table-page {
+  h1 {
+    margin-bottom: 1em;
+  }
+  .table-wrapper {
+    display: inline-block;
+    height: 80vh;
+    margin-top: 0.75em;
+    overflow: auto;
   }
 }

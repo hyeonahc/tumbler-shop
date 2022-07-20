@@ -1,6 +1,6 @@
 <template>
   <TheHeader />
-  <div class="inner">
+  <div class="container">
     <DisplayProducts />
   </div>
 </template>

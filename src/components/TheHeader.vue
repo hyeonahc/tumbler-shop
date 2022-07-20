@@ -1,9 +1,9 @@
 <template>
   <header
     id="header"
-    class="flex-center">
-    <div class="inner">
-      <div class="flex-center">
+    class="flex-center-vertically">
+    <div class="container">
+      <div class="flex-center-vertically product-detail">
         <img
           class="logo"
           src="../assets/logo.png"
@@ -83,16 +83,19 @@ export default {
 <style lang="scss" scoped>
 header {
   width: 100vw;
+  height: 10vh;
   background-color: $color-header;
   border: 0.1rem solid $color-header-border;
   padding: 0.75em 0;
   margin-bottom: 3em;
-  justify-content: space-between;
-    &.sticky {
+  &.flex-center-vertically {
+    justify-content: space-between;
+  }
+  &.sticky {
     position: fixed;
     top: 0;
   }
-  .flex-center {
+  .flex-center-vertically {
     justify-content: space-between;
   }
   a, .menu-divider {
