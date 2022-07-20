@@ -1,43 +1,46 @@
 <template>
-  <div>
+  <div class="input-product__wrap">
     <form
+      class="input-product__form"
       name="input"
       @submit.prevent="addProduct">
-      <label for="title">제목</label>
-      <input
-        id="title"
-        v-model="title"
-        type="text"
-        placeholder="제목" />
+      <div class="input-product__img">
+        <label
+          for="thumbnail">
+          썸네일</label>
+        <input
+          id="thumbnail"
+          type="file"
+          @change="selectFile" />
+      </div>
+      <div class="input-product__input">
+        <label for="title">제목</label>
+        <input
+          id="title"
+          v-model="title"
+          type="text"
+          placeholder="제목" />
         
-      <label for="price">가격</label>
-      <input
-        id="price"
-        v-model="price"
-        type="text"
-        placeholder="가격" />
-      <label for="description">제품 설명</label>
-      <input
-        id="description"
-        v-model="description" 
-        type="text"
-        placeholder="상품 상세 설명" />
-
-      <label for="thumbnail">썸네일</label>
-      <input
-        id="thumbnail"
-        type="file"
-        @change="selectFile" />
-      <div>
-        <button
-          type="submit">
-          업데이트
-        </button>
+        <label for="price">가격</label>
+        <input
+          id="price"
+          v-model="price"
+          type="text"
+          placeholder="가격" />
+        <label for="description">제품 설명</label>
+        <input
+          id="description"
+          v-model="description"
+          type="text"
+          placeholder="상품 상세 설명" />
+        <div>
+          <button
+            type="submit">
+            업데이트
+          </button>
+        </div>
       </div>
     </form>
-    <button @click="backWards">
-      뒤로가기
-    </button>
   </div>
 </template>
 
@@ -80,10 +83,6 @@ export default {
       this.$router.go(0)
       console.log(res)
     },
-    backWards() {
-      this.$router.go(-1)
-    },
-
     selectFile(event) {
       const { files } = event.target
       for (const file of files) {
@@ -100,7 +99,30 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+
+  .input-product {
+    &__wrap {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      width: 100%;
+      height: 100%;
+
+    }
+    &__form {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+    }
+    &__img {
+
+    }
+    &__input {
+
+    }
+
+  }
 
 </style>
 
