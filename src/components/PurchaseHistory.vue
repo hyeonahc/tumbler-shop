@@ -1,53 +1,56 @@
 <template>
-  <div>
+  <div class="table-page">
     <h1>구매내역</h1>
     <div>
       <input
+        class="search"
         type="text"
         placeholder="상품을 검색하세요" />
     </div>
-    <table>
-      <tr>
-        <th>번호</th>
-        <th>상품명</th>
-        <th>상품가격</th>
-        <th>주문일</th>
-        <th>구매확정</th>
-        <th>구매취소</th>
-        <th>구매상태</th>
-      </tr>
-      <tr
-        v-for="purchasedProduct in purchasedProducts"
-        :key="purchasedProduct.id">
-        <td>{{ purchasedProducts.indexOf(purchasedProduct) + 1 }}</td>
-        <td>{{ purchasedProduct.title }}</td>
-        <td>{{ purchasedProduct.price }} 원</td>
-        <td>{{ purchasedProduct.time }}</td>
-        <td>
-          <span
-            v-show="purchasedProduct.status === '구매신청'"
-            class="action-btn confirm-btn"
-            @click="confirmPurchase(purchasedProduct)">구매확정</span>
-        </td>
-        <td>
-          <span
-            v-show="purchasedProduct.status === '구매신청'"
-            class="action-btn cancel-btn"
-            @click="cancelPurchase(purchasedProduct)">구매취소</span>
-        </td>
-        <td>
-          <span
-            v-if="purchasedProduct.status === '구매신청'"
-            class="status-badge request-badge">{{ purchasedProduct.status }}</span>
-          <span
-            v-else-if="purchasedProduct.status === '구매확정'"
-            class="status-badge confirm-badge">{{ purchasedProduct.status }}</span>
-          <span
-            v-else
-            class="status-badge cancel-badge">{{ purchasedProduct.status }}</span>
-        </td>
-      </tr>
-    </table>
+    <div class="table-wrapper">
+      <table>
+        <tr>
+          <th>번호</th>
+          <th>상품명</th>
+          <th>상품가격</th>
+          <th>주문일</th>
+          <th>구매확정</th>
+          <th>구매취소</th>
+          <th>구매상태</th>
+        </tr>
+        <tr
+          v-for="purchasedProduct in purchasedProducts"
+          :key="purchasedProduct.id">
+          <td>{{ purchasedProducts.indexOf(purchasedProduct) + 1 }}</td>
+          <td>{{ purchasedProduct.title }}</td>
+          <td>{{ purchasedProduct.price }} 원</td>
+          <td>{{ purchasedProduct.time }}</td>
+          <td>
+            <span
+              v-show="purchasedProduct.status === '구매신청'"
+              class="action-btn confirm-btn"
+              @click="confirmPurchase(purchasedProduct)">구매확정</span>
+          </td>
+          <td>
+            <span
+              v-show="purchasedProduct.status === '구매신청'"
+              class="action-btn cancel-btn"
+              @click="cancelPurchase(purchasedProduct)">구매취소</span>
+          </td>
+          <td>
+            <span
+              v-if="purchasedProduct.status === '구매신청'"
+              class="status-badge request-badge">{{ purchasedProduct.status }}</span>
+            <span
+              v-else-if="purchasedProduct.status === '구매확정'"
+              class="status-badge confirm-badge">{{ purchasedProduct.status }}</span>
+            <span
+              v-else
+              class="status-badge cancel-badge">{{ purchasedProduct.status }}</span>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
 </template>
 
