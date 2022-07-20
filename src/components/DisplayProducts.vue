@@ -1,20 +1,19 @@
 <template>
-  <div class="product-container">
-    <div class="product-header">
-      <h2>상품</h2>
-      <div>
-        <input
-          type="text"
-          placeholder="상품을 검색하세요"
-          @input="search = $event.target.value" />
-      </div>
+  <div class="product-header">
+    <h1>상품</h1>
+    <div>
+      <input
+        type="text"
+        placeholder="상품을 검색하세요"
+        class="search"
+        @input="search = $event.target.value" />
     </div>
-    <div class="product-content">
-      <SingleProduct 
-        v-for="product in searchedProducts"
-        :key="product.id"
-        :product="product" />
-    </div>
+  </div>
+  <div class="product-content">
+    <SingleProduct 
+      v-for="product in searchedProducts"
+      :key="product.id"
+      :product="product" />
   </div>
 </template>
 
@@ -53,9 +52,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.product-container {
-	padding: 1.5em;
-}
 .product-header {
 	display: flex;
 	justify-content: space-between;
@@ -64,6 +60,6 @@ export default {
 }
 .product-content {
 	display: flex;
-	justify-content: space-between;
+	flex-wrap: wrap;
 }
 </style>
