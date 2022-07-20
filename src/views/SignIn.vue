@@ -1,10 +1,12 @@
 <template>
   <TheHeader />
-  <div class="auth-form-container">
+  <div class="auth-form-container flex-center-center">
     <div class="inner">
-      <h1>로그인</h1>
+      <h1 class="text-center">
+        로그인
+      </h1>
       <div class="inner__card">
-        <h2>
+        <h2 class="text-center">
           <strong>Welcome!</strong> 텀블러샵에 오신 것을 환영합니다.
         </h2>
         <div class="form">
@@ -79,21 +81,15 @@ export default {
 
 <style lang="scss" scoped>
 .auth-form-container {
-  margin-top: 12rem;
-  background-image: url("../assets/login_bg.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background: url("../assets/login_bg.jpg") no-repeat center center fixed;
   background-size: cover;
+  height: 90vh;
+  position: absolute;
+  top: 10vh;
+  width: 100%;
   .inner {
-    max-width: 110rem;
-    margin: 0 auto;
-    padding: 10rem 0 15rem;
     h1 {
       color: $color-white;
-      font-size: 3rem;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 2.4rem;
     }
     &__card {
       width: 50rem;
@@ -104,11 +100,9 @@ export default {
       color: $color-font;
       h2 {
         padding: 3rem;
-        font-size: 1.8rem;
-        text-align: center;
         border-bottom: 0.1rem solid $color-header-border;
         strong {
-          font-weight: 700;
+          font-weight: $font-medium;
           color: $color-primary;
         }
       }

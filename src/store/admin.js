@@ -13,13 +13,6 @@ export default {
         state[key] = payload[key]
       })
     },
-    addState(state, payload) {
-      state.allProducts.push(payload)
-    },
-    delete(state, payload) {
-      const all = state.allProducts.findIndex(product => product.id === payload)
-      state.allProducts.splice(all, 1)
-    },
   },
 
   actions: {
@@ -31,25 +24,6 @@ export default {
       })
         commit('assignState',{allProducts: res})
         console.log('모든 제품 조회')
-    },
-
-    // 제품 추가
-    async addProduct({ commit }, payload = {}) {
-      const {title, price, description, tags, thumbnailBase64} = payload
-      const res = await publicRequest({
-        url: 'products',
-        method: 'POST',
-        body: {
-          title,
-          price: Number(price),
-          description,
-          tags,
-          thumbnailBase64
-        }
-      })
-      commit('assignState', {allProducts: res})
-      console.log('제품 추가')
-      console.log(res)
     },
 
     // 전체 판매 내역

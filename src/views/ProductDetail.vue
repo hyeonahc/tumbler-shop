@@ -1,21 +1,25 @@
 <template>
   <TheHeader />
-  <div class="product-wrapper">
-    <div
-      class="thumbnail">
-      <img
-        :src="product.thumbnail"
-        :alt="product.title" />
-    </div>
-    <div class="content">
-      <h2>제목: {{ product.title }}</h2>
-      <hr />
-      <p>가격: {{ product.price }}</p>
-      <p>설명: {{ product.description }}</p>
-      <button
-        @click="purchase">
-        구매하기
-      </button>
+  <div class="container">
+    <div class="flex-center-vertically product-detail">
+      <div
+        class="thumbnail">
+        <img
+          :src="product.thumbnail"
+          :alt="product.title" />
+      </div>
+      <div class="content">
+        <h2>{{ product.title }}</h2>
+        <hr />
+        <h3 class="price">
+          {{ product.price }}원
+        </h3>
+        <p>{{ product.description }}</p>
+        <button
+          @click="purchase">
+          구매하기
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -41,20 +45,16 @@ export default {
   },
 	created() {
 		this.getProductDetail()
-		// console.log('this.$route.params.id: ', this.$route.params.id)
-		// console.log('isLogin: ', this.isLogIn)
 	},
 	methods: {
 		async getProductDetail() {
 			const res = await publicRequest({
-				url: `${this.$route.params.id}`,
+				url: `products/${this.$route.params.id}`,
 				method: 'GET',
 			})
-			// console.log('res: ', res)
 			this.product = res
 		},
 		purchase() {
-			// console.log('구매하기')
 			if(!this.isLogIn) {
 				console.log('로그인 필요')
 				alert('로그인 필요')
@@ -66,18 +66,3 @@ export default {
 	}
 }
 </script>
-
-<style lang="scss" scoped>
-.product-wrapper {
-  display: flex;
-	align-items: center;
-	justify-content: center;
-}
-.thumbnail {
-	width: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 0.75em;
-}
-</style>

@@ -8,7 +8,7 @@ import RequestPurchase from '~/views/RequestPurchase.vue'
 import SignUp from '~/views/SignUp.vue'
 import SignIn from '~/views/SignIn.vue'
 import MyPage from '~/views/MyPage.vue'
-import Admin from '~/views/Admin.vue'
+import AdminPage from '~/views/AdminPage.vue'
 import SalesHistory from '~/views/SalesHistory.vue'
 import SingleProduct from '~/components/SingleProduct.vue'
 import NotFound from '~/views/NotFound.vue'
@@ -53,7 +53,7 @@ export default createRouter({
     // 관리자 페이지
     {
       path: '/admin',
-      component: Admin,
+      component: AdminPage,
       meta: {
         auth: true
       }
@@ -69,7 +69,7 @@ export default createRouter({
         component: EditProduct,
       },
       {
-        name: 'salesHistory',
+        name: 'SalesHistory',
         path: '/salesHistory',
         component: SalesHistory,
       },
