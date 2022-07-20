@@ -1,6 +1,11 @@
 <template>
   <div>
     <div>
+      <i
+        class="fa-solid fa-xmark"
+        @click="a"></i>
+    </div>
+    <div>
       <img
         :src="product.thumbnail"
         :alt="product.title" />
@@ -56,6 +61,7 @@ export default {
     this.singleProduct()
   },
   methods: {
+    // 
     async singleProduct() {
       const res = await publicRequest({
         url: `products/${this.product.id}`,
@@ -64,11 +70,12 @@ export default {
       console.log(res)
       this.product
     },
-      async deleteProduct() {
-        const res = await publicRequest({
-          url: `products/${this.product.id}`,
-        method: 'DELETE'
-      })
+    // 제품 삭제
+    async deleteProduct() {
+      const res = await publicRequest({
+        url: `products/${this.product.id}`,
+      method: 'DELETE'
+    })
       console.log(res)
       alert('제품 삭제')
       this.$router.go(0)
@@ -76,6 +83,9 @@ export default {
     test() {
       this.modal = true
     },
+    a() {
+      this.$router.go(0)
+    }
   },
 }
 </script>
@@ -83,7 +93,7 @@ export default {
   
 <style lang="scss" scoped>
   .fa-solid {
-    font-size: 50px;
+    font-size: 20px;
   }
   .white {
     width: 60vw;
@@ -95,6 +105,6 @@ export default {
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     border-radius: 5px;
-    padding: 5em;
+    padding: 2em;
   }
 </style>
