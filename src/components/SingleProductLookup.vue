@@ -1,37 +1,57 @@
 <template>
   <div>
-    <img
-      :src="product.thumbnail"
-      :alt="product.title" />
     <div>
-      {{ product.title }}
+      <img
+        :src="product.thumbnail"
+        :alt="product.title" />
+      <div>
+        {{ product.title }}
+      </div>
+      <div>
+        {{ product.price.toLocaleString('ko-KR') }}원
+      </div>
+      <div>
+        {{ product.description }}
+      </div>
     </div>
-    <div>
-      {{ product.price }}원
-    </div>
-    <div> 
-      {{ product.description }}
-    </div>
-    <router-link 
-      :to="{ name: 'EditProduct', params: { id: product.id }, query: {title: product.title, price: product.price, thumbnail: product.thumbnail}}">
-      상품 수정
-    </router-link>
-    <button @click="deleteProduct(product.id)">
-      제품 삭제
+    <button
+      @click="test">
+      제품 수정
     </button>
+    <div
+      v-if="modal"
+      class="black">
+      <div class="white">
+        <EditProduct
+          :product="product" />
+      </div>
+    </div>
+    <div>
+      <button @click="deleteProduct(product.id)">
+        제품 삭제
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
 import { publicRequest } from '../api/publicRequest'
+import EditProduct from '../components/EditProduct.vue'
 export default {
+  components: {
+    EditProduct,
+  },
   props: {
     product: {
       type: Object,
       default: () => ({})
     }
   },
-
+  data() {
+    return {
+      modal: false
+    }
+  },
   mounted() {
     this.singleProduct()
   },
@@ -50,12 +70,31 @@ export default {
         method: 'DELETE'
       })
       console.log(res)
+      alert('제품 삭제')
+      this.$router.go(0)
+    },
+    test() {
+      this.modal = true
     },
   },
 }
 </script>
 
   
-<style>
-
+<style lang="scss" scoped>
+  .fa-solid {
+    font-size: 50px;
+  }
+  .white {
+    width: 60vw;
+    height: 70vh;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    padding: 5em;
+  }
 </style>
