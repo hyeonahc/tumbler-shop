@@ -51,9 +51,6 @@
     <button @click.prevent="editProduct">
       수정하기
     </button>
-    <button @click.prevent="backWards">
-      뒤로가기
-    </button>
   </div>
 </template>
 
@@ -98,9 +95,7 @@ export default {
       this.description = res.description
       this.thumbnailBase64 = res.thumbnailBase64
       this.isSoldOut = res.isSoldOut
-      console.log(res)
     },
-
     // 수정 사항
     async editProduct() {
       const obj = await publicRequest ({
@@ -117,10 +112,6 @@ export default {
       console.log(obj)
       alert('수정 완료')
       this.$router.go(0)
-    },
-
-    backWards() {
-      this.$router.go(-1)
     },
     selectFile(event) {
       const { files } = event.target
