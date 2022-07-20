@@ -103,70 +103,71 @@
   </section>
 </template>
 
-<script>
-import { mapState, mapActions } from 'vuex'
-import AllProductList from '~/components/AllProductList.vue'
-import salesHistory from '~/views/salesHistory.vue'
-import AddProduct from '../components/AddProduct.vue'
+  <script>
+    import { mapState, mapActions } from 'vuex'
+    import AllProductList from '~/components/AllProductList.vue'
+    import salesHistory from '~/views/salesHistory.vue'
+    import AddProduct from '../components/AddProduct.vue'
 
-export default {
-  components: {
+    export default {
+    components: {
     AllProductList,
     salesHistory,
     AddProduct,
  
     
-  },
-  data() {
+    },
+    data() {
     return {
-      modal: false,
-      menuList: [
-        { name: '제품 조회', isShow: true },
-        { name: '판매 내역', isShow: false } 
-      ],
+    modal: false,
+    menuList: [
+    { name: '제품 조회', isShow: true },
+    { name: '판매 내역', isShow: false } 
+    ],
     }
-  },
-  computed: {
+    },
+    computed: {
     ...mapState('user', [
-      'user'
+    'user'
     ]),
     allProducts() {
-      return this.$store.state.admin.allProducts
+    return this.$store.state.admin.allProducts
     }
-  },
-  created() {
+    },
+    created() {
     this.$store.dispatch('admin/allProductsLookup')
-  },
-  methods: {
+    },
+    methods: {
     ...mapActions('user', [
-      'requestUpdateState'
+    'requestUpdateState'
     ]),
     async allProductsLookup() {
-      await this.$store.dispatch('admin/allProductsLookup')
+    await this.$store.dispatch('admin/allProductsLookup')
     },
     isShowMenu(menuName) { 
-      this.menuList.forEach(menu => {
-        menu.isShow = false // 모든 menu의 isShow를 false로 바꾸어 안보이게 하기
-        if (menu.name === menuName) { // 클릭한 menu의 isShow 값 true로 바꾸어 보이게 하기
-          menu.isShow = true
-        }
-      })
+    this.menuList.forEach(menu => {
+    menu.isShow = false // 모든 menu의 isShow를 false로 바꾸어 안보이게 하기
+    if (menu.name === menuName) { // 클릭한 menu의 isShow 값 true로 바꾸어 보이게 하기
+    menu.isShow = true
+    }
+    })
     },
-  }
-}
+    }
+    }
+  </script>
 
-</script>
-
-<style lang="scss" scoped>
-// .main {
-//   display: flex;
-//   align-items: center;
-//   width: 100%;
-// }
-.test {
-  width: 80vw;
-}
-.black-bg {
+  <style
+    lang="scss"
+    scoped>
+    // .main {
+    //   display: flex;
+    //   align-items: center;
+    //   width: 100%;
+    // }
+    .test {
+    width: 80vw;
+    }
+    .black-bg {
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.5);
@@ -174,12 +175,12 @@ export default {
     padding: 20px;
     top: 0;
     left: 0;
-}
-.white-bg {
-  width: 100%; 
-  background: white;
-  border-radius: 8px;
-  padding: 20px;
-}
-
-</style>
+    }
+    .white-bg {
+    width: 60vw;
+    height: 70vh; 
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    }
+  </style>
