@@ -29,7 +29,7 @@
     
       <div class="menulist">
         <ul
-          v-for="menu in menuList"
+          v-for="menu in adminPageMenuList"
           :key="menu.name"
           class="menu"
           :class="{ 'show' : menu.isShow }"
@@ -50,8 +50,7 @@
 
     <section class="main">
       <div
-        v-show="menuList[0].isShow"
-        class="inquireProducts">
+        v-show="adminPageMenuList[0].isShow">
         <h1>제품 조회</h1>
         <router-link
           to="/AddProduct">
@@ -83,12 +82,11 @@
           </table>
         </div>
       </div>
-    </section>
-    <section class="main">
-      <div
-        v-show="menuList[1].isShow"
-        class="inquireProducts">
-        <salesHistory />
+      <div v-show="adminPageMenuList[1].isShow">
+        <SalesHistory />
+      </div>
+      <div v-show="adminPageMenuList[2].isShow">
+        <SalesGraph />
       </div>
     </section>
   </section>
@@ -97,27 +95,27 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import AllproductList from '~/components/AllproductList.vue'
-import salesHistory from '~/views/salesHistory.vue'
+import SalesHistory from '~/views/SalesHistory.vue'
+import SalesGraph from '~/components/SalesGraph.vue'
 
 
 export default {
   components: {
     AllproductList,
-    salesHistory,
-    
+    SalesHistory,
+    SalesGraph
   },
   data() {
     return {
-      id: '',
-      menuList: [
-        { name: '제품 조회', isShow: true },
-        { name: '판매 내역', isShow: false } 
-      ],
+      id: ''
     }
   },
   computed: {
     ...mapState('user', [
       'user'
+    ]),
+    ...mapState('menu', [
+      'adminPageMenuList'
     ]),
     allProducts() {
       return this.$store.state.admin.allProducts
@@ -126,20 +124,15 @@ export default {
   created() {
     this.$store.dispatch('admin/allProductsLookup')
   },
+  unmounted() {
+    this.isShowMenu('제품 조회') // 해당 페이지를 벗어날 때, 값 되돌리기
+  },
   methods: {
-    ...mapActions('user', [
-      'requestUpdateState'
+    ...mapActions('menu', [
+      'isShowMenu'
     ]),
     async allProductsLookup() {
       await this.$store.dispatch('admin/allProductsLookup')
-    },
-    isShowMenu(menuName) { 
-      this.menuList.forEach(menu => {
-        menu.isShow = false // 모든 menu의 isShow를 false로 바꾸어 안보이게 하기
-        if (menu.name === menuName) { // 클릭한 menu의 isShow 값 true로 바꾸어 보이게 하기
-          menu.isShow = true
-        }
-      })
     }
   }
 }
