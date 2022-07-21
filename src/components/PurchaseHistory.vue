@@ -9,7 +9,7 @@
     </div>
     <div class="table-wrapper">
       <table>
-        <SkeletonUI />
+        <TableSkeletonUI />
         <tr>
           <th>번호</th>
           <th>상품명</th>
@@ -57,11 +57,11 @@
 
 <script>
 import { publicRequest } from '~/api/publicRequest'
-import SkeletonUI from '~/components/SkeletonUI.vue'
+import TableSkeletonUI from '~/components/TableSkeletonUI.vue'
 
 export default {
 	components: {
-		SkeletonUI
+		TableSkeletonUI
 	},
 	data() {
 		return {
