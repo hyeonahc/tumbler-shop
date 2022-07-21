@@ -11,12 +11,8 @@ export default {
     updateAccount(state, payload) {
       state.account = payload
     },
-    test(state, images) {
-      state.banklist.push(images)
-    }
   },
   actions: {
-    // 은행 계좌 목록 조회
     async accountList({ state }) {
       const res = await publicRequest({
         url: 'account/banks',
@@ -24,15 +20,14 @@ export default {
       })
       state.banklist = res
       state.banklist[0].image = require('../assets/bank_kb.png')
-      state.banklist[1].image= require('../assets/bank_shinhan.png')
-      state.banklist[2].image= require('../assets/bank_woori.png')
-      state.banklist[3].image= require('../assets/bank_hana.png')
-      state.banklist[4].image= require('../assets/bank_kbank.png')
-      state.banklist[5].image= require('../assets/bank_kakao.png')
-      state.banklist[6].image= require('../assets/bank_nh.png')
+      state.banklist[1].image = require('../assets/bank_shinhan.png')
+      state.banklist[2].image = require('../assets/bank_woori.png')
+      state.banklist[3].image = require('../assets/bank_hana.png')
+      state.banklist[4].image = require('../assets/bank_kbank.png')
+      state.banklist[5].image = require('../assets/bank_kakao.png')
+      state.banklist[6].image = require('../assets/bank_nh.png')
       console.log('res', state.banklist)
     },
-    // 계좌 연결
     async accountConnect({ commit }, payload) {
       const { bankCode, accountNumber, phoneNumber, signature } = payload
       await publicRequest({
@@ -47,7 +42,6 @@ export default {
       })
       commit ('updateAccount', payload)
     },
-    // 계좌 목록 및 잔액
     async accountBalance({ state }) {
       const res = await publicRequest({
         url: 'account',
@@ -55,7 +49,6 @@ export default {
       })
       state.userAccountInfo = res
     },
-    // 계좌 해지
     async accountDisConnect({ commit }, payload) {
       const { accountId, signature } = payload
       await publicRequest({
@@ -67,9 +60,7 @@ export default {
         }
       })
       commit ('updateAccount', payload)
-    },
-
-    
+    }
   }
 }
 
