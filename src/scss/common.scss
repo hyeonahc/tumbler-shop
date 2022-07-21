@@ -12,8 +12,13 @@ body {
   height: 100vh;
 }
 .container {
-  width: 1366px;
+  width: 1200px;
   margin: 0 auto;
+}
+@media only screen and (min-width: 1540px) {
+  .container {
+    width: 1366px;
+  }
 }
 
 // font family, color, font weight
@@ -81,7 +86,7 @@ img {
 }
 table {
   border-collapse: collapse;
-  width: 900px;
+  width: 1000px;
   // tr, th, td
 	tr {
 		&:nth-child(even){
@@ -103,6 +108,7 @@ table {
     th, td {
       border: 1px solid $color-input;
       padding: 9px;
+      vertical-align: middle;
     }
     td {
       &:first-child {
@@ -148,7 +154,7 @@ table {
 
 // common UI class name
 .logo {
-  height: 4em;
+  width: 4em;
   &:hover {
     cursor: pointer;
   }

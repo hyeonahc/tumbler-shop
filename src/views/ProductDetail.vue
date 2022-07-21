@@ -56,7 +56,6 @@ export default {
 		},
 		purchase() {
 			if(!this.isLogIn) {
-				console.log('로그인 필요')
 				alert('로그인 필요')
 				this.$router.push('/signin')
 				return
