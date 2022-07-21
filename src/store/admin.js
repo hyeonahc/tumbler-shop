@@ -37,6 +37,7 @@ export default {
         method: 'GET'
       })
         commit('assignState', {salesDetails: res})
+        console.log('전체 판매 내역')
     },
   },
 }
