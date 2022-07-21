@@ -94,9 +94,6 @@
         <div v-show="adminPageMenuList[1].isShow">
           <SalesHistory />
         </div>
-        <div v-show="adminPageMenuList[2].isShow">
-          <SalesGraph />
-        </div>
       </section>
     </div>
   </section>
@@ -106,14 +103,12 @@
 import { mapState, mapActions } from 'vuex'
 import AllProductList from '~/components/AllProductList.vue'
 import SalesHistory from '~/views/SalesHistory.vue'
-import SalesGraph from '~/components/SalesGraph.vue'
 import AddProduct from '~/components/AddProduct.vue'
 
 export default {
   components: {
     AllProductList,
     SalesHistory,
-    SalesGraph,
     AddProduct,  
   },
   data() {
