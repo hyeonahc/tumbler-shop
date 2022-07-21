@@ -14,7 +14,7 @@
         </div>
         <div class="user__info">
           <h4>
-            반갑습니다! 
+            반갑습니다!
           </h4>
           <br />
           <h4>
@@ -26,7 +26,7 @@
           </h4>
         </div>
       </div>
-    
+
       <div class="menulist">
         <ul
           v-for="menu in menuList"
@@ -59,8 +59,7 @@
               전체 제품 보기
             </button>
           </div>
-          <button
-            @click="modal = true">
+          <button @click="modal = true">
             <i class="fa-solid fa-plus"></i>
             제품 추가
           </button>
@@ -68,8 +67,7 @@
             v-if="modal"
             class="black-bg">
             <div class="white-bg">
-              <AddProduct
-                v-if="modal" />
+              <AddProduct v-if="modal" />
             </div>
           </div>
         </div>
@@ -159,7 +157,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .main {
+    .main {
     display: flex;
     align-items: center;
     width: 100%;
