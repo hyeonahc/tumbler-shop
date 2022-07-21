@@ -54,27 +54,12 @@ export default {
       'isAdmin'
     ])
   },
-  mounted() {
-    this.fixHeaderOnScroll()
-  },
   methods: {
     ...mapActions('user', {
       useSignOut: 'signOut'
     }),
     signOut() {
       this.useSignOut()
-    },
-    fixHeaderOnScroll() {
-      window.onscroll = () => updateClassName()
-      const header = document.getElementById('header')
-      const sticky = header.offsetTop
-      function updateClassName() {
-        if (window.pageYOffset > sticky) {
-          header.classList.add('sticky')
-        } else {
-          header.classList.remove('sticky')
-        }
-      }
     }
   }
 }

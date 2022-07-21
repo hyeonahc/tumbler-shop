@@ -1,4 +1,4 @@
-import { publicRequest } from '../api/publicRequest'
+import { publicRequest } from '~/api/publicRequest'
 
 export default {
   namespaced : true,
@@ -6,11 +6,7 @@ export default {
     allProducts: [],
     salesDetails: [],
   }),
-
-  getters: {
-    
-  },
-
+  
   mutations : {
     assignState(state, payload) {
       Object.keys(payload).forEach(key => {
@@ -36,7 +32,7 @@ export default {
         url:'products/transactions/all',
         method: 'GET'
       })
-        commit('assignState', {salesDetails: res})
+      commit('assignState', {salesDetails: res})
     },
   },
 }

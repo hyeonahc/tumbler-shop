@@ -40,11 +40,12 @@
 </template>
 
 <script>
-import { publicRequest } from '../api/publicRequest'
+import { publicRequest } from '~/api/publicRequest'
 import SingleProductLookup from './SingleProductLookup.vue'
+
 export default { 
   components: {
-     SingleProductLookup
+    SingleProductLookup
   },
   props: {
     product: {

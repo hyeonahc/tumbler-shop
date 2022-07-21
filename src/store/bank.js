@@ -1,4 +1,4 @@
-import { publicRequest } from '../api/publicRequest'
+import { publicRequest } from '~/api/publicRequest'
 
 export default {
   namespaced: true,

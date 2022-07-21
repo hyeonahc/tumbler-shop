@@ -10,6 +10,7 @@
     </div>
     <div class="table-wrapper">
       <table>
+        <TableSkeletonUI />
         <tr>
           <th>번호</th>
           <th>상품명</th>
@@ -59,8 +60,12 @@
 
 <script>
 import { publicRequest } from '~/api/publicRequest'
+import TableSkeletonUI from '~/components/TableSkeletonUI.vue'
 
 export default {
+	components: {
+		TableSkeletonUI
+	},
 	data() {
 		return {
 			search: '',
@@ -75,6 +80,7 @@ export default {
 		}
 	},
 	created() {
+		this.$store.dispatch('menu/isShowLoading', true)
 		this.getPurchaseHistory()
 	},
 	methods: {
@@ -84,6 +90,7 @@ export default {
 				method: 'GET',
 			})
 			this.createPurchasedProducts(res)
+			this.$store.dispatch('menu/isShowLoading', false)
 		},
 		createPurchasedProducts(res) {
 			const purchaseHistoryLists = res.sort((a, b) => new Date(a.timePaid) - new Date(b.timePaid))
