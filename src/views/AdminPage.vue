@@ -43,41 +43,42 @@
           class="action"
           @click="$router.push({ name: 'mainpage'})">
           <i class="fa-solid fa-house"></i>
-          MAINPAGE
+          마이 페이지
         </div>
       </div>
     </nav>
 
-    <div class="table-page">
-      <section class="main">
-        <div
-          v-show="menuList[0].isShow"
-          class="inquireProducts">
-          <h1>제품 조회</h1>
-          <div class="admin-product">
-            <div>
-              <button @click="allProductsLookup">
-                전체 제품 보기
-              </button>
-            </div>
-            <button
-              @click="modal = true">
-              제품 추가
+    <section class="main">
+      <div
+        v-show="menuList[0].isShow"
+        class="table-page__admin table-page">
+        <h1>제품 조회</h1>
+        <div class="admin-product">
+          <div>
+            <button @click="allProductsLookup">
+              전체 제품 보기
             </button>
-            <div
-              v-if="modal"
-              class="black-bg">
-              <div class="white-bg">
-                <AddProduct
-                  v-if="modal" />
-              </div>
+          </div>
+          <button
+            @click="modal = true">
+            <i class="fa-solid fa-plus"></i>
+            제품 추가
+          </button>
+          <div
+            v-if="modal"
+            class="black-bg">
+            <div class="white-bg">
+              <AddProduct
+                v-if="modal" />
             </div>
           </div>
+        </div>
+        <div class="table-page">
           <div class="table-wrapper">
             <table>
               <thead>
                 <tr>
-                  <th>No</th>
+                  <th>번호</th>
                   <th>상품명</th>
                   <th>상품 아이디</th>
                   <th>가격</th>
@@ -94,15 +95,15 @@
             </table>
           </div>
         </div>
-        <section class="main">
-          <div
-            v-show="menuList[1].isShow"
-            class="inquireProducts">
-            <salesHistory />
-          </div>
-        </section>
+      </div>
+      <section class="main">
+        <div
+          v-show="menuList[1].isShow"
+          class="table-page__admin table-page">
+          <salesHistory />
+        </div>
       </section>
-    </div>
+    </section>
   </section>
 </template>
 
@@ -162,12 +163,16 @@ export default {
     display: flex;
     align-items: center;
     width: 100%;
-    .inquireProducts {
-      margin: 6vh 0 0 5vw;
+    height: 100%;
+    overflow: hidden;
+    .table-page__admin {
+      margin: 6vh 0 0 4vw;
+      button {
+        margin-top: 0;  
+      }
       .admin-product {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 1vw;
         .black-bg {
           width: 100vw;
           height: 100vh;
@@ -177,8 +182,8 @@ export default {
           top: 0;
           left: 0;
           .white-bg {
-            width: 60vw;
-            height: 70vh; 
+            width: 54vw;
+            height: 68vh; 
             background: white;
             border-radius: 8px;
             padding: 20px;
