@@ -109,6 +109,7 @@ table {
     th, td {
       border: 1px solid $color-input;
       padding: 9px;
+      vertical-align: middle;
     }
     td {
       &:first-child {
@@ -197,5 +198,8 @@ table {
     height: 80vh;
     margin-top: 0.75em;
     overflow: auto;
+    button {
+      margin-top: 0;
+    }
   }
 }
