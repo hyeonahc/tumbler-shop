@@ -5,7 +5,8 @@
       <input
         class="search"
         type="text"
-        placeholder="상품을 검색하세요" />
+        placeholder="상품을 검색하세요"
+        @input="search = $event.target.value" />
     </div>
     <div class="table-wrapper">
       <table>
@@ -19,34 +20,36 @@
           <th>구매상태</th>
         </tr>
         <tr
-          v-for="purchasedProduct in purchasedProducts"
-          :key="purchasedProduct.id">
-          <td>{{ purchasedProducts.indexOf(purchasedProduct) + 1 }}</td>
-          <td>{{ purchasedProduct.title }}</td>
-          <td>{{ purchasedProduct.price }} 원</td>
-          <td>{{ purchasedProduct.time }}</td>
+          v-for="product in searchedProducts"
+          :key="product.id">
+          <td>{{ searchedProducts.indexOf(product) + 1 }}</td>
+          <td class="flex-center-vertically">
+            <img :src="product.thumbnail" /><span>{{ product.title }}</span>
+          </td>
+          <td>{{ product.price }} 원</td>
+          <td>{{ product.time }}</td>
           <td>
             <span
-              v-show="purchasedProduct.status === '구매신청'"
+              v-show="product.status === '구매신청'"
               class="action-btn confirm-btn"
-              @click="confirmPurchase(purchasedProduct)">구매확정</span>
+              @click="confirmPurchase(product)">구매확정</span>
           </td>
           <td>
             <span
-              v-show="purchasedProduct.status === '구매신청'"
+              v-show="product.status === '구매신청'"
               class="action-btn cancel-btn"
-              @click="cancelPurchase(purchasedProduct)">구매취소</span>
+              @click="cancelPurchase(product)">구매취소</span>
           </td>
           <td>
             <span
-              v-if="purchasedProduct.status === '구매신청'"
-              class="status-badge request-badge">{{ purchasedProduct.status }}</span>
+              v-if="product.status === '구매신청'"
+              class="status-badge request-badge">{{ product.status }}</span>
             <span
-              v-else-if="purchasedProduct.status === '구매확정'"
-              class="status-badge confirm-badge">{{ purchasedProduct.status }}</span>
+              v-else-if="product.status === '구매확정'"
+              class="status-badge confirm-badge">{{ product.status }}</span>
             <span
               v-else
-              class="status-badge cancel-badge">{{ purchasedProduct.status }}</span>
+              class="status-badge cancel-badge">{{ product.status }}</span>
           </td>
         </tr>
       </table>
@@ -55,17 +58,20 @@
 </template>
 
 <script>
-import { publicRequest } from '../api/publicRequest'
+import { publicRequest } from '~/api/publicRequest'
 
 export default {
 	data() {
 		return {
+			search: '',
 			purchasedProducts: [],
 		}
 	},
-	watch: {
-		purchasedProducts(value) {
-			console.log(value)
+	computed: {
+		searchedProducts() {
+			return this.purchasedProducts.filter(product => {
+				return product.title.match(this.search)
+			})
 		}
 	},
 	created() {
@@ -77,13 +83,12 @@ export default {
 				url: 'products/transactions/details',
 				method: 'GET',
 			})
-			// console.log('res: ', res)
 			this.createPurchasedProducts(res)
 		},
-		createPurchasedProducts(purchaseHistoryLists) {
-			// console.log('purchaseHistoryLists: ', purchaseHistoryLists)
+		createPurchasedProducts(res) {
+			const purchaseHistoryLists = res.sort((a, b) => new Date(a.timePaid) - new Date(b.timePaid))
 			purchaseHistoryLists.forEach(purchaseHistoryList => {
-				let { product: {title, price}, timePaid, done, isCanceled, detailId } = purchaseHistoryList
+				let { product: {title, thumbnail, price}, timePaid, done, isCanceled, detailId } = purchaseHistoryList
 				price = price.toLocaleString('ko-KR')
 				timePaid = this.$dayjs(timePaid).format('YYYY년 MM월 DD일 HH시 mm분')
 				let status
@@ -97,14 +102,13 @@ export default {
 				}
 				const info =  {
 					title: title,
+					thumbnail: thumbnail,
 					price: price,
 					time: timePaid,
 					status: status,
 					id: detailId
 				}
-				// console.log(info)
 				this.purchasedProducts.push(info)
-				// console.log(this.purchasedProducts)
 			})
 		},
 		async confirmPurchase(purchasedProduct) {
@@ -116,7 +120,6 @@ export default {
 				method: 'POST',
 				body: body
 			})
-			console.log(res)
 			if(res === true) {
 				alert('구매가 확정되었습니다.')
 				this.$router.go()
@@ -133,7 +136,6 @@ export default {
 				method: 'POST',
 				body: body
 			})
-			console.log(res)
 			if(res === true) {
 				alert('구매가 취소되었습니다.')
 				this.$router.go()
@@ -144,3 +146,12 @@ export default {
 	}
 }
 </script>
+
+<style lang="scss" scoped>
+.flex-center-vertically {
+	img {
+		width: 30px;
+    margin-right: 0.5em;
+	}
+}
+</style>

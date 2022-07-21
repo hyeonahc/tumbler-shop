@@ -1,16 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import AddProduct from '../components/AddProduct.vue'
+import AddProduct from '~/components/AddProduct.vue'
 import EditProduct from '~/components/EditProduct.vue'
-import MainPage from '../views/MainPage.vue'
-import ProductDetail from '../views/ProductDetail.vue'
-import RequestPurchase from '../views/RequestPurchase.vue'
-import SignUp from '../views/SignUp.vue'
-import SignIn from '../views/SignIn.vue'
-import MyPage from '../views/MyPage.vue'
-import AdminPage from '../views/AdminPage.vue'
-import salesHistory from '../views/salesHistory.vue'
-import SingleProduct from '../components/SingleProduct.vue'
+import MainPage from '~/views/MainPage.vue'
+import ProductDetail from '~/views/ProductDetail.vue'
+import RequestPurchase from '~/views/RequestPurchase.vue'
+import SignUp from '~/views/SignUp.vue'
+import SignIn from '~/views/SignIn.vue'
+import MyPage from '~/views/MyPage.vue'
+import AdminPage from '~/views/AdminPage.vue'
+import salesHistory from '~/views/salesHistory.vue'
+import SingleProduct from '~/components/SingleProduct.vue'
 
 
 export default createRouter({
