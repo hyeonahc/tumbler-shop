@@ -47,8 +47,7 @@
         <MyAccount
           v-show="myPageMenuList[1].isShow" />      
         <ModifyUserInfo
-          v-show="myPageMenuList[2].isShow"
-          class="my-account-info" />      
+          v-show="myPageMenuList[2].isShow" />      
       </section>
     </section>
   </section>
