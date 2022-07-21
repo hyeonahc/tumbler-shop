@@ -1,56 +1,65 @@
 <template>
-  <h1>상품 수정!!!</h1>
-
-  <form>
-    <div>
-      <label for="title">상품 제목</label>
-      <input
-        id="title"
-        v-model="title"
-        type="text"
-        name="title" />
-    </div>
-    <div>
-      <label for="price">상품 가격</label>
-      <input
-        id="price"
-        v-model="price"
-        type="text" />
-    </div>
-    <div>
-      <label for="description">상품 설명</label>
-      <input
-        id="description"
-        v-model="description"
-        type="text" />
-    </div>
-    <div>
-      <label for="isSoldOut">재고 현황</label>
-      <select
-        id="isSoldOut"
-        v-model="isSoldOut"
-        name="isSoldOut">
-        <option :value="true">
-          재고 있음
-        </option>
-        <option :value="false">
-          재고 없음
-        </option>
-      </select>
-    </div>
-    <div>
-      <label for="thumbnail">상품 썸네일</label>
-      <input
-        id="thumbnail"
-        src="thumbnail"
-        type="file"
-        @change="selectFile" />
-    </div>
-  </form>
-  <div>
-    <button @click.prevent="editProduct">
-      수정하기
-    </button>
+  <div class="edit-product__wrap">
+    <form class="edit-product__form">
+      <div class="edit-product__img">
+        <label for="thumbnail">상품 썸네일</label>
+        <input
+          id="thumbnail"
+          src="thumbnail"
+          type="file"
+          @change="selectFile" />
+        <i class="fa-solid fa-images"></i>
+        <span>이미지 변경하기</span>
+      </div>
+      <div class="edit-product__input">
+        <div class="edit-product__input--title">
+          <label for="title">상품 이름</label>
+          <input
+            id="title"
+            v-model="title"
+            type="text"
+            name="title"
+            placeholder="제목을 입력해주세요" />
+        </div>
+        <div class="edit-product__input--price">
+          <label for="price">가격</label>
+          <input
+            id="price"
+            v-model="price"
+            type="text"
+            placeholder="가격을 입력해주세요" />
+        </div>
+        <div class="edit-product__input--issoldout">
+          <label for="isSoldOut">재고 현황</label>
+          <select
+            id="isSoldOut"
+            v-model="isSoldOut"
+            name="isSoldOut">
+            <option
+              :value="false">
+              재고 있음
+            </option>
+            <option :value="true">
+              재고 없음
+            </option>
+          </select>
+        </div>
+        <div class="edit-product__input--description">
+          <label for="description">상품 상세 설명</label>
+          <textarea
+            id="description"
+            v-model="description"
+            type="text"
+            placeholder="상품 상세 설명을 입력해주세요">
+          </textarea>
+        </div>
+        <div>
+          <button @click.prevent="editProduct">
+            수정하기
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
 </template>
 
@@ -130,6 +139,102 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+ @mixin flexColumn {
+    display: flex;
+    flex-direction: column;
+  }
+  @mixin inputSize {
+    width: 30vw;
+  }
+  .edit-product {
+   &__wrap { 
+      width: 100%;
+      height: 100%;
+    }
+    &__form {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      height: 100%;
+    }
+    &__img {
+      position: relative;
+      label {
+        display: none;
+      }
+      input {
+        text-indent: -9999px;
+        height: 300px;
+        width: 15vw;
+        border: 2px dashed $color-success;
+      }
+      .fa-solid {
+        color: $color-success;
+        position: absolute;
+        top: 46%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 80px;
+        z-index: -999;
+      }
+      span {
+        color: $color-success;
+        font-weight: $font-medium;
+        position: absolute;
+        top: 70%;
+        left: 20%;
+        transform: translate(16%, -50%);
+      }
+    }
+    &__input {
+      margin-left: 2vw;
+      height: 45vh;
+      label {
+        margin-bottom: 10px;
+      }
+
+      &--title,
+      &--price,
+      &--issoldout,
+      &--description {
+        margin-bottom: 8px
+      }
+      &--title {
+        @include flexColumn;
+        input {
+          @include inputSize;
+        }
+      }
+
+      &--price {
+        @include flexColumn;
+        input {
+          @include inputSize;
+        }
+      }
+      &--issoldout {
+        @include flexColumn;
+        select {
+          border: 1px solid #C5C5C5;
+          border-radius: 5px;
+          padding: 0.4em 0.5em;
+        }
+      }
+      &--description {
+        @include flexColumn;
+        textarea {
+          width: 30vw;
+          height: 12vh;
+          font-size: $font-paragraph;
+        }
+        ::placeholder {
+          color: $color-input;
+          font-size: $font-paragraph;
+          font-weight: $font-normal;
+        }
+      }
+    }
+  }
 
 </style>
