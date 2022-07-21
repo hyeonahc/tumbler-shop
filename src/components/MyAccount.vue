@@ -1,15 +1,14 @@
 <template>
-  <div class="container">
-    <div class="my-account">
-      <h1>내 계좌</h1>
-      
-      <button
-        class="btn-confirm"
-        @click="addAccount">
-        <i class="fa-solid fa-plus"></i>
-        계좌추가 
-      </button>
-      
+  <div class="table-page">
+    <h1>내 계좌</h1>
+    <div class="table-wrapper">
+      <div class="account-btn">  
+        <button
+          @click="addAccount">
+          <i class="fa-solid fa-plus"></i>
+          계좌추가 
+        </button>
+      </div>
       <table>
         <tr>
           <th>No</th>
@@ -18,7 +17,6 @@
           <th>현재 금액</th>
           <th>계좌해지</th>
         </tr>
-
         <UserAccountInfo
           v-for="(userInfo, index) in userAccountInfo.accounts"
           :key="userInfo.id"
@@ -74,55 +72,26 @@ export default {
       console.log(this.$refs.darkBg)
       this.$refs.darkBg.classList.add('dark-bg')
       this.isOn = true
-
     },
     RemoveDarkBg() {
       this.$refs.darkBg.classList.remove('dark-bg')
       this.isOn = false
     }
-  },
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-  .my-account {
-  padding: 30px 50px;
+.account-btn {
   display: flex;
-  flex-wrap: wrap;
-  h1 {
-    color: $color-font;
-    font-weight: 700;
-    width: 100%;
+  flex-direction: row-reverse;
+  margin-bottom: 2rem;
+  button {
+    margin-top: 0.1em;
   }
-  .btn-confirm {
-    background-color: $color-primary;
-    color: $color-white;
-    width: 10%;
-    height: 30px;
-    margin-left: auto;
-    border: none;
-    border-radius: 3px;
-  }
-  table {
-    width: 100%;
-    border-collapse : collapse;
-    border : 1px solid $color-input;
-    text-align: center;
-    th {
-      padding: 10px;
-      background-color: $color-primary;
-      color: $color-white;
-    }
-    
-  }
-  
-
-  
 }
-
-
 .dark-bg {
-  background: rgba(0, 0, 0, 0.5);
+  background: $color-bg-filter;
   height: 100vh;
   width: 100vw;
   position: fixed;
