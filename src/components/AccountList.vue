@@ -2,23 +2,16 @@
   <div class="account-list-container">
     <div
       v-if="isOn"
-      class="account-list">
-      <div
-        class="btn-close"
-        @click="$router.go(0)">
-        <i class="fa-solid fa-xmark"></i>
-      </div>
-      <h2>결제 계좌 등록</h2>   
-      <ul>
+      class="account-list flex-center-horizontally">
+      <h1>결제 계좌 등록</h1>   
+      <ul class="flex-center-center">
         <li
           v-for="bank in banklist"
-          :key="bank.code"
-          class="banklist">
+          :key="bank.code">
           <div
             v-show="!bank.disabled"
             class="image-box"
-            :class="[isShow? '' : 'gray']"
-            @click="addAccount(bank)">
+            @click="addAccount(bank), test($event)">
             <img
               :key="bank.image"
               :src="bank.image"
@@ -29,21 +22,15 @@
       </ul> 
       <button
         class="btn-confirm"
-        @click="addAccountNext()">
+        @click="addAccountNext">
         확인
       </button>
     </div>
     <div
       v-else
-      class="register">
-      <div
-        class="btn-close"
-        @click="$router.go(0)">
-        <i class="fa-solid fa-xmark"></i>
-      </div>
-      <h2>{{ selectedBank.name }} 계좌 등록</h2>
+      class="register flex-center-horizontally">
+      <h1>{{ selectedBank.name }} 계좌 등록</h1>
       <div class="account">
-        <label for="account-number">계좌번호</label><br />
         <input
           id="account-number"
           v-model="accountNumber"
@@ -63,7 +50,6 @@
         </h6>
       </div>
       <div class="phone">
-        <label for="phone-number">핸드폰 번호</label><br />
         <input
           id="phone-number"
           v-model="phoneNumber"
@@ -93,7 +79,7 @@
       </div>
       <button
         class="btn-confirm"
-        @click="connectAccount()">
+        @click="connectAccount">
         계좌등록
       </button>
     </div>
@@ -111,8 +97,7 @@ export default {
       selectedBankDigitsLength: '',
       accountNumber: '',
       phoneNumber: '',
-      signature: false,
-      isShow: true
+      signature: false
     }
   },
   computed: {
@@ -133,10 +118,6 @@ export default {
     ]),
     addAccount(bank) {
       this.selectedBank = bank
-      console.log('addAccount', bank)
-      this.isShow = !this.isShow
-
-      
     },
     addAccountNext() {
       if(this.selectedBank.name === undefined) {
@@ -146,9 +127,7 @@ export default {
       this.createDigitsLength()
     },
     createDigitsLength() {
-      console.log(this.selectedBank.digits)
       this.selectedBankDigitsLength = this.selectedBank.digits.reduce((p, c) => p + c)
-      console.log(this.selectedBankDigitsLength)
     },
     connectAccount() {
       if (this.accountNumber.length === this.selectedBankDigitsLength && 
@@ -160,130 +139,98 @@ export default {
           phoneNumber: this.phoneNumber,
           signature: this.signature
         })
-        console.log('계좌연동이 완료되었습니다')
-        console.log('userAccountInfo: ',this.userAccountInfo)
         alert('계좌연동이 완료되었습니다')
         this.isOn = true
         this.$router.go()
       } else {
         return alert('유효한 값을 입력해주세요')
       }
-    },
-    // coverColor() {
-    //   this.isShow = !this.isShow
-    // }
-  },
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-.gray {
-  background-color: $color-input;
+h5 {
+  padding-top: .8rem;
 }
-.btn-confirm {
-  background-color: $color-primary;
-  color: $color-white;
-  width: 30%;
-  padding: 1.2rem;
-  border: none;
-  border-radius: 3px;
-  }
-  .btn-close {
-    font-size: 20px;
-    margin-left: auto;
-    color: $color-font;
-  }
-  h2 {
-    width: 100%;
-    color: $color-font;
-    font-size: 2.4rem;
-    font-weight: 700;
-    text-align: center;
-    padding: 10px;
-  }
-  h6 {
-    margin: 7px;
-    font-size: 1.4rem;
-  }
+h6 {
+  margin: 1rem;
+  font-size: 1.4rem;
+}
 .account-list-container {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
-  border-radius: 5px;
+  background-color: $color-primary-light;
+  border-radius: .5rem;
   padding: 2em;
   width: 45rem;
-  height: 47rem;
+  height: 50rem;
   .account-list {
-    display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     width: 100%;
-  ul {
-    width: 100%;
-    // height: 50px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    li {
-      .image-box {
-        border: 1px solid $color-input;
-        align-items: center;
-        text-align: center;
-        width: 100px;
-        margin: 10px;
-        padding: 10px;
-      }
-      img{
-        width: 33px;
-        height: 30px;
-        margin: auto;
-      }
-      h5 {
-        padding-top: 10px;
+    ul {
+      width: 38.6rem;
+      height: 33rem;
+      flex-wrap: wrap;
+      padding: 1rem;
+      li {
+        :hover {
+          background-color: $color-tr-hover;
+          cursor: pointer;
+        }
+        .image-box {
+          border: 1px solid $color-input;
+          text-align: center;
+          width: 11rem;
+          height: 9rem;
+          margin: 0.6rem;
+          padding: 1rem;
+          img {
+            width: 4rem;
+            height: 4rem;
+          }
+        }
       }
     }
+    .btn-confirm {
+      width: 30%;
+      margin-top: 1rem;
+      padding: 1.2rem;
+    } 
   }
-  
-}
-  
-}
-.register {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  .account, .phone, .connect {
-    width: 90%;
-    
+  .register {
+    flex-wrap: wrap;
+    .account, .phone, .connect {
+      width: 90%;
+    }
+    .account, .phone {
+      color: $color-primary;
+      padding: 1.5rem 0rem;
+    }
+    .connect {
+      padding: 2.5rem 0rem;
+    }
+    #account-number, #phone-number {
+      width: 100%;
+    }
+    #signature {
+      width: 5%;
+      cursor: pointer;
+    }
+    label {
+      font-size: 1.6rem;
+      vertical-align: text-top;
+    }
+    input {
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+    .danger {
+      color: $color-danger;
+    }
   }
-  .account, .phone {
-    color: $color-primary;
-    padding: 10px 0px;
-  }
-  .connect {
-    padding: 13px 0px;
-  }
-  #account-number, #phone-number {
-    width: 100%;
-  }
-  label {
-    font-size: 1.6rem;
-  }
-  input {
-    font-size: 1.6rem;
-    padding: 10px;
-    margin-top: 10px;
-  }
-  input:focus {
-    outline-color: $color-primary;
-  }
-  .danger {
-    color: $color-warning;
-    font-size: 1.4rem;
-  }
-
 }
 </style>
