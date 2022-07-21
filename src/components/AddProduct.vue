@@ -160,10 +160,8 @@ export default {
       }
     }
     &__input {
-      
     height: 44vh;
     width: 66%;
-
       &--title {
         @include flexColumn;
         input {
@@ -171,7 +169,6 @@ export default {
           margin-bottom: 8px
         }
       }
-
       &--price {
         @include flexColumn;
         input {
