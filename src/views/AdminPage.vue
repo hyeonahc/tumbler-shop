@@ -129,10 +129,6 @@ export default {
   },
   created() {
     this.$store.dispatch('admin/allProductsLookup')
-    this.setMenu()
-  },
-  unmounted() {
-    this.isShowMenu('제품 조회') // 해당 페이지를 벗어날 때, 값 되돌리기
   },
   methods: {
     ...mapActions('menu', [
@@ -140,10 +136,6 @@ export default {
     ]),
     async allProductsLookup() {
       await this.$store.dispatch('admin/allProductsLookup')
-    },
-    setMenu() {
-      const menuHistory = window.sessionStorage.getItem('menu')
-      this.isShowMenu(menuHistory)
     }
   }
 }
