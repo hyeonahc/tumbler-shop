@@ -2,7 +2,12 @@
   <tr>
     <td>
       <div>
-        {{ sales.length }}
+        {{ index + 1 }}
+      </div>
+    </td>
+    <td>
+      <div>
+        {{ sales.user.displayName }}
       </div>
     </td>
     <td>
@@ -10,7 +15,7 @@
     </td>
     <td>
       <div>
-        {{ sales.user.displayName }}
+        {{ sales.product.price.toLocaleString('ko-KR') }} 원
       </div>
     </td>
     <td>
@@ -43,6 +48,10 @@ export default {
       type: Object,
       default: () => ({})
     },
+    index: {
+      type: Number,
+      default: 0
+    }
   },
   computed: {
     orderDate() {
