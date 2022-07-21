@@ -1,13 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import AddProduct from '../components/AddProduct.vue'
-import MainPage from '../views/MainPage.vue'
-import ProductDetail from '../views/ProductDetail.vue'
-import RequestPurchase from '../views/RequestPurchase.vue'
-import SignUp from '../views/SignUp.vue'
-import SignIn from '../views/SignIn.vue'
-import MyPage from '../views/MyPage.vue'
-import AdminPage from '../views/AdminPage.vue'
+import AddProduct from '~/components/AddProduct.vue'
+import MainPage from '~/views/MainPage.vue'
+import ProductDetail from '~/views/ProductDetail.vue'
+import RequestPurchase from '~/views/RequestPurchase.vue'
+import SignUp from '~/views/SignUp.vue'
+import SignIn from '~/views/SignIn.vue'
+import MyPage from '~/views/MyPage.vue'
+import AdminPage from '~/views/AdminPage.vue'
+import NotFound from '~/views/NotFound.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -59,5 +60,10 @@ export default createRouter({
         path: '/addproduct',
         component: AddProduct,
       },
+
+    {
+      path: '/:notFound(.*)',
+      component: NotFound
+    }
   ]
 })

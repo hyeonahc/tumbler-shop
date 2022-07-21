@@ -29,7 +29,7 @@
 
       <div class="menulist">
         <ul
-          v-for="menu in menuList"
+          v-for="menu in adminPageMenuList"
           :key="menu.name"
           class="menu"
           :class="{ 'show' : menu.isShow }"
@@ -43,14 +43,14 @@
           class="action"
           @click="$router.push({ name: 'mainpage'})">
           <i class="fa-solid fa-house"></i>
-          마이 페이지
+          홈페이지
         </div>
       </div>
     </nav>
 
     <section class="main">
       <div
-        v-show="menuList[0].isShow"
+        v-show="adminPageMenuList[0].isShow"
         class="table-page__admin table-page">
         <h1>제품 조회</h1>
         <div class="admin-product">
@@ -84,7 +84,7 @@
                 </tr>
               </thead>
               <tbody>
-                <AllProductList
+                <AllProducts
                   v-for="(product,index) in allProducts"
                   :key="product.id"
                   :product="product"
@@ -96,7 +96,7 @@
       </div>
       <section class="main">
         <div
-          v-show="menuList[1].isShow"
+          v-show="adminPageMenuList[1].isShow"
           class="table-page__admin table-page">
           <salesHistory />
         </div>
@@ -107,28 +107,27 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import AllProductList from '~/components/AllProductList.vue'
-import salesHistory from '~/views/salesHistory.vue'
-import AddProduct from '../components/AddProduct.vue'
+import AllProducts from '~/components/AllProducts.vue'
+import SalesHistory from '~/views/SalesHistory.vue'
+import AddProduct from '~/components/AddProduct.vue'
 
 export default {
   components: {
-    AllProductList,
-    salesHistory,
-    AddProduct,
+    AllProducts,
+    SalesHistory,
+    AddProduct,  
   },
   data() {
     return {
       modal: false,
-      menuList: [
-        { name: '제품 조회', isShow: true },
-        { name: '판매 내역', isShow: false } 
-      ],
-    } 
+    }
   },
   computed: {
     ...mapState('user', [
       'user'
+    ]),
+    ...mapState('menu', [
+      'adminPageMenuList'
     ]),
     allProducts() {
       return this.$store.state.admin.allProducts
@@ -136,22 +135,22 @@ export default {
   },
   created() {
     this.$store.dispatch('admin/allProductsLookup')
+    this.setMenu()
+  },
+  unmounted() {
+    this.isShowMenu('제품 조회') // 해당 페이지를 벗어날 때, 값 되돌리기
   },
   methods: {
-    ...mapActions('user', [
-    'requestUpdateState'
+    ...mapActions('menu', [
+      'isShowMenu'
     ]),
     async allProductsLookup() {
-    await this.$store.dispatch('admin/allProductsLookup')
+      await this.$store.dispatch('admin/allProductsLookup')
     },
-    isShowMenu(menuName) { 
-      this.menuList.forEach(menu => {
-          menu.isShow = false // 모든 menu의 isShow를 false로 바꾸어 안보이게 하기
-        if (menu.name === menuName) { // 클릭한 menu의 isShow 값 true로 바꾸어 보이게 하기
-          menu.isShow = true
-        }
-      })
-    },
+    setMenu() {
+      const menuHistory = window.sessionStorage.getItem('menu')
+      this.isShowMenu(menuHistory)
+    }
   }
 }
 </script>

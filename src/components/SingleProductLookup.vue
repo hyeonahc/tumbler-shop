@@ -98,6 +98,7 @@ export default {
       display: flex;
       align-content: center;
       height: 100%;
+      width: 100%;
       &--img {
         img {
           height: 30vh;
