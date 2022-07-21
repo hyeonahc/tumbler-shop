@@ -4,7 +4,7 @@
       {{ index + 1 }}
     </td>
     <td>
-      <div>
+      <div class="productList__img flex-center-vertically">
         <img
           :src="
             product.thumbnail
@@ -28,14 +28,19 @@
     </td>
     <td>
       <div>
-        {{ product.isSoldOut === false ? '재고 없음 ' : '재고 있음' }}
+        <span 
+          v-if="product.isSoldOut"
+          class="status-badge confirm-badge">재고 없음</span>
+        <span
+          v-else
+          class="status-badge cancel-badge">재고 있음</span>
       </div>
     </td>
   </tr>
   <div
     v-if="modal"
     class="black-bg">
-    <div class="white-bg">
+    <div class="white-bg flex-center-center">
       <SingleProductLookup
         :product="product" />
     </div>
@@ -83,11 +88,12 @@ export default {
 
 </script>
 
-<style lang="scss" scoped>
-
-  .img-test {
-    width: 2vw;
-    margin-right: 1vw;
+<style lang="scss">
+  .productList__img {
+    img {
+      width: 2vw;
+      margin-right: 1vw;
+    }
   }
   .black-bg {
     width: 100vw;
@@ -97,16 +103,16 @@ export default {
     padding: 20px;
     top: 0;
     left: 0;
-    .white-bg {
-    width: 60vw;
-    height: 70vh; 
-    background-color: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 5px;
-    padding: 2em;
-    }
+      .white-bg {
+      width: 50vw;
+      height: 60vh; 
+      background-color: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 5px;
+      padding: 2em;
+      }
   }
 </style>
