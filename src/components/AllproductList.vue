@@ -1,6 +1,9 @@
 <template>
   <tr @click="click">
     <td>
+      {{ index + 1 }}
+    </td>
+    <td>
       <div>
         <img
           :src="
@@ -28,15 +31,15 @@
         {{ product.isSoldOut === false ? '재고 없음 ' : '재고 있음' }}
       </div>
     </td>
-    <div
-      v-if="modal"
-      class="black-bg">
-      <div class="white-bg">
-        <SingleProductLookup
-          :product="product" />
-      </div>
-    </div>
   </tr>
+  <div
+    v-if="modal"
+    class="black-bg">
+    <div class="white-bg">
+      <SingleProductLookup
+        :product="product" />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -50,6 +53,10 @@ export default {
     product: {
       type: Object,
       default: () => ({})
+    },
+    index: {
+      type: Number,
+      default: 0
     }
   },
   data() {
@@ -76,11 +83,12 @@ export default {
 
 </script>
 
-<style>
-  .img-test {
-    width: 100px;
-  }
+<style lang="scss" scoped>
 
+  .img-test {
+    width: 2vw;
+    margin-right: 1vw;
+  }
   .black-bg {
     width: 100vw;
     height: 100vh;
@@ -89,8 +97,7 @@ export default {
     padding: 20px;
     top: 0;
     left: 0;
-  }
-  .white-bg {
+    .white-bg {
     width: 60vw;
     height: 70vh; 
     background-color: white;
@@ -100,5 +107,6 @@ export default {
     transform: translate(-50%, -50%);
     border-radius: 5px;
     padding: 2em;
+    }
   }
 </style>
