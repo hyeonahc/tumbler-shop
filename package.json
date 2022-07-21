@@ -26,9 +26,11 @@
     "babel-loader": "^8.2.5",
     "copy-webpack-plugin": "^10.2.4",
     "css-loader": "^6.7.1",
+    "dotenv-webpack": "^8.0.0",
     "eslint": "^8.14.0",
     "eslint-plugin-vue": "^8.7.1",
     "html-webpack-plugin": "^5.5.0",
+    "netlify-cli": "^10.10.2",
     "postcss": "^8.4.13",
     "postcss-loader": "^6.2.1",
     "sass": "^1.51.0",
@@ -40,6 +42,7 @@
     "webpack-dev-server": "^4.9.0"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "dayjs": "^1.11.3",
     "vue": "^3.2.33",
     "vue-router": "^4.0.14",
