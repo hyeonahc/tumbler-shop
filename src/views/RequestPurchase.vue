@@ -15,7 +15,7 @@
             :alt="$route.query.title" />
         </td>
         <td>{{ $route.query.title }}</td>
-        <td>{{ $route.query.price.toLocaleString('ko-KR') }} 원</td>
+        <td>{{ parseInt($route.query.price).toLocaleString('ko-KR') }} 원</td>
       </tr>
     </table>
     <div class="account-list">
