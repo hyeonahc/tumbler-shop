@@ -52,7 +52,7 @@
 
 <script>
 import TheHeader from '~/components/TheHeader'
-import { publicRequest } from '../api/publicRequest'
+import { publicRequest } from '~/api/publicRequest'
 import { mapState, mapActions } from 'vuex'
 
 export default {
@@ -86,34 +86,24 @@ export default {
     async getAccountInfo() {
       await this.accountBalance()
       this.accounts = this.userAccountInfo.accounts
-      console.log('accounts: ', this.accounts)
-      console.log('accountsLength: ', this.accountsLength)
     },
     addAccount() {
-      console.log('계좌 등록하기')
       this.$router.push('/mypage')
 		},
-    // selectedAccount 변수에 선택한 계좌의 id 넣기
     setSelectedAccount(e) { 
       this.selectedAccount = e.target.value
-      console.log('selectedAccount: ', this.selectedAccount)
     },
     async requestPurchase() {
-      console.log('해당 계좌로 결제하기')
-      console.log('accounts: ', this.accounts)
       const info = {
         productId : this.$route.params.id,
         accountId : this.selectedAccount
       }
-      console.log('info: ', info)
       try {
         const res = await publicRequest({
           url: 'products/buy',
           method: 'POST',
           body: info
         })
-        console.log('res: ', res)
-        // 잔액이 충분할때와 그렇지 않을때
         if(res === true) {
           alert('결제가 성공했습니다. 마이페이지에서 구매확정버튼을 눌러주세요')
           this.$router.push('/mypage')
@@ -123,7 +113,7 @@ export default {
           alert('잔액이 부족합니다. 다른 계좌를 이용해주세요.')
         }
       } catch(error){
-        console.log('error: ', error)
+        alert(error)
       }  
     }
   }
