@@ -4,7 +4,6 @@
     class="container">
     <div class="skeleton">
       <div class="skeleton__header"></div>
-      <div class="skeleton__body__second"></div>
       <div class="skeleton__body"></div>
       <div class="skeleton__body__second"></div>
       <div class="skeleton__body"></div>
@@ -22,6 +21,7 @@
       <div class="skeleton__body"></div>
       <div class="skeleton__body__second"></div>
       <div class="skeleton__body"></div>
+      <div class="skeleton__body__second"></div>
     </div>
     <Loader class="loader" />
   </div>
@@ -59,7 +59,7 @@ export default {
     &__second {
       width: 90rem;
       height: 3.5rem;
-      background-color: $color-tr-hover;
+      background-color: $color-white;
     }
   }
 }
