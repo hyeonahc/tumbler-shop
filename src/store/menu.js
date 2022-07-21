@@ -8,9 +8,9 @@ export default {
     ],
     adminPageMenuList: [
       { name: '제품 조회', isShow: true },
-      { name: '판매 내역', isShow: false },
-      { name: '판매 현황', isShow: false } 
-    ]
+      { name: '판매 내역', isShow: false }
+    ],
+    loading: true
   }),
   mutations: {
     updateMenu(state, menuName) {
@@ -25,12 +25,18 @@ export default {
           menu.isShow = true
         }
       })
+    },
+    updateLoading(state, boolean) {
+      state.loading = boolean
     }
   },
   actions: {
 		isShowMenu({ commit }, menuName) {
       window.sessionStorage.setItem('menu', menuName)
 			commit('updateMenu', menuName)
+    },
+    isShowLoading({ commit }, boolean) {
+      commit('updateLoading', boolean)
     }
   }
 }
