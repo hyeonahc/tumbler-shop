@@ -83,7 +83,7 @@
                 </tr>
               </thead>
               <tbody>
-                <AllProductList
+                <AllProducts
                   v-for="product in allProducts"
                   :key="product.id"
                   :product="product" />
@@ -101,13 +101,13 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import AllProductList from '~/components/AllProductList.vue'
+import AllProducts from '~/components/AllProducts.vue'
 import SalesHistory from '~/views/SalesHistory.vue'
 import AddProduct from '~/components/AddProduct.vue'
 
 export default {
   components: {
-    AllProductList,
+    AllProducts,
     SalesHistory,
     AddProduct,  
   },
