@@ -9,6 +9,7 @@
     </div>
     <div class="table-wrapper">
       <table>
+        <SkeletonUI />
         <tr>
           <th>번호</th>
           <th>상품명</th>
@@ -56,8 +57,12 @@
 
 <script>
 import { publicRequest } from '~/api/publicRequest'
+import SkeletonUI from '~/components/SkeletonUI.vue'
 
 export default {
+	components: {
+		SkeletonUI
+	},
 	data() {
 		return {
 			purchasedProducts: [],
@@ -69,6 +74,7 @@ export default {
 		}
 	},
 	created() {
+		this.$store.dispatch('menu/isShowLoading', true)
 		this.getPurchaseHistory()
 	},
 	methods: {
@@ -79,6 +85,7 @@ export default {
 			})
 			// console.log('res: ', res)
 			this.createPurchasedProducts(res)
+			this.$store.dispatch('menu/isShowLoading', false)
 		},
 		createPurchasedProducts(purchaseHistoryLists) {
 			// console.log('purchaseHistoryLists: ', purchaseHistoryLists)
