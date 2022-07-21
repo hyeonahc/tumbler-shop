@@ -50,7 +50,7 @@
 
     <div class="table-page">
       <section class="main">
-        <section
+        <div
           v-show="menuList[0].isShow"
           class="inquireProducts">
           <h1>제품 조회</h1>
@@ -93,7 +93,7 @@
               </tbody>
             </table>
           </div>
-        </section>
+        </div>
         <section class="main">
           <div
             v-show="menuList[1].isShow"
