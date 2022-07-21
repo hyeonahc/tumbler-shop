@@ -6,11 +6,6 @@ export default {
     allProducts: [],
     salesDetails: [],
   }),
-
-  getters: {
-    
-  },
-
   mutations : {
     assignState(state, payload) {
       Object.keys(payload).forEach(key => {
@@ -27,7 +22,6 @@ export default {
         method: 'GET',
       })
         commit('assignState',{allProducts: res})
-        console.log('모든 제품 조회')
     },
 
     // 전체 판매 내역
@@ -37,7 +31,6 @@ export default {
         method: 'GET'
       })
         commit('assignState', {salesDetails: res})
-        console.log('전체 판매 내역')
     },
   },
 }
