@@ -4,7 +4,6 @@
     <button @click="salesProduct">
       전체 판매 내역
     </button>
-    <!-- <p>버튼을 클릭해주세요</p> -->
   </div>
   <div class="table-page">
     <div class="table-wrapper">
@@ -50,5 +49,4 @@ export default {
   button {
     margin-top: 0;
   }
-
 </style>
