@@ -63,7 +63,7 @@ export default {
     this.singleProduct()
   },
   methods: {
-    // 
+    // 제품 수정 사항
     async singleProduct() {
       const res = await publicRequest({
         url: `products/${this.product.id}`,
@@ -92,7 +92,6 @@ export default {
 }
 </script>
 
-  
 <style lang="scss" scoped>
   .single-product {
     &__wrap {
@@ -135,19 +134,18 @@ export default {
           color:  $color-danger-light;
         }
       }
-    }
-
+        .white {
+          width: 50vw;
+          height: 64vh;
+          background-color: white;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+          border-radius: 5px;
+          padding: 2em;
   }
-  .white {
-    width: 50vw;
-    height: 64vh;
-    background-color: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    border-radius: 5px;
-    padding: 2em;
+    }
   }
 </style>
