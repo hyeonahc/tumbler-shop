@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "webpack serve --mode development",
+    "dev:netlify": "netlify dev",
     "build": "webpack --mode production"
   },
   "keywords": [],
