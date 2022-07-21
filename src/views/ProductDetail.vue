@@ -12,7 +12,7 @@
         <h2>{{ product.title }}</h2>
         <hr />
         <h3 class="price">
-          {{ product.price.toLocaleString('ko-KR') }}원
+          {{ parseInt(product.price).toLocaleString('ko-KR') }}원
         </h3>
         <p>{{ product.description }}</p>
         <button
