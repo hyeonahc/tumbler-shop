@@ -80,8 +80,8 @@ export default {
 			// console.log('res: ', res)
 			this.createPurchasedProducts(res)
 		},
-		createPurchasedProducts(purchaseHistoryLists) {
-			// console.log('purchaseHistoryLists: ', purchaseHistoryLists)
+		createPurchasedProducts(res) {
+			const purchaseHistoryLists = res.sort((a, b) => new Date(a.timePaid) - new Date(b.timePaid))
 			purchaseHistoryLists.forEach(purchaseHistoryList => {
 				let { product: {title, price}, timePaid, done, isCanceled, detailId } = purchaseHistoryList
 				price = price.toLocaleString('ko-KR')
