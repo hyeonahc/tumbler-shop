@@ -25,13 +25,19 @@
     </td>
     <td>
       <div>
-        <div v-if="sales.isCanceled">
+        <div
+          v-if="sales.isCanceled"
+          class="status-badge cancel-badge">
           구매취소
         </div>
-        <div v-if="sales.done">
-          구매성공
+        <div 
+          v-if="sales.done"
+          class="status-badge confirm-badge">
+          구매확정
         </div>
-        <div v-else-if="!sales.isCanceled && !sales.done">
+        <div
+          v-else-if="!sales.isCanceled && !sales.done"
+          class="status-badge request-badge">
           구매신청
         </div>
       </div>
