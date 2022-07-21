@@ -72,6 +72,9 @@ export default {
     ...mapState('user', [
       'isLogIn',
     ]),
+    ...mapActions('menu', [
+      'isShowMenu',
+    ]),
     accountsLength() {
       return this.accounts.length
     }
@@ -89,6 +92,7 @@ export default {
     },
     addAccount() {
       this.$router.push('/mypage')
+      window.sessionStorage.setItem('menu', '내 계좌')
 		},
     setSelectedAccount(e) { 
       this.selectedAccount = e.target.value
