@@ -1,5 +1,4 @@
 <template>
-  <h1>판매 내역 페이지</h1>
   <button @click="salesProduct">
     전체 판매 내역
   </button>
@@ -13,9 +12,10 @@
       <td>구매상태</td>
     </tr>
     <salesList
-      v-for="a in salesDetails"
-      :key="a"
-      :sales="a" />
+      v-for="(prodect,index) in salesDetails"
+      :key="prodect"
+      :index="index"
+      :sales="prodect" />
   </table>
 </template>
 
@@ -29,6 +29,9 @@ export default {
     salesDetails() {
       return this.$store.state.admin.salesDetails
     }
+  },
+  mounted() {
+    this.salesProduct
   },
   methods: {
     async salesProduct() {
