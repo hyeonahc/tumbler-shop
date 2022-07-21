@@ -48,56 +48,59 @@
       </div>
     </nav>
 
-    <div class="test">
+    <div class="table-page">
       <section class="main">
-        <div
+        <section
           v-show="menuList[0].isShow"
           class="inquireProducts">
           <h1>제품 조회</h1>
-          <button
-            @click="modal = true">
-            제품 추가
-          </button>
-          <div
-            v-if="modal"
-            class="black-bg">
-            <div class="white-bg">
-              <AddProduct
-                v-if="modal" />
+          <div class="admin-product">
+            <div>
+              <button @click="allProductsLookup">
+                전체 제품 보기
+              </button>
+            </div>
+            <button
+              @click="modal = true">
+              제품 추가
+            </button>
+            <div
+              v-if="modal"
+              class="black-bg">
+              <div class="white-bg">
+                <AddProduct
+                  v-if="modal" />
+              </div>
             </div>
           </div>
-          <div>
-            <button @click="allProductsLookup">
-              전체 제품 보기
-            </button>
-          </div>
-          <div>
+          <div class="table-wrapper">
             <table>
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Product Name</th>
-                  <th>Product ID</th>
-                  <th>Price</th>
-                  <th>Status</th>
+                  <th>상품명</th>
+                  <th>상품 아이디</th>
+                  <th>가격</th>
+                  <th>재고</th>
                 </tr>
               </thead>
               <tbody>
                 <AllProductList
-                  v-for="product in allProducts"
+                  v-for="(product,index) in allProducts"
                   :key="product.id"
-                  :product="product" />
+                  :product="product"
+                  :index="index" />
               </tbody>
             </table>
           </div>
-        </div>
-      </section>
-      <section class="main">
-        <div
-          v-show="menuList[1].isShow"
-          class="inquireProducts">
-          <salesHistory />
-        </div>
+        </section>
+        <section class="main">
+          <div
+            v-show="menuList[1].isShow"
+            class="inquireProducts">
+            <salesHistory />
+          </div>
+        </section>
       </section>
     </div>
   </section>
@@ -155,28 +158,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    // .main {
-    //   display: flex;
-    //   align-items: center;
-    //   width: 100%;
-    // }
-  .test {
-    width: 80vw;
-  }
-  .black-bg {
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
-    position: absolute;
-    padding: 20px;
-    top: 0;
-    left: 0;
-  }
-  .white-bg {
-    width: 60vw;
-    height: 70vh; 
-    background: white;
-    border-radius: 8px;
-    padding: 20px;
+  .main {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    .inquireProducts {
+      margin: 6vh 0 0 5vw;
+      .admin-product {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1vw;
+        .black-bg {
+          width: 100vw;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.5);
+          position: absolute;
+          padding: 20px;
+          top: 0;
+          left: 0;
+          .white-bg {
+            width: 60vw;
+            height: 70vh; 
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+          }
+        }
+      }
+    }
   }
 </style>
