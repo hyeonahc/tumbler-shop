@@ -72,9 +72,6 @@ export default {
     ...mapState('user', [
       'isLogIn',
     ]),
-    ...mapActions('menu', [
-      'isShowMenu',
-    ]),
     accountsLength() {
       return this.accounts.length
     }
