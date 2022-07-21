@@ -1,5 +1,5 @@
 <template>
-  <div class="input-product__wrap">
+  <div class="input-product__wrap flex-center-center">
     <form
       class="input-product__form"
       name="input"
@@ -116,8 +116,7 @@ export default {
     flex-direction: column;
   }
   @mixin inputSize {
-    width: 40vw;
-    margin: 6px 0;
+    width: 100%;
   }
   .input-product {
     &__wrap { 
@@ -128,7 +127,8 @@ export default {
       display: flex;
       align-items: center;
       justify-content: space-around;
-      height: 100%;
+      height: 80%;
+      width: 100%;
     }
     &__img {
       position: relative;
@@ -160,35 +160,34 @@ export default {
       }
     }
     &__input {
-      height: 45vh;
+      
+    height: 44vh;
+    width: 66%;
+
       &--title {
         @include flexColumn;
-        label {
-
-        }
         input {
           @include inputSize;
+          margin-bottom: 8px
         }
       }
 
       &--price {
         @include flexColumn;
-        label {
-
-        }
         input {
           @include inputSize;
+          margin: 20px 0
         }
       }
-
       &--description {
         @include flexColumn;
         label {
           margin-bottom: 8px;
         }
         textarea {
-          width: 40vw;
+          @include inputSize;
           height: 20vh;
+          font-size: $font-paragraph;
         }
         ::placeholder {
           color: $color-input;
@@ -196,15 +195,8 @@ export default {
           font-weight: $font-normal;
         }
       }
-
-      &--button {
-
-      }
-
     }
-
   }
-
 </style>
 
 
