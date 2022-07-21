@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import { publicRequest } from '../api/publicRequest'
+import { publicRequest } from '~/api/publicRequest'
 
 export default {
 	data() {
@@ -71,11 +71,6 @@ export default {
 			})
 		}
 	},
-	watch: {
-		purchasedProducts(value) {
-			console.log(value)
-		}
-	},
 	created() {
 		this.getPurchaseHistory()
 	},
@@ -85,7 +80,6 @@ export default {
 				url: 'products/transactions/details',
 				method: 'GET',
 			})
-			// console.log('res: ', res)
 			this.createPurchasedProducts(res)
 		},
 		createPurchasedProducts(res) {
@@ -110,9 +104,7 @@ export default {
 					status: status,
 					id: detailId
 				}
-				// console.log(info)
 				this.purchasedProducts.push(info)
-				// console.log(this.purchasedProducts)
 			})
 		},
 		async confirmPurchase(purchasedProduct) {
@@ -124,7 +116,6 @@ export default {
 				method: 'POST',
 				body: body
 			})
-			console.log(res)
 			if(res === true) {
 				alert('구매가 확정되었습니다.')
 				this.$router.go()
@@ -141,7 +132,6 @@ export default {
 				method: 'POST',
 				body: body
 			})
-			console.log(res)
 			if(res === true) {
 				alert('구매가 취소되었습니다.')
 				this.$router.go()
