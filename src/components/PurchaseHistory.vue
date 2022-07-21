@@ -3,6 +3,7 @@
     <h1>구매내역</h1>
     <div>
       <input
+        class="search"
         type="text"
         placeholder="상품을 검색하세요"
         @input="search = $event.target.value" />
