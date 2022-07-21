@@ -59,7 +59,8 @@
 
 <script>
 import { mapState } from 'vuex'
-import { publicRequest } from '../api/publicRequest'
+import { publicRequest } from '~/api/publicRequest'
+
 export default {
   props: {
     product: {
@@ -133,8 +134,7 @@ export default {
           } 
         })
       }
-    },
-
+    }
   }
 }
 </script>

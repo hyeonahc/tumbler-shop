@@ -29,7 +29,7 @@
     
       <div class="menulist">
         <ul
-          v-for="menu in menuList"
+          v-for="menu in adminPageMenuList"
           :key="menu.name"
           class="menu"
           :class="{ 'show' : menu.isShow }"
@@ -51,7 +51,7 @@
     <div class="test">
       <section class="main">
         <div
-          v-show="menuList[0].isShow"
+          v-show="adminPageMenuList[0].isShow"
           class="inquireProducts">
           <h1>제품 조회</h1>
           <button
@@ -91,96 +91,82 @@
             </table>
           </div>
         </div>
-      </section>
-      <section class="main">
-        <div
-          v-show="menuList[1].isShow"
-          class="inquireProducts">
-          <salesHistory />
+        <div v-show="adminPageMenuList[1].isShow">
+          <SalesHistory />
         </div>
       </section>
     </div>
   </section>
 </template>
 
-  <script>
-    import { mapState, mapActions } from 'vuex'
-    import AllProductList from '~/components/AllProductList.vue'
-    import salesHistory from '~/views/salesHistory.vue'
-    import AddProduct from '../components/AddProduct.vue'
+<script>
+import { mapState, mapActions } from 'vuex'
+import AllProductList from '~/components/AllProductList.vue'
+import SalesHistory from '~/views/SalesHistory.vue'
+import AddProduct from '~/components/AddProduct.vue'
 
-    export default {
-    components: {
+export default {
+  components: {
     AllProductList,
-    salesHistory,
-    AddProduct,
- 
-    
-    },
-    data() {
+    SalesHistory,
+    AddProduct,  
+  },
+  data() {
     return {
-    modal: false,
-    menuList: [
-    { name: '제품 조회', isShow: true },
-    { name: '판매 내역', isShow: false } 
-    ],
+      modal: false,
     }
-    },
-    computed: {
+  },
+  computed: {
     ...mapState('user', [
-    'user'
+      'user'
+    ]),
+    ...mapState('menu', [
+      'adminPageMenuList'
     ]),
     allProducts() {
-    return this.$store.state.admin.allProducts
+      return this.$store.state.admin.allProducts
     }
-    },
-    created() {
+  },
+  created() {
     this.$store.dispatch('admin/allProductsLookup')
-    },
-    methods: {
-    ...mapActions('user', [
-    'requestUpdateState'
+    this.setMenu()
+  },
+  unmounted() {
+    this.isShowMenu('제품 조회') // 해당 페이지를 벗어날 때, 값 되돌리기
+  },
+  methods: {
+    ...mapActions('menu', [
+      'isShowMenu'
     ]),
     async allProductsLookup() {
-    await this.$store.dispatch('admin/allProductsLookup')
+      await this.$store.dispatch('admin/allProductsLookup')
     },
-    isShowMenu(menuName) { 
-    this.menuList.forEach(menu => {
-    menu.isShow = false // 모든 menu의 isShow를 false로 바꾸어 안보이게 하기
-    if (menu.name === menuName) { // 클릭한 menu의 isShow 값 true로 바꾸어 보이게 하기
-    menu.isShow = true
+    setMenu() {
+      const menuHistory = window.sessionStorage.getItem('menu')
+      this.isShowMenu(menuHistory)
     }
-    })
-    },
-    }
-    }
-  </script>
+  }
+}
+</script>
 
-  <style
-    lang="scss"
-    scoped>
-    // .main {
-    //   display: flex;
-    //   align-items: center;
-    //   width: 100%;
-    // }
-    .test {
-    width: 80vw;
-    }
-    .black-bg {
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
-    position: absolute;
-    padding: 20px;
-    top: 0;
-    left: 0;
-    }
-    .white-bg {
-    width: 60vw;
-    height: 70vh; 
-    background: white;
-    border-radius: 8px;
-    padding: 20px;
-    }
-  </style>
+<style lang="scss" scoped>
+.test {
+width: 80vw;
+}
+.black-bg {
+width: 100vw;
+height: 100vh;
+background: rgba(0, 0, 0, 0.5);
+position: absolute;
+padding: 20px;
+top: 0;
+left: 0;
+}
+.white-bg {
+width: 60vw;
+height: 70vh; 
+background: white;
+border-radius: 8px;
+padding: 20px;
+}
+</style>

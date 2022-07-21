@@ -35,8 +35,8 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import UserAccountInfo from '../components/UserAccountInfo.vue'
-import AccountList from '../components/AccountList.vue'
+import UserAccountInfo from '~/components/UserAccountInfo.vue'
+import AccountList from '~/components/AccountList.vue'
 
 export default {
   components: {
