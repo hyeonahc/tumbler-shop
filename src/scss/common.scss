@@ -12,8 +12,13 @@ body {
   height: 100vh;
 }
 .container {
-  width: 1366px;
+  width: 1200px;
   margin: 0 auto;
+}
+@media only screen and (min-width: 1540px) {
+  .container {
+    width: 1366px;
+  }
 }
 
 // font family, color, font weight
