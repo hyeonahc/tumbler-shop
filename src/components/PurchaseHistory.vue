@@ -3,6 +3,7 @@
     <h1>구매내역</h1>
     <div>
       <input
+        class="search"
         type="text"
         placeholder="상품을 검색하세요"
         @input="search = $event.target.value" />
@@ -22,7 +23,9 @@
           v-for="product in searchedProducts"
           :key="product.id">
           <td>{{ searchedProducts.indexOf(product) + 1 }}</td>
-          <td>{{ product.title }}</td>
+          <td class="flex-center-vertically">
+            <img :src="product.thumbnail" /><span>{{ product.title }}</span>
+          </td>
           <td>{{ product.price }} 원</td>
           <td>{{ product.time }}</td>
           <td>
@@ -85,7 +88,7 @@ export default {
 		createPurchasedProducts(res) {
 			const purchaseHistoryLists = res.sort((a, b) => new Date(a.timePaid) - new Date(b.timePaid))
 			purchaseHistoryLists.forEach(purchaseHistoryList => {
-				let { product: {title, price}, timePaid, done, isCanceled, detailId } = purchaseHistoryList
+				let { product: {title, thumbnail, price}, timePaid, done, isCanceled, detailId } = purchaseHistoryList
 				price = price.toLocaleString('ko-KR')
 				timePaid = this.$dayjs(timePaid).format('YYYY년 MM월 DD일 HH시 mm분')
 				let status
@@ -99,6 +102,7 @@ export default {
 				}
 				const info =  {
 					title: title,
+					thumbnail: thumbnail,
 					price: price,
 					time: timePaid,
 					status: status,
@@ -142,3 +146,12 @@ export default {
 	}
 }
 </script>
+
+<style lang="scss" scoped>
+.flex-center-vertically {
+	img {
+		width: 30px;
+    margin-right: 0.5em;
+	}
+}
+</style>
