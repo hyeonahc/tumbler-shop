@@ -1,23 +1,37 @@
 <template>
-  <div class="myaccount">
-    <!-- {{ userInfo }} -->
-    {{ userInfo.bankName }} / {{ userInfo.accountNumber }} / {{ userInfo.balance.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+" 원" }}
-    <button @click="isShow = true">
+  <tr>
+    <td>{{ index + 1 }}</td>
+    <td>{{ userInfo.bankName }}</td>
+    <td>{{ userInfo.accountNumber }}</td>
+    <td>{{ userInfo.balance.toLocaleString('ko-KR') }} 원</td>
+    <td
+      class="action-btn cancel-btn"
+      @click="isShow = true">
       계좌해지
-    </button>
-  </div>
+    </td>
+  </tr>
   <div
     v-if="isShow == true"
     class="modal">
     <div
-      class="modal_content">
-      <h1>정말로 해지?</h1> 
-      <button @click="deleteBank(), deleteUesrInFo()">
-        YES
-      </button>
-      <button @click="isShow = false">
-        NO
-      </button>
+      class="modal_content flex-center-center">
+      <h1>{{ userInfo.bankName }}</h1> 
+      <h2>{{ userInfo.accountNumber }}</h2> 
+      <h3>{{ userInfo.balance.toLocaleString('ko-KR') }} 원</h3> 
+      <h4>해당계좌를 정말로 해지하시겠습니까? </h4>
+      <h4>해지시 되돌릴 수 없습니다</h4>
+      <div class="btn">
+        <button
+          class="agree"
+          @click="deleteBank(), deleteUesrInFo()">
+          네
+        </button>
+        <button
+          class="disagree"
+          @click="isShow = false">
+          아니요
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -26,10 +40,13 @@
 import { mapActions } from 'vuex'
 
 export default {
-  // myAccount에서 userAccountInfo props
   props: {
       userInfo: {
         type: Object,
+        required: true
+      },
+      index: {
+        type: Number,
         required: true
       }
     },
@@ -59,33 +76,36 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  div {
-    box-sizing: border-box;
-  }
-  .myaccount {
-    border-bottom: 1px dotted black
-  }
-  .modal {
-    top: 30%;
-    position: fixed;
-    width: 100%;
-    height: 50%;
-    background: rgba(0,0,0,0.8);
-    .modal_content {
-      text-align: center;
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      margin: auto;
-      width: 50%;
-      height: 50%;
-      background: white;
-      border-radius: 8px;
-      padding: 20px;
+.modal {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: $color-bg-filter;
+  .modal_content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $color-white;
+    border-radius: .5rem;
+    padding: 2em;
+    width: 45rem;
+    height: 50rem;
+    flex-wrap: wrap;
+    text-align: center;
+    h1, h2, h3, h4 {
+      width: 100%;
     }
-  }
-
-  
+    h4 {
+      color: $color-danger;
+    }
+    .btn {
+      width: 20rem;
+      display: flex;
+      justify-content: space-between;
+    }
+  }   
+}
 </style>

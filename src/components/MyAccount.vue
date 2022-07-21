@@ -1,25 +1,35 @@
 <template>
-  <div>
-    <div class="my-account">
-      <h1>내 계좌 목록</h1>
-      <button
-        class="add-account"
-        @click="addAccount">
-        계좌추가
-      </button>
-      <h2>계좌 / 계좌목록 / 현재금액 </h2> 
-      <UserAccountInfo
-        v-for="userInfo in userAccountInfo.accounts"
-        :key="userInfo.id"
-        :user-info="userInfo"
-        @user="user" />
+  <div class="table-page">
+    <h1>내 계좌</h1>
+    <div class="table-wrapper">
+      <div class="account-btn">  
+        <button
+          @click="addAccount">
+          <i class="fa-solid fa-plus"></i>
+          계좌추가 
+        </button>
+      </div>
+      <table>
+        <tr>
+          <th>No</th>
+          <th>은행명</th>
+          <th>계좌번호</th>
+          <th>현재 금액</th>
+          <th>계좌해지</th>
+        </tr>
+        <UserAccountInfo
+          v-for="(userInfo, index) in userAccountInfo.accounts"
+          :key="userInfo.id"
+          :user-info="userInfo"
+          :index="index"
+          @user="user" />
+      </table>
     </div>
     <div
       ref="darkBg"
       @click="RemoveDarkBg"></div>
     <AccountList
-      v-if="isOn"
-      :is-on="isOn" />
+      v-if="isOn" />
   </div>
 </template>
 
@@ -55,6 +65,10 @@ export default {
       this.userAccountInfo.accounts.splice(index, 1)
     },
     addAccount() {
+      if(this.userAccountInfo.accounts.length === 7) {
+        alert('더이상 추가할 수 있는 계좌가 없습니다')
+        return
+      }
       console.log(this.$refs.darkBg)
       this.$refs.darkBg.classList.add('dark-bg')
       this.isOn = true
@@ -63,38 +77,21 @@ export default {
       this.$refs.darkBg.classList.remove('dark-bg')
       this.isOn = false
     }
-  },
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-.my-account {
-  border: 1px solid black;   
-  width: 50rem;
-  height: 50rem;
-  h1 {
-    color: $color-font;
-    font-size: 3rem;
-    font-weight: 700;
-  }
-  h2 {
-    color: $color-font;
-    font-size: 2rem;
-    font-weight: 600;
-  }
-  h3 {
-    color: $color-font;
-    font-size: 1.3rem;
-    font-weight: 500;
-    text-align: right;
-  }
-  .add-account {
-    background-color: $color-primary;
-    color: $color-white;
+.account-btn {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 2rem;
+  button {
+    margin-top: 0.1em;
   }
 }
 .dark-bg {
-  background: rgba(0, 0, 0, 0.5);
+  background: $color-bg-filter;
   height: 100vh;
   width: 100vw;
   position: fixed;
