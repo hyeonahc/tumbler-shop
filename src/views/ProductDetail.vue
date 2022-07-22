@@ -1,7 +1,7 @@
 <template>
   <TheHeader />
   <div class="container">
-    <div class="flex-center-vertically product-detail">
+    <div class="product-detail flex-center-vertically">
       <div
         class="thumbnail">
         <img
@@ -12,7 +12,7 @@
         <h2>{{ product.title }}</h2>
         <hr />
         <h3 class="price">
-          {{ product.price }}원
+          {{ parseInt(product.price).toLocaleString('ko-KR') }}원
         </h3>
         <p>{{ product.description }}</p>
         <button
@@ -56,7 +56,7 @@ export default {
 		},
 		purchase() {
 			if(!this.isLogIn) {
-				alert('로그인 필요')
+        alert('로그아웃되었습니다. 다시 로그인해주세요')
 				this.$router.push('/signin')
 				return
 			}
@@ -65,3 +65,12 @@ export default {
 	}
 }
 </script>
+
+<style lang="scss" scoped>
+.product-detail {
+	padding: 5em 10em 0;
+	&.flex-center-vertically {
+		gap: 5em;
+	}
+}
+</style>
