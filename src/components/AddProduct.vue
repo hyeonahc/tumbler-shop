@@ -140,6 +140,9 @@ export default {
         position: absolute;
         right: 3rem;
         top: 2vh;
+        &:hover {
+          cursor: pointer;
+        }
         .fa-solid {
           font-size: 3rem;
         }
@@ -204,6 +207,7 @@ export default {
         textarea {
           @include inputSize;
           height: 20vh;
+          line-height: 1.7;
           font-size: $font-paragraph;
         }
         ::placeholder {
