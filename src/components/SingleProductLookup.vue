@@ -115,6 +115,9 @@ export default {
         position: absolute;
         right: 3rem;
         top: 2vh;
+        &:hover {
+          cursor: pointer;
+        }
         .fa-solid {
           font-size: 3rem;
         }
@@ -136,6 +139,7 @@ export default {
       }
       &--description {
         padding: 5px 0;
+        line-height: 1.7;
       }
       &--button {
         display: flex;
