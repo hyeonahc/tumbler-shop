@@ -1,5 +1,5 @@
 <template>
-  <div class="product-wrapper">
+  <div class="product-wrapper flex-center-vertically">
     <RouterLink
       :to="{
         name: 'productdetail',
@@ -10,7 +10,7 @@
         class="thumbnail-child"
         :style="{ backgroundImage: `url(${ product.thumbnail })` }"></div>
     </RouterLink>
-    <p class="product-title">
+    <p class="product-title text-center">
       {{ product.title }}
     </p>
   </div>
@@ -28,28 +28,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.product-wrapper {
+.product-wrapper.flex-center-vertically {
   display: flex;
   flex-direction: column;
 }
 .thumbnail-parent {
-  margin-bottom: 0.75em;
-  width: 300px; 
-  height: 300px;
+  width: 13em; 
+  height: 13em;
+  margin-bottom: 3em;
   &:hover .thumbnail-child,
   &:focus .thumbnail-child {
-      transform: scale(1.2);
+    transform: scale(1.1);
   }
   .thumbnail-child {
     width: 100%;
     height: 100%;
-    background-color: black;
+    background-color: $color-white;
     background-position: center;
     background-size: cover;
     transition: all .5s;
   }
 }
-.product-title {
-  text-align: center;
+
+@media only screen and (min-width: 1540px) {
+  .thumbnail-parent {
+    width: 230px; 
+    height: 230px;
+  }
 }
 </style>
