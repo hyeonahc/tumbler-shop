@@ -1,4 +1,5 @@
 const axios = require('axios')
+const { APIKEY, USERNAME } = process.env
 
 exports.handler = async function handler(event) {
   const { url, method, accessToken, data } = JSON.parse(event.body) // `event.body`는 문자이므로 `JSON.parse` 를 해준다
@@ -8,8 +9,8 @@ exports.handler = async function handler(event) {
       method,
       headers: {
         'content-type': 'application/json',
-        'apikey': 'FcKdtJs202204',
-        'username': 'TEAM_1',
+        'apikey': APIKEY,
+        'username': USERNAME,
         'Authorization': `Bearer ${accessToken}`,
         masterKey: true,
       },

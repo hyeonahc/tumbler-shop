@@ -16,6 +16,9 @@ export async function publicRequest(options) {
     })
       .then(res => res.json())
       .then(res => resolve(res))
-      .catch(err => reject(err))
+      .catch(err => {
+        return reject(err)
+      })
   })
 }
+
