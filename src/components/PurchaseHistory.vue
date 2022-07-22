@@ -77,6 +77,9 @@ export default {
 			return this.purchasedProducts.filter(product => {
 				return product.title.match(this.search)
 			})
+		},
+		myPageMenuList() {
+			return this.$store.state.menu.myPageMenuList
 		}
 	},
 	created() {
@@ -85,12 +88,19 @@ export default {
 	},
 	methods: {
 		async getPurchaseHistory() {
-			const res = await publicRequest({
-				url: 'products/transactions/details',
-				method: 'GET',
-			})
-			this.createPurchasedProducts(res)
-			this.$store.dispatch('menu/isShowLoading', false)
+			try {
+				const res = await publicRequest({
+					url: 'products/transactions/details',
+					method: 'GET',
+				})
+				if (res[0].product) {
+					this.createPurchasedProducts(res)
+				} else throw new Error(res)
+			} catch (err) {
+				console.log(err)
+			}	finally {
+				this.$store.dispatch('menu/isShowLoading', false)
+			}
 		},
 		createPurchasedProducts(res) {
 			const purchaseHistoryLists = res.sort((a, b) => new Date(a.timePaid) - new Date(b.timePaid))
