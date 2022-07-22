@@ -1,3 +1,5 @@
+<br />
+
 <p align="center">
 <img src="https://user-images.githubusercontent.com/83247825/180384939-0ce8e0ff-8e98-4b29-a4f3-fcf89b4d48ca.png" width="250"/>
 </p>
@@ -52,14 +54,14 @@
 
 ## 😼 깃허브 주소
 
-✨ 커밋 히스토리를 보고싶다면 깃허브 주소: [https://github.com/hyeonahc/tumbler-shop/tree/main](https://github.com/hyeonahc/tumbler-shop/tree/main)
+✨ 커밋 히스토리를 보고싶다면? [깃허브 주소 클릭](https://github.com/hyeonahc/tumbler-shop/tree/main)
 
 <br />
 
 ## 🖌 목업
 
 ### 목업링크
-✨ 더 많은 디자인을 보고 싶다면: 
+✨ 더 많은 목업을 보고 싶다면? [Behance 주소 클릭](https://www.behance.net/gallery/148729539/tumbler-shop?)
 
 ### 목업
 홈페이지
@@ -79,6 +81,9 @@
 
 관리자 페이지
 ![14_관리자 페이지 - 제품 조회](https://user-images.githubusercontent.com/83247825/180412070-36b13cd9-e8e7-44d0-a914-4ef633030424.png)
+
+스타일시트
+![20_스타일시트](https://user-images.githubusercontent.com/83247825/180418649-b05adb0f-4b44-4cd1-8912-bcf4d914ebba.png)
 
 <br />
 
