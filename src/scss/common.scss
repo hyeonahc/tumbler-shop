@@ -22,7 +22,7 @@ body {
 }
 
 // font family, color, font weight
-h1, h2, p, a, div, span, input, button, table {
+h1, h2, p, a, div, span, input, textarea, button, table {
   font-family: 'Nanum Gothic', sans-serif;
 }
 h1, h2, p, a, div, span, input, table {
@@ -30,7 +30,12 @@ h1, h2, p, a, div, span, input, table {
   font-weight: $font-normal;
 }
 hr {
-  color: $color-tr-hover;
+  display: block; 
+  height: 1px;
+  border: 0;
+  border-top: 1px solid $color-tr-hover;
+  margin: 1em 0; 
+  padding: 0;
 }
 table th {
   font-weight: $font-medium;
@@ -52,6 +57,9 @@ p, a, div, span, input, button, table {
   font-size: $font-paragraph;
   font-weight: $font-normal;
 }
+p {
+  line-height: 1.75;
+}
 a {
   text-decoration: none;
 }
@@ -71,6 +79,12 @@ input {
 }
 ::placeholder { 
   color: $color-input;
+}
+textarea {
+  resize: none;
+  border: 1px solid $color-input;
+  border-radius: $border-radius;
+  padding: 0.4em 0.5em;
 }
 button {
   background-color: $color-primary;
@@ -177,13 +191,12 @@ table {
   }
   .thumbnail {
     img {
-      width: 400px;
-      margin-right: 3em;
+      width: 20em;
     }
   }
   .price {
     color: $color-primary;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
   }
 }
 
@@ -197,5 +210,8 @@ table {
     height: 80vh;
     margin-top: 0.75em;
     overflow: auto;
+    button {
+      margin-top: 0;
+    }
   }
 }

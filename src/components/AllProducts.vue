@@ -1,7 +1,10 @@
 <template>
   <tr @click="click">
     <td>
-      <div>
+      {{ index + 1 }}
+    </td>
+    <td>
+      <div class="productList__img flex-center-vertically">
         <img
           :src="
             product.thumbnail
@@ -25,18 +28,24 @@
     </td>
     <td>
       <div>
-        {{ product.isSoldOut === false ? '재고 없음 ' : '재고 있음' }}
+        <span 
+          v-if="product.isSoldOut"
+          class="status-badge confirm-badge">재고 없음</span>
+        <span
+          v-else
+          class="status-badge cancel-badge">재고 있음</span>
       </div>
     </td>
-    <div
-      v-if="modal"
-      class="black-bg">
-      <div class="white-bg">
-        <SingleProductLookup
-          :product="product" />
-      </div>
-    </div>
   </tr>
+  <div
+    v-if="modal"
+    class="black-bg">
+    <div class="white-bg flex-center-center">
+      <SingleProductLookup
+        :product="product"
+        @layer-popup="modal = false" />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -51,6 +60,10 @@ export default {
     product: {
       type: Object,
       default: () => ({})
+    },
+    index: {
+      type: Number,
+      default: 0
     }
   },
   data() {
@@ -77,11 +90,13 @@ export default {
 
 </script>
 
-<style>
-  .img-test {
-    width: 100px;
+<style lang="scss">
+  .productList__img {
+    img {
+      width: 2vw;
+      margin-right: 1vw;
+    }
   }
-
   .black-bg {
     width: 100vw;
     height: 100vh;
@@ -90,16 +105,16 @@ export default {
     padding: 20px;
     top: 0;
     left: 0;
-  }
-  .white-bg {
-    width: 60vw;
-    height: 70vh; 
-    background-color: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 5px;
-    padding: 5em;
+      .white-bg {
+      width: 50vw;
+      height: 60vh; 
+      background-color: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 5px;
+      padding: 2em;
+      }
   }
 </style>

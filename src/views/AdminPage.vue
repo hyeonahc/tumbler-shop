@@ -14,7 +14,7 @@
         </div>
         <div class="user__info">
           <h4>
-            반갑습니다! 
+            반갑습니다!
           </h4>
           <br />
           <h4>
@@ -26,7 +26,7 @@
           </h4>
         </div>
       </div>
-    
+
       <div class="menulist">
         <ul
           v-for="menu in adminPageMenuList"
@@ -43,19 +43,24 @@
           class="action"
           @click="$router.push({ name: 'mainpage'})">
           <i class="fa-solid fa-house"></i>
-          MAINPAGE
+          홈페이지
         </div>
       </div>
     </nav>
 
-    <div class="test">
-      <section class="main">
-        <div
-          v-show="adminPageMenuList[0].isShow"
-          class="inquireProducts">
-          <h1>제품 조회</h1>
-          <button
-            @click="modal = true">
+    <section class="main">
+      <div
+        v-show="adminPageMenuList[0].isShow"
+        class="table-page__admin table-page">
+        <h1>제품 조회</h1>
+        <div class="admin-product">
+          <div>
+            <button @click="allProductsLookup">
+              전체 제품 보기
+            </button>
+          </div>
+          <button @click="modal = true">
+            <i class="fa-solid fa-plus"></i>
             제품 추가
           </button>
           <div
@@ -63,39 +68,42 @@
             class="black-bg">
             <div class="white-bg">
               <AddProduct
-                v-if="modal" />
+                v-if="modal"
+                @layer-popup="modal = false" />
             </div>
           </div>
-          <div>
-            <button @click="allProductsLookup">
-              전체 제품 보기
-            </button>
-          </div>
-          <div>
+        </div>
+        <div class="table-page">
+          <div class="table-wrapper">
             <table>
               <thead>
                 <tr>
-                  <th>No</th>
-                  <th>Product Name</th>
-                  <th>Product ID</th>
-                  <th>Price</th>
-                  <th>Status</th>
+                  <th>번호</th>
+                  <th>상품명</th>
+                  <th>상품 아이디</th>
+                  <th>가격</th>
+                  <th>재고</th>
                 </tr>
               </thead>
               <tbody>
                 <AllProducts
-                  v-for="product in allProducts"
+                  v-for="(product,index) in allProducts"
                   :key="product.id"
-                  :product="product" />
+                  :product="product"
+                  :index="index" />
               </tbody>
             </table>
           </div>
         </div>
-        <div v-show="adminPageMenuList[1].isShow">
-          <SalesHistory />
+      </div>
+      <section class="main">
+        <div
+          v-show="adminPageMenuList[1].isShow"
+          class="table-page__admin table-page">
+          <salesHistory />
         </div>
       </section>
-    </div>
+    </section>
   </section>
 </template>
 
@@ -142,23 +150,37 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.test {
-width: 80vw;
-}
-.black-bg {
-width: 100vw;
-height: 100vh;
-background: rgba(0, 0, 0, 0.5);
-position: absolute;
-padding: 20px;
-top: 0;
-left: 0;
-}
-.white-bg {
-width: 60vw;
-height: 70vh; 
-background: white;
-border-radius: 8px;
-padding: 20px;
-}
+    .main {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    .table-page__admin {
+      margin: 6vh 0 0 4vw;
+      button {
+        margin-top: 0;  
+      }
+      .admin-product {
+        display: flex;
+        justify-content: space-between;
+        .black-bg {
+          width: 100vw;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.5);
+          position: absolute;
+          padding: 20px;
+          top: 0;
+          left: 0;
+          .white-bg {
+            width: 54vw;
+            height: 68vh; 
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+          }
+        }
+      }
+    }
+  }
 </style>
