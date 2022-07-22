@@ -1,7 +1,7 @@
 <template>
   <TheHeader />
   <div class="container">
-    <div class="flex-center-vertically product-detail">
+    <div class="product-detail flex-center-vertically">
       <div
         class="thumbnail">
         <img
@@ -65,3 +65,12 @@ export default {
 	}
 }
 </script>
+
+<style lang="scss" scoped>
+.product-detail {
+	padding: 5em 10em 0;
+	&.flex-center-vertically {
+		gap: 5em;
+	}
+}
+</style>
