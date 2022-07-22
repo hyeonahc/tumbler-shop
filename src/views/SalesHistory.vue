@@ -8,6 +8,7 @@
   <div class="table-page">
     <div class="table-wrapper">
       <table>
+        <TableSkeletonUI />
         <tr>
           <th>번호</th>
           <th>구매자</th>
@@ -28,9 +29,12 @@
 
 <script>
 import salesList from '~/components/SalesList.vue'
+import TableSkeletonUI from '~/components/TableSkeletonUI.vue'
+
 export default {
   components: {
-    salesList
+    salesList,
+    TableSkeletonUI
   },
   computed: {
     salesDetails() {
@@ -42,8 +46,15 @@ export default {
   },
   methods: {
     async salesProduct() {
-      await this.$store.dispatch('admin/salesProduct')
-    },
+      this.$store.dispatch('menu/isShowLoading', true)
+      try {
+        await this.$store.dispatch('admin/salesProduct')
+      } catch (err) {
+        alert(err)
+      } finally {
+        this.$store.dispatch('menu/isShowLoading', false)
+      }
+    }
   }
 }
 </script>

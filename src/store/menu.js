@@ -10,7 +10,7 @@ export default {
       { name: '제품 조회', isShow: true },
       { name: '판매 내역', isShow: false }
     ],
-    loading: true
+    loading: false
   }),
   mutations: {
     updateMenu(state, menuName) {
