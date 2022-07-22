@@ -1,5 +1,3 @@
-<br />
-
 <p align="center">
 <img src="https://user-images.githubusercontent.com/83247825/180384939-0ce8e0ff-8e98-4b29-a4f3-fcf89b4d48ca.png" width="250"/>
 </p>
@@ -81,9 +79,6 @@
 
 관리자 페이지
 ![14_관리자 페이지 - 제품 조회](https://user-images.githubusercontent.com/83247825/180412070-36b13cd9-e8e7-44d0-a914-4ef633030424.png)
-
-스타일시트
-![20_스타일시트](https://user-images.githubusercontent.com/83247825/180418649-b05adb0f-4b44-4cd1-8912-bcf4d914ebba.png)
 
 <br />
 
