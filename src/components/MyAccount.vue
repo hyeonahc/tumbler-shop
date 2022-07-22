@@ -26,10 +26,10 @@
       </table>
     </div>
     <div
-      ref="darkBg"
-      @click="RemoveDarkBg"></div>
+      ref="darkBg"></div>
     <AccountList
-      v-if="isOn" />
+      v-if="isOn" 
+      @popup="RemoveDarkBg" />
   </div>
 </template>
 
