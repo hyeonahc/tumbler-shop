@@ -11,7 +11,7 @@
       </div>
       <table>
         <tr>
-          <th>No</th>
+          <th>번호</th>
           <th>은행명</th>
           <th>계좌번호</th>
           <th>현재 금액</th>
@@ -69,7 +69,6 @@ export default {
         alert('더이상 추가할 수 있는 계좌가 없습니다')
         return
       }
-      console.log(this.$refs.darkBg)
       this.$refs.darkBg.classList.add('dark-bg')
       this.isOn = true
     },
