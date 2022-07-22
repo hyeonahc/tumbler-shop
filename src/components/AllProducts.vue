@@ -42,7 +42,8 @@
     class="black-bg">
     <div class="white-bg flex-center-center">
       <SingleProductLookup
-        :product="product" />
+        :product="product"
+        @layer-popup="modal = false" />
     </div>
   </div>
 </template>

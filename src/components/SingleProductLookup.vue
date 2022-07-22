@@ -1,5 +1,10 @@
 <template>
   <div class="single-product__wrap">
+    <div 
+      class="layer"
+      @click="$emit('layer-popup')">
+      <i class="fa-solid fa-xmark"></i>
+    </div>
     <div class="single-product__wrap--img flex-center-vertically">
       <img
         :src="product.thumbnail"
@@ -26,7 +31,8 @@
           class="black">
           <div class="white">
             <EditProduct
-              :product="product" />
+              :product="product"
+              @layer-popup="modal = false" />
           </div>
         </div>
         <div>
@@ -54,6 +60,7 @@ export default {
       default: () => ({})
     }
   },
+  emits: ['layer-popup'],
   data() {
     return {
       modal: false
@@ -102,6 +109,14 @@ export default {
       &--img {
         img {
           height: 30vh;
+        }
+      }
+      .layer {
+        position: absolute;
+        right: 3rem;
+        top: 2vh;
+        .fa-solid {
+          font-size: 3rem;
         }
       }
     }

@@ -67,7 +67,9 @@
             v-if="modal"
             class="black-bg">
             <div class="white-bg">
-              <AddProduct v-if="modal" />
+              <AddProduct
+                v-if="modal"
+                @layer-popup="modal = false" />
             </div>
           </div>
         </div>

@@ -1,5 +1,10 @@
 <template>
   <div class="edit-product__wrap">
+    <div 
+      class="layer"
+      @click="$emit('layer-popup')">
+      <i class="fa-solid fa-xmark"></i>
+    </div>
     <form class="edit-product__form">
       <div class="edit-product__img">
         <label for="thumbnail">상품 썸네일</label>
@@ -74,6 +79,7 @@ export default {
       default: () => ({})
     }
   },
+  emits: ['layer-popup'],
   data() {
     return{
       title: '',
@@ -151,6 +157,14 @@ export default {
    &__wrap { 
       width: 100%;
       height: 100%;
+      .layer {
+        position: absolute;
+        right: 3rem;
+        top: 2vh;
+        .fa-solid {
+          font-size: 3rem;
+        }
+      }
     }
     &__form {
       display: flex;
@@ -167,10 +181,10 @@ export default {
         text-indent: -9999px;
         height: 300px;
         width: 15vw;
-        border: 2px dashed $color-success;
+        border: 2px dashed $color-primary;
       }
       .fa-solid {
-        color: $color-success;
+        color: $color-primary;
         position: absolute;
         top: 46%;
         left: 50%;
@@ -179,7 +193,7 @@ export default {
         z-index: -999;
       }
       span {
-        color: $color-success;
+        color: $color-primary;
         font-weight: $font-medium;
         position: absolute;
         top: 70%;
@@ -190,6 +204,11 @@ export default {
     &__input {
       margin-left: 2vw;
       height: 45vh;
+      textarea:focus-visible,
+      input:focus-visible {
+        border: 1px solid $color-primary;
+        outline: none
+      }
       label {
         margin-bottom: 10px;
       }

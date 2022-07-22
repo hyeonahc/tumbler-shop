@@ -1,13 +1,14 @@
 <template>
   <h1>판매 내역</h1>
-  <div>
+  <div class="sales-history">
     <button @click="salesProduct">
       전체 판매 내역
     </button>
-    <input
+    <!-- <input
+      class="search"
       type="text"
       placeholder="상품을 검색하세요"
-      @input="search = $event.target.value" />
+      @input="search = $event.target.value" /> -->
   </div>
   <div class="table-page">
     <div class="table-wrapper">
@@ -44,13 +45,13 @@ export default {
   },
   computed: {
     ...mapState('admin', [
-      'salesDetails'
+      'allProducts'
     ]),
     salesDetails() {
       return this.$store.state.admin.salesDetails
     },
     // salesProducts() {
-    //   return this.salesDetails.filter(product => {
+    //   return this.allProducts.filter(product => {
     //     return product.title.match(this.search)
     //     })
     //   }
