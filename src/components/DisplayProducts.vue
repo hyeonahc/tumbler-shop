@@ -1,5 +1,5 @@
 <template>
-  <div class="product-header">
+  <div class="product-header flex-center-vertically">
     <h1>상품</h1>
     <div>
       <input
@@ -53,13 +53,22 @@ export default {
 
 <style lang="scss" scoped>
 .product-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 1.5em;
+	margin-bottom: 4em;
+	&.flex-center-vertically {
+			justify-content: space-between;
+	}
 }
 .product-content {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: space-evenly;
+	gap: 7em 4em;
+	margin-bottom: 4em;
+}
+
+@media only screen and (min-width: 1540px) {
+	.product-content {
+		gap: 10em 4em;
+	}
 }
 </style>
