@@ -48,16 +48,16 @@ export default {
 }
 .skeleton {
   &__header {
-    width: 90rem;
+    width: 100rem;
     height: 3.5rem;
     background-color: $color-primary;
   }
   &__body {
-    width: 90rem;
+    width: 100rem;
     height: 3.5rem;
     background-color: $color-tr-even;
     &__second {
-      width: 90rem;
+      width: 100rem;
       height: 3.5rem;
       background-color: $color-white;
     }
