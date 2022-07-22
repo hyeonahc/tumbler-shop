@@ -26,7 +26,6 @@ export default {
       state.banklist[4].image = require('../assets/bank_kbank.png')
       state.banklist[5].image = require('../assets/bank_kakao.png')
       state.banklist[6].image = require('../assets/bank_nh.png')
-      console.log('res', state.banklist)
     },
     async accountConnect({ commit }, payload) {
       const { bankCode, accountNumber, phoneNumber, signature } = payload
