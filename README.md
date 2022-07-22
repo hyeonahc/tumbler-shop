@@ -52,14 +52,14 @@
 
 ## 😼 깃허브 주소
 
-✨ 커밋 히스토리를 보고싶다면 깃허브 주소: [https://github.com/hyeonahc/tumbler-shop/tree/main](https://github.com/hyeonahc/tumbler-shop/tree/main)
+✨ 커밋 히스토리를 보고싶다면? [깃허브 주소 클릭](https://github.com/hyeonahc/tumbler-shop/tree/main)
 
 <br />
 
 ## 🖌 목업
 
 ### 목업링크
-✨ 더 많은 디자인을 보고 싶다면: 
+✨ 더 많은 목업을 보고 싶다면? [Behance 주소 클릭](https://www.behance.net/gallery/148729539/tumbler-shop?)
 
 ### 목업
 홈페이지
