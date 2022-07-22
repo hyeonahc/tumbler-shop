@@ -137,6 +137,7 @@ export default {
   },
   created() {
     this.$store.dispatch('admin/allProductsLookup')
+    this.$store.dispatch('menu/isShowMenu', '제품 조회')
   },
   methods: {
     ...mapActions('menu', [

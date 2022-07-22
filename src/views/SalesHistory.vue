@@ -4,11 +4,6 @@
     <button @click="salesProduct">
       전체 판매 내역
     </button>
-    <!-- <input
-      class="search"
-      type="text"
-      placeholder="상품을 검색하세요"
-      @input="search = $event.target.value" /> -->
   </div>
   <div class="table-page">
     <div class="table-wrapper">
@@ -33,7 +28,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import salesList from '~/components/SalesList.vue'
 import TableSkeletonUI from '~/components/TableSkeletonUI.vue'
 
@@ -42,23 +36,13 @@ export default {
     salesList,
     TableSkeletonUI
   },
-  data() {
-    return {
-      search: ''
-    }
-  },
   computed: {
-    ...mapState('admin', [
-      'allProducts'
-    ]),
     salesDetails() {
       return this.$store.state.admin.salesDetails
     },
-    // salesProducts() {
-    //   return this.allProducts.filter(product => {
-    //     return product.title.match(this.search)
-    //     })
-    //   }
+  },
+  created() {
+    this.salesProduct()
   },
   methods: {
     async salesProduct() {
@@ -70,7 +54,6 @@ export default {
       } finally {
         this.$store.dispatch('menu/isShowLoading', false)
       }
-      
     }
   }
 }
