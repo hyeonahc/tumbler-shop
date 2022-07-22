@@ -5,7 +5,7 @@
       class="account-list flex-center-horizontally">
       <i
         class="fa-solid fa-xmark"
-        @click="$router.go(0)"></i>
+        @click="$emit('popup', RemoveDarkBg)"></i>
       <h1>결제 계좌 등록</h1>   
       <ul class="flex-center-center">
         <li
@@ -35,7 +35,7 @@
       class="register flex-center-horizontally">
       <i
         class="fa-solid fa-xmark"
-        @click="$router.go(0)"></i>
+        @click="$emit('popup', RemoveDarkBg)"></i>
       <h1 class="account-name">
         {{ selectedBank.name }} 계좌 등록
       </h1>
@@ -105,6 +105,7 @@
 import { mapActions, mapState } from 'vuex'
 
 export default {
+  emits: ['popup'],
   data() {
     return {
       isOn: true,
@@ -166,6 +167,10 @@ export default {
       this.accountNumber= '',
       this.phoneNumber= '',
       this.signature= false
+    },
+    RemoveDarkBg() {
+      this.$refs.darkBg.classList.remove('dark-bg')
+      this.isOn = false
     }
   }
 }
@@ -193,7 +198,7 @@ h6 {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-80%, -50%);
+  transform: translate(-82%, -50%);
   background-color: $color-white;
   border-radius: .5rem;
   padding: 2em;
