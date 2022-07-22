@@ -22,7 +22,7 @@ body {
 }
 
 // font family, color, font weight
-h1, h2, p, a, div, span, input, button, table {
+h1, h2, p, a, div, span, input, textarea, button, table {
   font-family: 'Nanum Gothic', sans-serif;
 }
 h1, h2, p, a, div, span, input, table {
@@ -71,6 +71,12 @@ input {
 }
 ::placeholder { 
   color: $color-input;
+}
+textarea {
+  resize: none;
+  border: 1px solid $color-input;
+  border-radius: $border-radius;
+  padding: 0.4em 0.5em;
 }
 button {
   background-color: $color-primary;
@@ -197,5 +203,8 @@ table {
     height: 80vh;
     margin-top: 0.75em;
     overflow: auto;
+    button {
+      margin-top: 0;
+    }
   }
 }

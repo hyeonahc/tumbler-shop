@@ -1,25 +1,37 @@
 <template>
-  <h1>판매 내역 페이지</h1>
-  <button @click="salesProduct">
-    전체 판매 내역
-  </button>
-  <table>
-    <tr>
-      <td>No</td>
-      <td>구매자</td>
-      <td>상품명</td>
-      <td>상품가격</td>
-      <td>주문일</td>
-      <td>구매상태</td>
-    </tr>
-    <salesList
-      v-for="a in selseDetails"
-      :key="a"
-      :sales="a" />
-  </table>
+  <h1>판매 내역</h1>
+  <div>
+    <button @click="salesProduct">
+      전체 판매 내역
+    </button>
+    <input
+      type="text"
+      placeholder="상품을 검색하세요"
+      @input="search = $event.target.value" />
+  </div>
+  <div class="table-page">
+    <div class="table-wrapper">
+      <table>
+        <tr>
+          <th>번호</th>
+          <th>구매자</th>
+          <th>상품명</th>
+          <th>상품가격</th>
+          <th>주문일</th>
+          <th>구매상태</th>
+        </tr>
+        <salesList
+          v-for="(prodect,index) in salesDetails"
+          :key="prodect"
+          :index="index"
+          :sales="prodect" />
+      </table>
+    </div>
+  </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import salesList from '~/components/SalesList.vue'
 export default {
   components: {
@@ -27,13 +39,21 @@ export default {
   },
   data() {
     return {
-
+      search: ''
     }
   },
   computed: {
-    selseDetails() {
+    ...mapState('admin', [
+      'salesDetails'
+    ]),
+    salesDetails() {
       return this.$store.state.admin.salesDetails
-    }
+    },
+    // salesProducts() {
+    //   return this.salesDetails.filter(product => {
+    //     return product.title.match(this.search)
+    //     })
+    //   }
   },
   methods: {
     async salesProduct() {
@@ -43,6 +63,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+  button {
+    margin-top: 0;
+  }
 </style>
