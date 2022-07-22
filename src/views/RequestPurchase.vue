@@ -95,6 +95,11 @@ export default {
       this.selectedAccount = e.target.value
     },
     async requestPurchase() {
+      if(!this.isLogIn) {
+        alert('로그아웃되었습니다. 다시 로그인해주세요')
+        this.$router.push('/signin')
+        return
+      }
       const info = {
         productId : this.$route.params.id,
         accountId : this.selectedAccount
@@ -106,10 +111,12 @@ export default {
           body: info
         })
         if(res === true) {
-          alert('결제가 성공했습니다. 마이페이지에서 구매확정버튼을 눌러주세요')
+          alert('결제가 성공했습니다. 구매내역 페이지에서 구매확정 버튼을 눌러주세요')
           this.$router.push('/mypage')
         } else if(res === '매진된 제품입니다.') {
           alert('죄송합니다. 매진된 제품입니다.')
+        } else if(res === '유효한 정보를 제공하세요.') {
+          alert('계좌를 선택해주세요')
         } else {
           alert('잔액이 부족합니다. 다른 계좌를 이용해주세요.')
         }

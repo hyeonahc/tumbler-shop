@@ -56,7 +56,7 @@ export default {
 		},
 		purchase() {
 			if(!this.isLogIn) {
-				alert('로그인 필요')
+        alert('로그아웃되었습니다. 다시 로그인해주세요')
 				this.$router.push('/signin')
 				return
 			}
