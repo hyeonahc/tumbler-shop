@@ -2,9 +2,9 @@
 <img src="https://user-images.githubusercontent.com/83247825/180384939-0ce8e0ff-8e98-4b29-a4f3-fcf89b4d48ca.png" width="250"/>
 </p>
 
-# Tumbler Shop
+# Tumbler Shop 🍶
 
-### 세상에 있는 모든 텀블러를 한눈에 보고 구매할 수 있는 텀블러 쇼핑몰 🍶
+### 세상에 있는 모든 텀블러를 한눈에 보고 구매할 수 있는 텀블러 쇼핑몰
 
 # 📝 TOC
 
