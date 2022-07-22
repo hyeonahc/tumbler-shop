@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://user-images.githubusercontent.com/83247825/180384939-0ce8e0ff-8e98-4b29-a4f3-fcf89b4d48ca.png" width="150"/>
+<img src="https://user-images.githubusercontent.com/83247825/180384939-0ce8e0ff-8e98-4b29-a4f3-fcf89b4d48ca.png" width="250"/>
 </p>
 
 # Tumbler Shop
