@@ -28,7 +28,7 @@
 1. 리포 클론하기: `git clone https://github.com/hyeonahc/tumbler-shop.git`
 2. 해당 디렉토리로 이동하기: `cd <YOUR_PROJECT_NAME>`.
 3. 패키지 설치하기: `npm install`
-4. 프로젝트 실행하기: `npm start`
+4. 프로젝트 실행하기: `npm run dev`
 
 <br />
 
